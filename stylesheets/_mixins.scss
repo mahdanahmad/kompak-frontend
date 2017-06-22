@@ -33,10 +33,16 @@
 	box-shadow: $box-shadow;
 }
 
+@mixin box-sizing($box-sizing...) {
+	-webkit-box-sizing: $box-sizing;
+	-moz-box-sizing: $box-sizing;
+	box-sizing: $box-sizing;
+}
+
 @mixin animation($animation...) {
   -webkit-animation: $animation;
   -moz-animation: $animation;
   -ms-animation: $animation;
   -o-animation: $animation;
-  animation: $animation;      
+  animation: $animation;
 }

@@ -1,0 +1,26 @@
+<div id="dashboard-wrapper">
+	<div id="dashboard-sidebar">
+		<div id="sidebar-logo" class="cursor-pointer">
+			<img src="/public/images/logo.png" alt="">
+		</div>
+		<div id="sidebar-menu">
+			<div id="sidebar-menu-wrapper">
+				<div class="sidebar-menu-container" ng-repeat="menu in menus">
+					<div class="sidebar-menu-content cursor-pointer" ng-class="{ active: menu.state == active }" ng-click="setActive(menu.state)">
+						<i class="fa fa-{{ menu.icon }}" aria-hidden="true"></i>
+						<span>{{ menu.title }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sidebar-user">
+			<div id="user-photo" class="cursor-pointer" style="background-image: url('public/images/Sam_Harris_2016.jpg')" ng-click="openDropdown($event)"></div>
+			<div id="dropdown-menu" ng-show="showUserMenu">
+				<div id="dropdown-username" class="cursor-default">Username</div>
+				<ul>
+					<li class="cursor-pointer"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

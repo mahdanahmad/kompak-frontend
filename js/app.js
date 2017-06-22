@@ -7,19 +7,19 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
     // use the HTML5 History API
     // $locationProvider.html5Mode(true);
 
-	// $urlRouterProvider.otherwise( function($injector) {
-    //     let $state = $injector.get("$state");
-    //     $state.go('auth');
-    // });
+	$urlRouterProvider.otherwise( function($injector) {
+        let $state = $injector.get("$state");
+        $state.go('auth');
+    });
 
-    // $stateProvider
-        // .state('auth', {
-        //     url         : '/auth',
-        //     templateUrl : 'views/auth/auth.html',
-        //     controller  : 'AuthController',
-        //     // abstract    : true,
-        //     data        : { permissions: { except: ['isAuthorized'], redirectTo: 'karyawan.profil' } }
-        // });
+    $stateProvider
+        .state('dashboard', {
+            url         : '',
+            templateUrl : 'views/dashboard/dashboard.html',
+            controller  : 'DashboardController',
+            // abstract    : true,
+            // data        : { permissions: { except: ['isAuthorized'], redirectTo: '' } }
+        });
 
 	localStorageServiceProvider.setPrefix('gapuradesa');
 }]);

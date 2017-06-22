@@ -80,42 +80,9 @@ module.exports = function(grunt){
 				files: [{
 				    expand: true,
 				    cwd: 'js',
-				    src: ['**/*.js', '!**/print/**', '!additional_libs/*.js'],
+				    src: ['**/*.js'],
 				    dest: 'dist/es5/',
 				    ext: '.js'
-				}]
-			}
-		},
-
-		processhtml: {
-			dist: {
-				options: {
-					strip: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'views/print/',
-					src: ['*.html'],
-					dest: 'dist/print/',
-					ext: '.html'
-				}]
-			}
-		},
-
-		htmlmin: {
-			dist: {
-				options: {
-					removeComments: true,
-					collapseWhitespace: true,
-					minifyCSS: true,
-					minifyJS: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'dist/print/',
-					src: ['*.html'],
-					dest: 'dist/print/',
-					ext: '.min.html'
 				}]
 			}
 		},
@@ -130,22 +97,14 @@ module.exports = function(grunt){
 				tasks: ['sass']
 			},
 			babel: {
-				files: ['js/**/*.js', '!**/print/**'],
+				files: ['js/**/*.js'],
 				tasks: ['newer:babel']
 			},
 			uglify: {
 				files: 'dist/es5/**/*.js',
 				tasks: ['uglify:dist']
 			},
-			processhtml: {
-				files: ['dist/css/print/*.css', 'js/print/*.js', 'views/print/*.html'],
-				tasks: ['processhtml']
-			},
-			htmlmin: {
-				files: ['dist/print/*.html', '!dist/print/*.min.html'],
-				tasks: ['newer:htmlmin']
-			}
-		},
+		}
 	});
 
 	// Load the plugins
@@ -160,7 +119,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
 	// Default tasks
-	grunt.registerTask('default', ['clean', 'sass', 'cssmin', 'babel', 'uglify', 'processhtml', 'htmlmin']);
-	grunt.registerTask('print', ['sass', 'processhtml', 'htmlmin']);
+	grunt.registerTask('default', ['clean', 'sass', 'cssmin', 'babel', 'uglify']);
 
 };
