@@ -22,7 +22,7 @@ div.header {
 				&::after { position: absolute; left: 25px; top: -4px; display: inline-block; border-right: 4px solid transparent; border-bottom: 4px solid #fff; border-left: 4px solid transparent; content: ''; }
 				&::before { position: absolute; left: 24px; top: -5px; display: inline-block; border-right: 5px solid transparent; border-bottom: 5px solid #e6e6e6; border-left: 5px solid transparent; border-bottom-color: rgba(0,0,0,0.2); content: ''; }
 				& > li {
-					padding: 2.5px 10px;
+					padding: 5px 10px;
 					&:not(:last-child) { border-bottom: 1px solid #e6e6e6; }
 					&:hover { padding-left: 15px; background: #e6e6e6; }
 				}
@@ -30,7 +30,10 @@ div.header {
 		}
 		.header-button {
 			width: 50%; display: inline-block; float: right;
-			& > .button-like { background: $addbutton-clr; color: white; padding: 0px; width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px; }
+			& > .button-like {
+				background: $addbutton-clr; color: white; padding: 0px; width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px;
+				& > i { font-size: 12px; }
+			}
 		}
 	}
 }

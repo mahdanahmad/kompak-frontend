@@ -53,6 +53,7 @@ module.exports = function(grunt){
 						'node_modules/ui-router-extras/release/ct-ui-router-extras.min.js',
 						'node_modules/angular-permission/dist/angular-permission.min.js',
 						'node_modules/angular-permission/dist/angular-permission-ui.min.js',
+						'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js',
 						'node_modules/angular-loading-bar/build/loading-bar.min.js',
 						'node_modules/ng-dialog/js/ngDialog.min.js',
 						'node_modules/moment/min/moment.min.js',

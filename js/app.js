@@ -1,7 +1,7 @@
 var angular	= angular;
-var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate']);
+var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll']);
 
-app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider) {
+app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';
 
     // use the HTML5 History API
@@ -67,10 +67,8 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	        });
 
 	localStorageServiceProvider.setPrefix('gapuradesa');
-}]);
 
-app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-
+	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 }]);
 
 app.controller('MainController', ['$scope', '$rootScope', '$location', 'localStorageService', 'fetcher', function ($scope, $rootScope, $location, localStorageService, fetcher) {

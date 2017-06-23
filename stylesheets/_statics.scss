@@ -1,4 +1,4 @@
-$def-font-stack	: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$def-font-stack	: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $signika-neg	: "Signika Negative", sans-serif;
 
 $username-font	: $signika-neg;
@@ -6,6 +6,7 @@ $menutitle-font	: $def-font-stack;
 $title-font		: "Signika", sans-serif;
 
 $background-clr	: #fafafa;
+$loadingcolor	: #FC7E01;
 
 $sidebar-width	: 70px;
 $sidebar-clr	: #21252d;
@@ -25,3 +26,9 @@ $header-clr		: #fff;
 $search-clr		: #626262;
 
 $addbutton-clr	: #FC7E01;
+
+$def-padding	: 25px;
+
+$male-color		: #41658A;
+$female-color	: #b24f9c;
+$label-clr		: #626262;
