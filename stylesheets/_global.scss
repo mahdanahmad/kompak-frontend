@@ -1,0 +1,36 @@
+div.header {
+	@include clearfix(); height: $header-heigth; width: 100%; background: $header-clr; border-bottom: 1px solid rgba(230,230,230,0.7);
+	& > div { display: inline-block; float: left; }
+	div.header-title { width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; }
+	div.header-divider { width: 1px; height: calc(#{$header-heigth} / 2); background: #e6e6e6; margin: calc(#{$header-heigth} / 4) 0px;}
+	div.header-input-container {
+		width: calc(40% - 1px); @include clearfix();
+		& > .search-sign { width: 40px; display: inline-block; text-align: center; font-size: 17px; line-height: $header-heigth; float: left; color: $search-clr; }
+		& > input { width: calc(100% - 40px); display: inline-block; border: none; height: $header-heigth; float: right; padding: 0px; font-size: 17px; color: $search-clr; font-family: $signika-neg; }
+	}
+	div.header-another {
+		width: 30%; font-size: 17px; font-family: $signika-neg; @include clearfix();
+		div.header-sort {
+			width: calc(50% - 20px); display: inline-block; float: left; padding: 0px 10px; position: relative;
+			.header-sort-value {
+				width: 100%; line-height: $header-heigth;
+				& > span { color: $search-clr; }
+			}
+			.header-sort-dropdown {
+				position: absolute; width: calc(100% - 20px); background: #fff; top: calc(#{$header-heigth - 20px}); border: 1px solid #e6e6e6; border-radius: 3px;
+				&::after, &::before { @include box-sizing(border-box); }
+				&::after { position: absolute; left: 25px; top: -4px; display: inline-block; border-right: 4px solid transparent; border-bottom: 4px solid #fff; border-left: 4px solid transparent; content: ''; }
+				&::before { position: absolute; left: 24px; top: -5px; display: inline-block; border-right: 5px solid transparent; border-bottom: 5px solid #e6e6e6; border-left: 5px solid transparent; border-bottom-color: rgba(0,0,0,0.2); content: ''; }
+				& > li {
+					padding: 2.5px 10px;
+					&:not(:last-child) { border-bottom: 1px solid #e6e6e6; }
+					&:hover { padding-left: 15px; background: #e6e6e6; }
+				}
+			}
+		}
+		.header-button {
+			width: 50%; display: inline-block; float: right;
+			& > .button-like { background: $addbutton-clr; color: white; padding: 0px; width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px; }
+		}
+	}
+}

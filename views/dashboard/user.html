@@ -1,0 +1,24 @@
+<div id="user-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">user list</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search user by name" ng-model="search" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-sort">
+				<div class="header-sort-value cursor-default">
+					sort by : <span class="cursor-pointer" open-dropdown="showDropdown">{{ sortby.title }} <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+				</div>
+				<ul class="header-sort-dropdown" ng-show="showDropdown">
+					<li ng-repeat="opt in sortOptions" ng-click="selectSort(opt)" class="cursor-pointer">{{ opt.title }}</li>
+				</ul>
+			</div>
+			<div class="header-button">
+				<div class="button-like cursor-pointer"><i class="fa fa-plus" aria-hidden="true"></i> Add New User</div>
+			</div>
+		</div>
+	</div>
+</div>

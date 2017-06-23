@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 
 	$urlRouterProvider.otherwise( function($injector) {
         let $state = $injector.get("$state");
-        $state.go('auth');
+        $state.go('dashboard');
     });
 
     $stateProvider
@@ -17,9 +17,54 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
             url         : '',
             templateUrl : 'views/dashboard/dashboard.html',
             controller  : 'DashboardController',
-            // abstract    : true,
+            abstract    : true,
             // data        : { permissions: { except: ['isAuthorized'], redirectTo: '' } }
-        });
+        })
+	        .state('dashboard.statistic', {
+	            url         : '',
+	            templateUrl : 'views/dashboard/statistic.html',
+	            controller  : 'StatisticController',
+	        })
+	        .state('dashboard.user', {
+	            url         : '/user',
+	            templateUrl : 'views/dashboard/user.html',
+	            controller  : 'UserController',
+	        })
+	        .state('dashboard.choices', {
+	            url         : '/choices',
+	            templateUrl : 'views/dashboard/choices/question.html',
+	            controller  : 'ChoicesController',
+	        })
+	        .state('dashboard.choicesAns', {
+	            url         : '/choicesAns',
+	            templateUrl : 'views/dashboard/choices/answer.html',
+	            controller  : 'ChoicesAnsController',
+	        })
+	        .state('dashboard.essay', {
+	            url         : '/essay',
+	            templateUrl : 'views/dashboard/essay/question.html',
+	            controller  : 'EssayController',
+	        })
+	        .state('dashboard.essayAns', {
+	            url         : '/essayAns',
+	            templateUrl : 'views/dashboard/essay/answer.html',
+	            controller  : 'EssayAnsController',
+	        })
+	        // .state('dashboard.category', {
+	        //     url         : '/category',
+	        //     templateUrl : 'views/dashboard/category.html',
+	        //     controller  : 'CategoryController',
+	        // })
+	        .state('dashboard.location', {
+	            url         : '/location',
+	            templateUrl : 'views/dashboard/location.html',
+	            controller  : 'LocationController',
+	        })
+	        .state('dashboard.misc', {
+	            url         : '/misc',
+	            templateUrl : 'views/dashboard/misc.html',
+	            controller  : 'MiscController',
+	        });
 
 	localStorageServiceProvider.setPrefix('gapuradesa');
 }]);

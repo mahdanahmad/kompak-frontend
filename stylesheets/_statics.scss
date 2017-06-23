@@ -1,2 +1,27 @@
 $def-font-stack	: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$edg-font-stack	: "Averia Sans Libre", Arial, freesans, clean, sans-serif;
+$signika-neg	: "Signika Negative", sans-serif;
+
+$username-font	: $signika-neg;
+$menutitle-font	: $def-font-stack;
+$title-font		: "Signika", sans-serif;
+
+$background-clr	: #fafafa;
+
+$sidebar-width	: 70px;
+$sidebar-clr	: #21252d;
+$sidebar-clr2	: #2b303b;
+$sidebar-shadow	: rgba(48,48,48,0.2);
+
+$menu-size		: 50px;
+$menu-inflated	: 240px;
+$menu-clr		: #788195;
+// $menu-act-clr	: #10cfbd;
+$menu-act-clr	: #FC7E01;
+$menu-hvr-clr	: #272b35;
+$icon-margin	: 17px;
+
+$header-heigth	: 70px;
+$header-clr		: #fff;
+$search-clr		: #626262;
+
+$addbutton-clr	: #FC7E01;
