@@ -11,23 +11,24 @@
 				.user-gender { height: 100%; width: 1%; &.male { background: $male-color } &.female { background: $female-color; } }
 				.user-label { font-family: $signika-neg; color: $label-clr; }
 				.user-value { width: 100%; font-size: 17px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-				.user-name { width: 13%; }
-				.user-email { width: 13%; }
-				.user-designation { width: 8%; }
-				.user-institution { width: 8%; }
+				.user-name { width: 15%; }
+				.user-email { width: 15%; }
+				.user-designation { width: 9%; }
+				.user-institution { width: 9%; }
 				.user-village { width: 13%; }
-				.user-age { width: 3%; }
+				.user-age { width: 4%; }
 				.user-score { width: 10%; }
 				.user-contribution { width: 8%; }
-				.user-actions {
-					width: 5%; text-align: center;
-					.user-value { position: relative; top: -5px; }
-					i {
-						margin: 0px 4px;
-						&.fa-times { color: firebrick; font-size: 23px; position: relative; top: 2px; }
-						&.fa-envelope-open { color: gray; font-size: 16px; }
-					}
-				}
+				// .user-actions {
+				// 	width: 8%; text-align: center;
+				// 	.user-value { position: relative; top: -5px; }
+				// 	i {
+				// 		margin: 0px 4px;
+				// 		&.fa-pencil { color: cadetblue; font-size: 19px; position: relative; top: 1px; }
+				// 		&.fa-envelope-open { color: gray; font-size: 16px; }
+				// 		&.fa-times { color: firebrick; font-size: 23px; position: relative; top: 2px; }
+				// 	}
+				// }
 
 				&:hover { width: 100%; }
 				&:not(:last-child) { margin-bottom: 20px; }
@@ -43,6 +44,9 @@
 				60% { text-shadow: .25em 0 0 black, .5em 0 0 rgba(black,0); }
 				80%, 100% { text-shadow: .25em 0 0 black, .5em 0 0 black; }
 			}
+		}
+		#user-no-data {
+			width: 100%; line-height: 40px; text-align: center; font-size: 18px; font-family: $signika-neg;
 		}
 	}
 }

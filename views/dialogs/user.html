@@ -1,0 +1,50 @@
+<form id="usermodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="usermodal-header" class="modal-header cursor-default">
+		new user
+	</div>
+	<div id="usermodal-content">
+		<div ng-repeat="o in inputs track by $index" id="userinput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'input'">
+				<label>{{ o.label }}</label>
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="o.required">
+			</md-input-container>
+
+			<md-input-container ng-if="o.tag == 'radio'" class="md-input-has-value">
+				<label translate>{{ o.label }}</label>
+				<md-radio-group ng-model="data[o.model]" ng-init=" data[o.model] = (data[o.model]) ? data[o.model] : o.value[0].value ">
+					<md-radio-button ng-repeat="val in ::o.value" ng-value="val.value" aria-label="{{ val.label }}">{{ val.label }}</md-radio-button>
+				</md-radio-group>
+			</md-input-container>
+
+			<md-input-container ng-if="o.tag == 'select'">
+				<label>{{ o.label }}</label>
+				<md-select ng-model="data[o.model]">
+					<md-optgroup label="{{ o.label }}">
+						<md-option ng-value="val.id" ng-repeat="val in ::o.value">{{ val.name }}</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+
+			<md-autocomplete
+				ng-if="o.tag == 'autocomplete'"
+	            md-input-minlength="0"
+	            md-selected-item="autoModel[o.value]"
+				md-autoselect="true"
+				md-selected-item-change="autoChanged(val.id, o.value, o.model)"
+				md-search-text="autoSearch[o.value]"
+	            md-items="val in querySearch(o.value) | orderBy: 'name'"
+				md-item-text="val.name"
+	            md-floating-label="{{ o.label }}"
+				ng-disabled="isDisAuto(o.value)">
+				<md-item-template>
+					<span md-highlight-text="autoSearch[o.value]" md-highlight-flags="gi">{{val.name}}</span>
+				</md-item-template>
+				<md-not-found>No data available.</md-not-found>
+        	</md-autocomplete>
+		</div>
+	</div>
+	<div id="usermodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> Add User</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+	</div>
+</form>

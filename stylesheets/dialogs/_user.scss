@@ -1,0 +1,26 @@
+#usermodal-wrapper {
+	#usermodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		#userinput-usr_display_name { width: 33%; }
+		#userinput-usr_email { width: 27.5%; }
+		#userinput-usr_password { width: 27.5%; }
+		#userinput-usr_year_born { width: 12%; }
+		#userinput-usr_designation { width: 25%; }
+		#userinput-usr_gender { width: 25%; }
+		#userinput-usr_institution { width: 25%; }
+		#userinput-usr_education { width: 25%; }
+		#userinput-usr_province { width: 25%; }
+		#userinput-usr_regency { width: 25%; }
+		#userinput-usr_district { width: 25%; }
+		#userinput-usr_village { width: 25%; }
+	}
+	#usermodal-buttons {
+	    width: 50%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

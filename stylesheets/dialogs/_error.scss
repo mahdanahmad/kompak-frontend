@@ -1,0 +1,7 @@
+#error-wrapper {
+	#error-content { }
+	#error-buttons {
+	    width: 100%; @include clearfix();
+		button { background: firebrick; color: white; }
+	}
+}

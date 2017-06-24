@@ -1,0 +1,9 @@
+<form id="confirm-wrapper" ng-submit="closeThisDialog('yes')">
+	<div id="confirm-content" class="modal-content">
+		{{ ngDialogData.content }}
+	</div>
+	<div id="confirm-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> Confirm</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+	</div>
+</form>

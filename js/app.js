@@ -1,11 +1,13 @@
 var angular	= angular;
-var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll']);
+var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial']);
 
-app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
+app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$mdThemingProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';
 
     // use the HTML5 History API
     // $locationProvider.html5Mode(true);
+
+	// $httpProvider.defaults.withCredentials = true;
 
 	$urlRouterProvider.otherwise( function($injector) {
         let $state = $injector.get("$state");
@@ -69,6 +71,7 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	localStorageServiceProvider.setPrefix('gapuradesa');
 
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+	$mdThemingProvider.disableTheming();
 }]);
 
 app.controller('MainController', ['$scope', '$rootScope', '$location', 'localStorageService', 'fetcher', function ($scope, $rootScope, $location, localStorageService, fetcher) {

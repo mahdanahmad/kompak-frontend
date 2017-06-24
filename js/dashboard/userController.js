@@ -1,9 +1,12 @@
-app.controller('UserController', ['$scope', 'fetcher', '$timeout', function ($scope, fetcher, $timeout) {
+app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'globalVar', function ($scope, fetcher, $timeout, dialog, globalVar) {
     'use strict';
 
 	let limit		= 10;
 	let iterate		= 0;
 	let typeDelay	= 500;
+
+	$scope.search	= "";
+	$scope.nodata	= null;
 
 	$scope.data		= [];
 	$scope.pauseAjx	= false;
@@ -16,7 +19,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', function ($sc
 			limit,
 			offset: iterate * limit,
 			like: $scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null,
-			orderby: $scope.orderby.value,
+			orderby: $scope.orderby.value + ' ' + $scope.orderby.order,
 		}, _.isNil);
 		fetcher.getAllUser(data, (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
@@ -31,15 +34,19 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', function ($sc
 
 	let delayTimeout;
 	$scope.$watch('search', (newVal, oldVal) => {
-		if (delayTimeout) $timeout.cancel(delayTimeout);
+		if (!_.isNil(newVal)) {
+			if (delayTimeout) $timeout.cancel(delayTimeout);
 
-		delayTimeout	= $timeout(() => {
-			if (newVal !== oldVal && newVal.length >= 3) {
-				init(newVal);
-			} else if (newVal == '') {
-				init();
-			}
-		}, typeDelay);
+			delayTimeout	= $timeout(() => {
+				if (newVal !== oldVal && newVal.length >= 3) {
+					init(newVal);
+				} else if (newVal == '') {
+					init();
+				}
+			}, typeDelay);
+		} else {
+			$scope.search = '';
+		}
 	});
 
 	$scope.orderOptions	= [
@@ -64,13 +71,29 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', function ($sc
 		init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 	}
 
+	$scope.newUser	= () => {
+		dialog.userDialog({}, (dialResp) => {
+			fetcher.postUser(dialResp, (response) => {
+				if (response.response == 'OK' && response.status_code == 200) {
+					init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
+				}
+			});
+		});
+	};
+	$scope.editUser	= (id) => {
+		console.log('edit user by id');
+	};
+
 	let init	= (like) => {
 		$scope.pauseAjx	= true;
+		$scope.nodata	= null;
 		iterate	= 0;
 		fetcher.getAllUser(_.omitBy({ limit, like, offset: 0, orderby: $scope.orderby.value + ' ' + $scope.orderby.order }, _.isNil), (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data	= response.result;
-				if (response.result.length < limit) {
+				if (!response.result) {
+					$scope.nodata = globalVar.nodata;
+				} else  if (response.result.length < limit) {
 					$scope.doneAjx = true;
 				} else {
 					$scope.doneAjx	= false;

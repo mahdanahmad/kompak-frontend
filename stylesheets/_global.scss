@@ -22,7 +22,7 @@ div.header {
 				&::after { position: absolute; left: 25px; top: -4px; display: inline-block; border-right: 4px solid transparent; border-bottom: 4px solid #fff; border-left: 4px solid transparent; content: ''; }
 				&::before { position: absolute; left: 24px; top: -5px; display: inline-block; border-right: 5px solid transparent; border-bottom: 5px solid #e6e6e6; border-left: 5px solid transparent; border-bottom-color: rgba(0,0,0,0.2); content: ''; }
 				& > li {
-					padding: 5px 10px;
+					padding: 10px;
 					&:not(:last-child) { border-bottom: 1px solid #e6e6e6; }
 					&:hover { padding-left: 15px; background: #e6e6e6; }
 				}
@@ -35,5 +35,36 @@ div.header {
 				& > i { font-size: 12px; }
 			}
 		}
+	}
+}
+
+.md-tooltip { background-color: $label-clr; color: white; }
+md-input-container {
+	width: 100%;
+	label { font-family: $signika-neg; color: $label-clr; }
+	input { border-bottom: 1px solid $label-clr; }
+	&.md-input-focused {
+		label { color: $float-clr; }
+		input { border-bottom-color: $float-clr; }
+	}
+	&.md-input-has-value { label { color: $float-clr; } }
+}
+md-radio-group {
+	width: 100%; @include clearfix();
+	md-radio-button {
+		width: 50%; display: inline-block; float: left; margin: 6px 0px 0px;
+		.md-off { border-color: $label-clr; }
+		&.md-checked { .md-on { background-color: $radio-clr; } }
+	}
+}
+.md-select-menu-container {
+	background: $modal-clr;
+	md-option:hover { background: rgba(black, 0.1); }
+}
+.md-autocomplete-suggestions {
+	background: $modal-clr;
+	li {
+		.highlight { color: $float-clr; }
+		&.selected, &:hover { background: rgba(black, 0.1); }
 	}
 }

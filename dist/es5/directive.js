@@ -18,7 +18,9 @@ app.directive('typeEverywhere', ['$document', function ($document) {
 		link: function link(scope, elem, attrs) {
 			$document.bind('keypress', function (e) {
 				var keyCode = e.which || e.keyCode;
-				if (!_.includes(keyCode, [13])) {
+				var tagName = angular.element($document[0].activeElement)[0].tagName;
+
+				if (!_.includes([13], keyCode) && !_.includes(['INPUT', 'TEXTAREA'], tagName)) {
 					// console.log('Got keypress:', String.fromCharCode(keyCode), keyCode);
 					// if (_.isNil(scope.ngModel)) { scope.ngModel = ''; }
 					scope.ngModel += String.fromCharCode(keyCode);
@@ -36,7 +38,15 @@ app.directive('openDropdown', ['$document', function ($document) {
 		link: function link(scope, elem, attrs) {
 			scope.openDropdown = false;
 
-			function theFunction() {
+			var childNode = [elem[0]];
+			var child = elem.children().length;
+			var current = elem.children();
+			while (child) {
+				childNode = _.concat(childNode, _.chain(current).pick(_.times(current.length)).values().value());
+				current = current.children();
+				child = current.length;
+			}
+			function theFunction(e) {
 				scope.$apply(function () {
 					scope.openDropdown = !scope.openDropdown;
 				});
@@ -46,7 +56,7 @@ app.directive('openDropdown', ['$document', function ($document) {
 			elem.bind('click', theFunction);
 
 			$document.bind('click', function (e) {
-				if (_.includes(elem, e.target)) return;
+				if (_.includes(childNode, e.target)) return;
 				scope.$apply(function () {
 					scope.openDropdown = false;
 				});

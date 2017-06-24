@@ -1,0 +1,11 @@
+#confirm-wrapper {
+	#confirm-content { }
+	#confirm-buttons {
+	    width: 100%; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

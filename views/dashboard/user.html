@@ -9,21 +9,21 @@
 		<div class="header-divider"></div>
 		<div class="header-another">
 			<div class="header-sort">
-				<div class="header-sort-value cursor-default">
-					order by : <span class="cursor-pointer" open-dropdown="showDropdown">{{ orderby.title }} <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+				<div class="header-sort-value cursor-pointer" open-dropdown="showDropdown">
+					order by : <span>{{ orderby.title }} <i class="fa fa-caret-{{ orderby.order == 'ASC' ? 'up' : 'down' }}" aria-hidden="true"></i></span>
 				</div>
 				<ul class="header-sort-dropdown" ng-show="showDropdown">
 					<li ng-repeat="opt in orderOptions" ng-click="selectSort(opt)" class="cursor-pointer">{{ opt.title }}</li>
 				</ul>
 			</div>
 			<div class="header-button">
-				<div class="button-like cursor-pointer"><i class="fa fa-plus" aria-hidden="true"></i> New User</div>
+				<div class="button-like cursor-pointer" ng-click="newUser()"><i class="fa fa-plus" aria-hidden="true"></i> New User</div>
 			</div>
 		</div>
 	</div>
 	<div id="user-content">
 		<div id="user-content-wrapper" infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#user-content'">
-			<div class="user-card cursor-pointer" ng-repeat="o in data track by $index">
+			<div class="user-card cursor-pointer" ng-repeat="o in data track by $index" ng-click="editUser(o.ID)">
 				<div class="user-gender" ng-class="{ male: o.usr_gender == 'm', female: o.usr_gender == 'f' }"></div>
 				<div class="user-name">
 					<div class="user-label">name</div>
@@ -35,15 +35,15 @@
 				</div>
 				<div class="user-designation">
 					<div class="user-label">designation</div>
-					<div class="user-value">{{ o.usr_designation }}</div>
+					<div class="user-value">{{ o.usr_designation || '-' }}</div>
 				</div>
 				<div class="user-institution">
 					<div class="user-label">institution</div>
-					<div class="user-value">{{ o.name_institution }}</div>
+					<div class="user-value">{{ o.name_institution || '-' }}</div>
 				</div>
 				<div class="user-village capitalize">
 					<div class="user-label">village</div>
-					<div class="user-value">{{ o.name_desa }}</div>
+					<div class="user-value">{{ o.name_desa || '-' }}</div>
 				</div>
 				<div class="user-age">
 					<div class="user-label">age</div>
@@ -57,15 +57,17 @@
 					<div class="user-label">contribution</div>
 					<div class="user-value">{{ o.usr_contribution }} times</div>
 				</div>
-				<div class="user-actions">
+				<!-- <div class="user-actions">
 					<div class="user-label">actions</div>
 					<div class="user-value">
-						<i class="fa fa-envelope-open" aria-hidden="true" title="reset password"></i>
-						<i class="fa fa-times" aria-hidden="true" title="delete {{ o.usr_display_name }}"></i>
+						<i class="cursor-pointer fa fa-pencil" aria-hidden="true" ng-click="editUser(o.ID)"><md-tooltip>edit {{ o.usr_display_name }}'s account</md-tooltip></i>
+						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.nama, $event)"><md-tooltip>send reset email to {{ o.usr_email }}</md-tooltip></i>
+						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.nama, $event)"><md-tooltip>delete {{ o.usr_display_name }}'s account</md-tooltip></i>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
-		<div id="user-load-more" ng-show="pauseAjx">loading data</div>
+		<div id="user-load-more" class="cursor-default" ng-show="pauseAjx">loading data</div>
+		<div id="user-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
 	</div>
 </div>

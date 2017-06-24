@@ -32,6 +32,7 @@ module.exports = function(grunt){
 						'node_modules/ng-dialog/css/ngDialog.min.css',
 						'node_modules/ng-dialog/css/ngDialog-theme-default.min.css',
 						'node_modules/angular-loading-bar/build/loading-bar.min.css',
+						'node_modules/angular-material/angular-material.min.css',
 					]
 				}
 			}
@@ -48,6 +49,8 @@ module.exports = function(grunt){
 						'node_modules/jquery/dist/jquery.min.js',
 						'node_modules/angular/angular.min.js',
 						'node_modules/angular-animate/angular-animate.min.js',
+						'node_modules/angular-material/angular-material.min.js',
+						'node_modules/angular-aria/angular-aria.min.js',
 						'node_modules/angular-local-storage/dist/angular-local-storage.min.js',
 						'node_modules/@uirouter/angularjs/release/angular-ui-router.min.js',
 						'node_modules/ui-router-extras/release/ct-ui-router-extras.min.js',
