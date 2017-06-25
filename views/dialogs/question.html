@@ -1,0 +1,35 @@
+<form id="questionmodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="questionmodal-header" class="modal-header cursor-default">
+		{{ data.ID_question ? 'edit' : 'new' }} question
+	</div>
+	<div id="questionmodal-content">
+		<div ng-repeat="o in ::inputs track by $index" id="questioninput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'textarea'">
+				<label>{{ o.label }}</label>
+				<textarea ng-model="data[o.model]" ng-required="o.required" rows="2" max-rows="2" autofocus="{{ $first }}"/>
+			</md-input-container>
+
+			<md-input-container ng-if="o.tag == 'input'">
+				<label>{{ o.label }}</label>
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="o.required" autofocus="{{ $first }}"/>
+			</md-input-container>
+
+			<md-input-container ng-if="o.tag == 'select'">
+				<label>{{ o.label }}</label>
+				<md-select ng-model="data[o.model]" ng-required="o.required">
+					<md-optgroup label="{{ o.label }}">
+						<md-option ng-value="val.id" ng-repeat="val in ::o.value">{{ val.name }}</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+
+			<md-checkbox ng-if="o.tag == 'checkbox'" ng-model="data[o.model]" aria-label="{{ o.label }}">
+            	{{ o.label }}
+          	</md-checkbox>
+		</div>
+	</div>
+	<div id="questionmodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_question ? 'edit' : 'add' }} question</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+	</div>
+</form>

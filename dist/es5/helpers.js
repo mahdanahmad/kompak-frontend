@@ -21,6 +21,12 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 				callback(data.value);
 			});
 		},
+		questionDialog: function questionDialog(content, callback) {
+			var dialog = createDialog(content, 'question', 'ModalQuestionController', 1000);
+			dialog.closePromise.then(function (data) {
+				callback(data.value);
+			});
+		},
 		confirm: function confirm(content, callback) {
 			var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
 			dialog.closePromise.then(function (data) {
@@ -42,7 +48,8 @@ app.factory('globalVar', [function () {
 	'use strict';
 
 	return {
-		nodata: 'no data available at this point.'
+		nodata: 'no data available at this point.',
+		loading: 'loading data'
 	};
 }]);
 //# sourceMappingURL=helpers.js.map

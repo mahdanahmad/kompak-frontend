@@ -18,7 +18,7 @@
 			#sidebar-menu-wrapper {
 				width: 100%; padding: 15px 0px; color: $menu-clr; @include clearfix();
 				.sidebar-menu-container {
-					width: 100%; padding: 5px 0px; font-family: $menutitle-font;
+					width: 100%; padding: 5px 0px; font-family: $menutitle-font; letter-spacing: 0.25px;
 					.sidebar-menu-content {
 						width: $menu-size; height: $menu-size; margin: auto; background: $sidebar-clr; line-height: $menu-size; border-radius: 5px; z-index: 82; position:relative;
 						& > i { font-size: 17px; margin-left: $icon-margin; }

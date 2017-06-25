@@ -1,1 +1,52 @@
-Ini Multiple Choices question.
+<div id="choices-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">multiple choice list</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search multiple choice by question (min. 3 characters)" ng-model="search" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-sort">
+				<div class="header-sort-container cursor-pointer" open-dropdown="showDropdown">
+					<div class="header-sort-title"><span>category</span> :</div>
+					<div class="header-sort-value"><span>{{ category.name }}</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+				</div>
+				<ul class="header-sort-dropdown" ng-show="showDropdown">
+					<li ng-repeat="opt in ::categories" ng-click="selectCate(opt)" class="cursor-pointer">{{ opt.name }}</li>
+				</ul>
+			</div>
+			<div class="header-button">
+				<div class="button-like cursor-pointer" ng-click="newQuestion()"><i class="fa fa-plus" aria-hidden="true"></i> New Question</div>
+			</div>
+		</div>
+	</div>
+	<div id="choices-content" class="dash-content">
+		<div id="choices-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#choices-content'">
+			<div class="choices-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-class="{ noenabled: !o.question_enabled }" ng-click="edit(o.ID_question)">
+				<div class="choices-question-container">
+					<div class="dash-label">question by <strong>{{ o.usr_display_name || '-' }}</strong></div>
+					<div class="dash-value choices-question">{{ o.question_text }}</div>
+				</div>
+				<div class="choices-divider"></div>
+				<div class="choices-answer-container">
+					<div class="choices-anwer-row" ng-repeat="row in [0, 1] track by $index">
+						<div ng-repeat="ans in [1, 2] track by $index" class="choices-answer-wrapper" ng-class="">
+							<div class="dash-label">answer {{ (row * 2 + ans) }} <i ng-if="((row * 2 + ans) == o.correct_response)" class="fa fa-check" aria-hidden="true"></i></div>
+							<div class="dash-value choices-answer">{{ o['response_' + (row * 2 + ans)] }}</div>
+						</div>
+					</div>
+				</div>
+				<div class="choices-divider"></div>
+				<div class="choices-category">
+					category: <span class="color-{{ o.ID_category }}">{{ o.category_name }}</span>
+				</div>
+				<i class="fa fa-thumbs-o-{{ o.question_enabled ? 'down' : 'up' }}" ng-click="changeEna(o, $event)"></i>
+				<i class="fa fa-times" ng-click="delete(o.ID_question, o.question_text, $event)"></i>
+			</div>
+		</div>
+		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>
+		<div class="dash-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
+	</div>
+</div>

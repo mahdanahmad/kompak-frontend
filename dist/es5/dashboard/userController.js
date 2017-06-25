@@ -9,8 +9,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.search = "";
 	$scope.nodata = null;
-
-	$scope.forHide = false;
+	$scope.loading = globalVar.loading;
 
 	$scope.data = [];
 	$scope.pauseAjx = false;
@@ -73,7 +72,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.newUser = function () {
 		dialog.userDialog({}, function (dialResp) {
 			if (_.isObject(dialResp)) {
-				fetcher.postUser(dialResp, function (response) {
+				fetcher.postUser(_.mapValues(dialResp, _.toString), function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
 						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
 					}
@@ -118,11 +117,13 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.delete = function (id, name, e) {
 		e.stopPropagation();
 		dialog.confirm('Are you sure you wanna delete ' + name + '\'s account?', function (response) {
-			fetcher.deleteUser(id, function (response) {
-				if (response.response == 'OK' && response.status_code == 200) {
-					init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
-				}
-			});
+			if (response) {
+				fetcher.deleteUser(id, function (response) {
+					if (response.response == 'OK' && response.status_code == 200) {
+						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+					}
+				});
+			}
 		});
 	};
 

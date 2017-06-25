@@ -1,6 +1,9 @@
 app.directive('autofocus', ['$timeout', ($timeout) => ({
-    link: (scope, elem, attrs) => {
-        $timeout(() => { elem.focus(); });
+	restrict: 'A',
+	link: (scope, elem, attrs) => {
+		if (attrs.autofocus == 'true') {
+			$timeout(() => { elem.focus(); });
+		}
     }
 })]);
 

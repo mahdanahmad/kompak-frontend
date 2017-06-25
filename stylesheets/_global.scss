@@ -1,7 +1,7 @@
 div.header {
 	@include clearfix(); height: $header-heigth; width: 100%; background: $header-clr; border-bottom: 1px solid rgba(230,230,230,0.7);
 	& > div { display: inline-block; float: left; }
-	div.header-title { width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; }
+	div.header-title { width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; letter-spacing: -2px; }
 	div.header-divider { width: 1px; height: calc(#{$header-heigth} / 2); background: #e6e6e6; margin: calc(#{$header-heigth} / 4) 0px;}
 	div.header-input-container {
 		width: calc(40% - 1px); @include clearfix();
@@ -12,12 +12,14 @@ div.header {
 		width: 30%; font-size: 17px; font-family: $signika-neg; @include clearfix();
 		div.header-sort {
 			width: calc(50% - 20px); display: inline-block; float: left; padding: 0px 10px; position: relative;
-			.header-sort-value {
-				width: 100%; line-height: $header-heigth;
-				& > span { color: $search-clr; }
+			.header-sort-container {
+				width: 100%;
+				& > div { line-height: $header-heigth; display: inline-flex; & > span { display: inline-block; margin-right: 3px; } & > i { line-height: $header-heigth; }}
+				div.header-sort-title { width: 70px; & > span { letter-spacing: -1px; @include ellipsis(initial, calc(100% - 10px)); } }
+				div.header-sort-value { color: $search-clr; width: calc(100% - 70px); float: right; & > span { @include ellipsis(initial, calc(100% - 16px)); } }
 			}
 			.header-sort-dropdown {
-				position: absolute; width: calc(100% - 20px); background: #fff; top: calc(#{$header-heigth - 20px}); border: 1px solid #e6e6e6; border-radius: 3px;
+				position: absolute; width: calc(100% - 20px); background: #fff; top: calc(#{$header-heigth - 20px}); border: 1px solid #e6e6e6; border-radius: 3px; z-index: 28;
 				&::after, &::before { @include box-sizing(border-box); }
 				&::after { position: absolute; left: 25px; top: -4px; display: inline-block; border-right: 4px solid transparent; border-bottom: 4px solid #fff; border-left: 4px solid transparent; content: ''; }
 				&::before { position: absolute; left: 24px; top: -5px; display: inline-block; border-right: 5px solid transparent; border-bottom: 5px solid #e6e6e6; border-left: 5px solid transparent; border-bottom-color: rgba(0,0,0,0.2); content: ''; }
@@ -37,6 +39,30 @@ div.header {
 		}
 	}
 }
+div.dash-content {
+	width: calc(100% - (#{$def-padding} * 2)); height: calc(100% - #{$header-heigth} - (#{$def-padding} * 2)); overflow: auto; padding: $def-padding;
+	.dash-load-more {
+		width: 100%; line-height: 40px; text-align: center; font-size: 18px; font-family: $signika-neg;
+		&:after { content: ' .'; animation: dots 1s steps(5, end) infinite; }
+
+		@keyframes dots {
+			0%, 20% { color: rgba(black,0); text-shadow: .25em 0 0 rgba(black,0), .5em 0 0 rgba(black,0); }
+			40% { color: black; text-shadow: .25em 0 0 rgba(black,0), .5em 0 0 rgba(black,0); }
+			60% { text-shadow: .25em 0 0 black, .5em 0 0 rgba(black,0); }
+			80%, 100% { text-shadow: .25em 0 0 black, .5em 0 0 black; }
+		}
+	}
+	.dash-no-data {
+		width: 100%; line-height: 40px; text-align: center; font-size: 18px; font-family: $signika-neg;
+	}
+
+	.dash-label { font-family: $signika-neg; color: $label-clr; }
+	.dash-value { font-size: 17px; }
+}
+
+.ellipsis { @include ellipsis(); }
+
+.text-ellipsis { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 
 .md-tooltip { background-color: $label-clr; color: white; }
 md-input-container {
@@ -59,7 +85,7 @@ md-radio-group {
 }
 .md-select-menu-container {
 	background: $modal-clr;
-	md-option:hover { background: rgba(black, 0.1); }
+	md-option:hover, md-option:focus { background: rgba(black, 0.1); }
 }
 .md-autocomplete-suggestions {
 	background: $modal-clr;
@@ -67,4 +93,8 @@ md-radio-group {
 		.highlight { color: $float-clr; }
 		&.selected, &:hover { background: rgba(black, 0.1); }
 	}
+}
+md-checkbox {
+	.md-icon { border-color: $radio-clr; background-color: $modal-clr; }
+	&.md-checked .md-icon { background: $radio-clr; color: $modal-clr; }
 }

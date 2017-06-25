@@ -3,6 +3,19 @@
     &:after { clear: both; }
 }
 
+@mixin ellipsis($width:100%, $max-width:none) {
+	width: $width; max-width: $max-width; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+}
+
+@mixin cardDefault() {
+	border: 1px solid #ddd; background: white; border-radius: 5px;
+}
+
+@mixin defJustify {
+	text-align: justify; text-justify: auto; word-break: normal;
+	hyphens: auto; -ms-hyphens: auto; -moz-hyphens: auto;
+}
+
 @mixin noselect {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;

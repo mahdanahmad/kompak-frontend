@@ -17,6 +17,10 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 			let dialog	= createDialog(content, 'user', 'ModalUserController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
+		questionDialog	: (content, callback) => {
+			let dialog	= createDialog(content, 'question', 'ModalQuestionController', 1000);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
 		confirm		: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });
@@ -38,5 +42,6 @@ app.factory('globalVar', [function() {
 
 	return {
 		nodata: 'no data available at this point.',
+		loading: 'loading data',
 	}
 }]);

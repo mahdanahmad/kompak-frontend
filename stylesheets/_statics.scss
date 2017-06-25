@@ -3,8 +3,8 @@ $signika		: "Signika", sans-serif;
 $signika-neg	: "Signika Negative", sans-serif;
 
 $username-font	: $signika-neg;
-$menutitle-font	: $def-font-stack;
-$title-font		: "Signika", sans-serif;
+$menutitle-font	: $signika;
+$title-font		: $signika;
 
 $background-clr	: #fafafa;
 $loadingcolor	: #FC7E01;
@@ -38,3 +38,13 @@ $modal-clr		: #f0f0f0;
 
 $float-clr		: #FC7E01;
 $radio-clr		: #FC7E01;
+
+$noenabled-back	: #FC7E01;
+$noenabled-clr	: #FBF5F4;
+$noenabled-lbl	: #FFE824;
+
+$colors			: #1F76C6 #93032E #C69F89 #84894A #034C3C #493B2A #18A999;
+@each $color in $colors {
+	$i: index($colors, $color);
+	.color-#{$i} { color: $color; }
+}

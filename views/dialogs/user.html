@@ -6,7 +6,7 @@
 		<div ng-repeat="o in inputs track by $index" id="userinput-{{ o.model }}">
 			<md-input-container ng-if="o.tag == 'input'">
 				<label>{{ o.label }}</label>
-				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="(o.required && !(o.type == 'password' && data.ID))" ng-disabled="o.type == 'password' && data.ID">
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="(o.required && !(o.type == 'password' && data.ID))" ng-disabled="o.type == 'password' && data.ID" autofocus="{{ $first }}"/>
 			</md-input-container>
 
 			<md-input-container ng-if="o.tag == 'radio'" class="md-input-has-value">

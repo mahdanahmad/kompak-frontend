@@ -47,6 +47,16 @@ module.exports = function(grunt){
 				files: {
 					'dist/js/components.min.js': [
 						'node_modules/jquery/dist/jquery.min.js',
+						'node_modules/jquery-bridget/jquery-bridget.js',
+						'node_modules/ev-emitter/ev-emitter.js',
+						'node_modules/desandro-matches-selector/matches-selector.js',
+						'node_modules/fizzy-ui-utils/utils.js',
+						'node_modules/get-size/get-size.js',
+						'node_modules/outlayer/item.js',
+						'node_modules/outlayer/outlayer.js',
+						'node_modules/masonry-layout/masonry.js',
+						'node_modules/imagesloaded/imagesloaded.js',
+
 						'node_modules/angular/angular.min.js',
 						'node_modules/angular-animate/angular-animate.min.js',
 						'node_modules/angular-material/angular-material.min.js',
@@ -59,9 +69,12 @@ module.exports = function(grunt){
 						'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js',
 						'node_modules/angular-loading-bar/build/loading-bar.min.js',
 						'node_modules/ng-dialog/js/ngDialog.min.js',
+						'node_modules/angular-masonry/angular-masonry.js',
+
 						'node_modules/moment/min/moment.min.js',
 						'node_modules/lodash/lodash.min.js',
 						'node_modules/async/dist/async.min.js',
+
 					]
 				}
 			},

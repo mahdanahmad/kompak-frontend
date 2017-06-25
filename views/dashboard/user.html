@@ -9,11 +9,12 @@
 		<div class="header-divider"></div>
 		<div class="header-another">
 			<div class="header-sort">
-				<div class="header-sort-value cursor-pointer" open-dropdown="showDropdown">
-					order by : <span>{{ orderby.title }} <i class="fa fa-caret-{{ orderby.order == 'ASC' ? 'up' : 'down' }}" aria-hidden="true"></i></span>
+				<div class="header-sort-container cursor-pointer" open-dropdown="showDropdown">
+					<div class="header-sort-title"><span>order by</span> :</div>
+					<div class="header-sort-value"><span>{{ orderby.title }}</span> <i class="fa fa-caret-{{ orderby.order == 'ASC' ? 'up' : 'down' }}" aria-hidden="true"></i></div>
 				</div>
 				<ul class="header-sort-dropdown" ng-show="showDropdown">
-					<li ng-repeat="opt in orderOptions" ng-click="selectSort(opt)" class="cursor-pointer">{{ opt.title }}</li>
+					<li ng-repeat="opt in ::orderOptions" ng-click="selectSort(opt)" class="cursor-pointer">{{ opt.title }}</li>
 				</ul>
 			</div>
 			<div class="header-button">
@@ -21,51 +22,51 @@
 			</div>
 		</div>
 	</div>
-	<div id="user-content">
+	<div id="user-content" class="dash-content">
 		<div id="user-content-wrapper" infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#user-content'">
 			<div class="user-card cursor-pointer" ng-repeat="o in data track by $index" ng-click="editUser(o.ID)">
 				<div class="user-gender" ng-class="{ male: o.usr_gender == 'm', female: o.usr_gender == 'f' }"></div>
 				<div class="user-name">
-					<div class="user-label">name</div>
-					<div class="user-value">{{ o.usr_display_name }}</div>
+					<div class="dash-label">name</div>
+					<div class="dash-value ellipsis">{{ o.usr_display_name }}</div>
 				</div>
 				<div class="user-email">
-					<div class="user-label">email</div>
-					<div class="user-value">{{ o.usr_email }}</div>
+					<div class="dash-label">email</div>
+					<div class="dash-value ellipsis">{{ o.usr_email }}</div>
 				</div>
 				<div class="user-designation">
-					<div class="user-label">designation</div>
-					<div class="user-value">{{ o.usr_designation || '-' }}</div>
+					<div class="dash-label">designation</div>
+					<div class="dash-value ellipsis">{{ o.usr_designation || '-' }}</div>
 				</div>
 				<div class="user-institution">
-					<div class="user-label">institution</div>
-					<div class="user-value">{{ o.name_institution || '-' }}</div>
+					<div class="dash-label">institution</div>
+					<div class="dash-value ellipsis">{{ o.name_institution || '-' }}</div>
 				</div>
 				<div class="user-village capitalize">
-					<div class="user-label">village</div>
-					<div class="user-value">{{ o.name_desa || '-' }}</div>
+					<div class="dash-label">village</div>
+					<div class="dash-value ellipsis">{{ o.name_desa || '-' }}</div>
 				</div>
 				<div class="user-age">
-					<div class="user-label">age</div>
-					<div class="user-value">{{ o.usr_years || '-' }} yo</div>
+					<div class="dash-label">age</div>
+					<div class="dash-value ellipsis">{{ o.usr_years || '-' }} yo</div>
 				</div>
 				<div class="user-score">
-					<div class="user-label">score</div>
-					<div class="user-value">{{ o.usr_score }} points</div>
+					<div class="dash-label">score</div>
+					<div class="dash-value ellipsis">{{ o.usr_score }} points</div>
 				</div>
 				<div class="user-contribution">
-					<div class="user-label">contribution</div>
-					<div class="user-value">{{ o.usr_contribution }} times</div>
+					<div class="dash-label">contribution</div>
+					<div class="dash-value ellipsis">{{ o.usr_contribution }} times</div>
 				</div>
 				<div class="user-actions">
-					<div class="user-value">
+					<div class="dash-value">
 						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">send reset email to {{ o.usr_email }}</md-tooltip></i>
 						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete {{ o.usr_display_name }}'s account</md-tooltip></i>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="user-load-more" class="cursor-default" ng-show="pauseAjx">loading data</div>
-		<div id="user-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
+		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>
+		<div class="dash-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
 	</div>
 </div>

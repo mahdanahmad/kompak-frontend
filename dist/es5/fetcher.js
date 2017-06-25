@@ -45,6 +45,42 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			});
 		},
 
+		getAllQuestion: function getAllQuestion(data, callback) {
+			$http.get(baseURL + 'question' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getQuestion: function getQuestion(id, callback) {
+			$http.get(baseURL + 'question/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postQuestion: function postQuestion(data, callback) {
+			$http.post(baseURL + 'question', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putQuestion: function putQuestion(id, data, callback) {
+			$http.put(baseURL + 'question/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteQuestion: function deleteQuestion(id, callback) {
+			$http.delete(baseURL + 'question/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
 		getAllEducation: function getAllEducation(data, callback) {
 			$http.get(baseURL + 'education' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);
@@ -63,6 +99,14 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 
 		getLocation: function getLocation(id, data, callback) {
 			$http.get(baseURL + 'location/' + id + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
+		getAllCategory: function getAllCategory(data, callback) {
+			$http.get(baseURL + 'category' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);
 			}, function (error) {
 				callback(error.data);

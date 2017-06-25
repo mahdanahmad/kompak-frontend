@@ -1,0 +1,31 @@
+#questionmodal-wrapper {
+	#questionmodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		textarea { line-height: initial; }
+		#questioninput-question_text { width: 100%; }
+		#questioninput-response_1 { width: 25%; }
+		#questioninput-response_2 { width: 25%; }
+		#questioninput-response_3 { width: 25%; }
+		#questioninput-response_4 { width: 25%; }
+		#questioninput-correct_response { width: 20%; }
+		#questioninput-question_category { width: 20%; }
+		#questioninput-bonus_value { width: 20%; }
+		#questioninput-time_to_answer { width: 20%; }
+		#questioninput-question_enabled { width: 20%; }
+
+		md-checkbox {
+			line-height: 68px;
+			&.md-checked .md-label { color: $radio-clr; }
+		}
+
+	}
+	#questionmodal-buttons {
+	    width: 50%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}
