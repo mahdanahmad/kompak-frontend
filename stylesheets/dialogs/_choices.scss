@@ -1,18 +1,18 @@
-#questionmodal-wrapper {
-	#questionmodal-content {
+#choicesmodal-wrapper {
+	#choicesmodal-content {
 		padding: 15px 10px; @include clearfix();
 		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
 		textarea { line-height: initial; }
-		#questioninput-question_text { width: 100%; }
-		#questioninput-response_1 { width: 25%; }
-		#questioninput-response_2 { width: 25%; }
-		#questioninput-response_3 { width: 25%; }
-		#questioninput-response_4 { width: 25%; }
-		#questioninput-correct_response { width: 20%; }
-		#questioninput-question_category { width: 20%; }
-		#questioninput-bonus_value { width: 20%; }
-		#questioninput-time_to_answer { width: 20%; }
-		#questioninput-question_enabled { width: 20%; }
+		#choicesinput-question_text { width: 100%; }
+		#choicesinput-response_1 { width: 25%; }
+		#choicesinput-response_2 { width: 25%; }
+		#choicesinput-response_3 { width: 25%; }
+		#choicesinput-response_4 { width: 25%; }
+		#choicesinput-correct_response { width: 20%; }
+		#choicesinput-question_category { width: 20%; }
+		#choicesinput-bonus_value { width: 20%; }
+		#choicesinput-time_to_answer { width: 20%; }
+		#choicesinput-question_enabled { width: 20%; }
 
 		md-checkbox {
 			line-height: 68px;
@@ -20,7 +20,7 @@
 		}
 
 	}
-	#questionmodal-buttons {
+	#choicesmodal-buttons {
 	    width: 50%; margin: auto; @include clearfix();
 		button {
 			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;

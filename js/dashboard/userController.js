@@ -107,11 +107,13 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		], (err, result) => {
 			if (err) { console.log(err); }
 
-			fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), (response) => {
-				if (response.response == 'OK' && response.status_code == 200) {
-					init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
-				}
-			});
+			if (result) {
+				fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), (response) => {
+					if (response.response == 'OK' && response.status_code == 200) {
+						init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
+					}
+				});
+			}
 		});
 	};
 

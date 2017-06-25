@@ -1,9 +1,9 @@
-<form id="questionmodal-wrapper" ng-submit="closeThisDialog(data)">
-	<div id="questionmodal-header" class="modal-header cursor-default">
+<form id="choicesmodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="choicesmodal-header" class="modal-header cursor-default">
 		{{ data.ID_question ? 'edit' : 'new' }} question
 	</div>
-	<div id="questionmodal-content">
-		<div ng-repeat="o in ::inputs track by $index" id="questioninput-{{ o.model }}">
+	<div id="choicesmodal-content">
+		<div ng-repeat="o in ::inputs track by $index" id="choicesinput-{{ o.model }}">
 			<md-input-container ng-if="o.tag == 'textarea'">
 				<label>{{ o.label }}</label>
 				<textarea ng-model="data[o.model]" ng-required="o.required" rows="2" max-rows="2" autofocus="{{ $first }}"/>
@@ -28,7 +28,7 @@
           	</md-checkbox>
 		</div>
 	</div>
-	<div id="questionmodal-buttons">
+	<div id="choicesmodal-buttons">
 		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_question ? 'edit' : 'add' }} question</button>
 		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
 	</div>

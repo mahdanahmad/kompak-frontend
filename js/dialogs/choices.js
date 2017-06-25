@@ -1,4 +1,4 @@
-app.controller('ModalQuestionController', ['$scope', function ($scope) {
+app.controller('ModalChoicesController', ['$scope', function ($scope) {
     'use strict';
 
 	$scope.data			= $scope.ngDialogData.content.data || {};

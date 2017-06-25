@@ -1,8 +1,8 @@
+@import "choices";
 @import "confirm";
 @import "error";
 @import "notif";
 @import "user";
-@import "question";
 
 .ngdialog {
 	z-index: 50;

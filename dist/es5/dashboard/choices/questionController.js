@@ -66,7 +66,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 	};
 
 	$scope.newQuestion = function () {
-		dialog.questionDialog({ categories: $scope.categories }, function (dialResp) {
+		dialog.choicesDialog({ categories: $scope.categories }, function (dialResp) {
 			if (_.isObject(dialResp)) {
 				dialResp.question_enabled = dialResp.question_enabled ? '1' : '0';
 				fetcher.postQuestion(_.mapValues(dialResp, _.toString), function (response) {
@@ -88,7 +88,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 			});
 		}, function (questionData, callback) {
 			var before = _.clone(questionData);
-			dialog.questionDialog({ data: questionData, categories: $scope.categories }, function (response) {
+			dialog.choicesDialog({ data: questionData, categories: $scope.categories }, function (response) {
 				if (_.isObject(response) && !_.isEqual(before, response)) {
 					callback(null, response);
 				} else {
@@ -100,12 +100,14 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 				console.log(err);
 			}
 
-			result.question_enabled = result.question_enabled ? '1' : '0';
-			fetcher.putQuestion(result.ID_question, _.chain(result).mapValues(_.toString).omit(['no_of_times_correctly_answered', 'no_of_times_incorrectly_answered', 'no_of_times_presented_as_challenge', 'no_of_times_response_1', 'no_of_times_response_2', 'no_of_times_response_3', 'no_of_times_response_4']).value(), function (response) {
-				if (response.response == 'OK' && response.status_code == 200) {
-					initData(getSearch());
-				}
-			});
+			if (result) {
+				result.question_enabled = result.question_enabled ? '1' : '0';
+				fetcher.putQuestion(result.ID_question, _.chain(result).mapValues(_.toString).omit(['no_of_times_correctly_answered', 'no_of_times_incorrectly_answered', 'no_of_times_presented_as_challenge', 'no_of_times_response_1', 'no_of_times_response_2', 'no_of_times_response_3', 'no_of_times_response_4']).value(), function (response) {
+					if (response.response == 'OK' && response.status_code == 200) {
+						initData(getSearch());
+					}
+				});
+			}
 		});
 	};
 
