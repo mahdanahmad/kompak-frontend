@@ -1,7 +1,11 @@
 'use strict';
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 app.factory('dialog', ['ngDialog', function (ngDialog) {
 	'use strict';
+
+	var _ref;
 
 	var createDialog = function createDialog(content, template, controller, width, showClose, additionalClass) {
 		return ngDialog.open({
@@ -14,34 +18,36 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 		});
 	};
 
-	return {
+	return _ref = {
 		userDialog: function userDialog(content, callback) {
 			var dialog = createDialog(content, 'user', 'ModalUserController', 1000);
 			dialog.closePromise.then(function (data) {
 				callback(data.value);
 			});
 		},
-		choicesDialog: function choicesDialog(content, callback) {
+		essayDialog: function essayDialog(content, callback) {
 			var dialog = createDialog(content, 'choices', 'ModalChoicesController', 1000);
 			dialog.closePromise.then(function (data) {
 				callback(data.value);
 			});
-		},
-		confirm: function confirm(content, callback) {
-			var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
-			dialog.closePromise.then(function (data) {
-				callback(data.value == 'yes');
-			});
-		},
-		notif: function notif(content) {
-			var dialog = createDialog(content, 'notif', ['$scope', function ($scope) {}]);
-			// dialog.closePromise.then((data) => { callback(); });
-		},
-		error: function error(content) {
-			var dialog = createDialog(content, 'error', ['$scope', function ($scope) {}]);
-			// dialog.closePromise.then((data) => { callback(); });
 		}
-	};
+	}, _defineProperty(_ref, 'essayDialog', function essayDialog(content, callback) {
+		var dialog = createDialog(content, 'essay', 'ModalEssayController', 1000);
+		dialog.closePromise.then(function (data) {
+			callback(data.value);
+		});
+	}), _defineProperty(_ref, 'confirm', function confirm(content, callback) {
+		var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
+		dialog.closePromise.then(function (data) {
+			callback(data.value == 'yes');
+		});
+	}), _defineProperty(_ref, 'notif', function notif(content) {
+		var dialog = createDialog(content, 'notif', ['$scope', function ($scope) {}]);
+		// dialog.closePromise.then((data) => { callback(); });
+	}), _defineProperty(_ref, 'error', function error(content) {
+		var dialog = createDialog(content, 'error', ['$scope', function ($scope) {}]);
+		// dialog.closePromise.then((data) => { callback(); });
+	}), _ref;
 }]);
 
 app.factory('globalVar', [function () {

@@ -32,7 +32,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 			category: $scope.category.id
 		}, _.isNil);
 		fetcher.getAllQuestion(data, function (response) {
-			if (response.response == 'OK' && response.status_code == 200) {
+			if (response.response == 'OK' && response.status_code == 200 && response.result) {
 				if (response.result.length < limit) {
 					$scope.doneAjx = true;
 				}

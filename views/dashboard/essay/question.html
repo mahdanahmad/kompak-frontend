@@ -1,1 +1,42 @@
-Ini essay question.
+<div id="essay-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">essay list</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search multiple choice by question (min. 3 characters)" ng-model="search" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-sort">
+				<div class="header-sort-container cursor-pointer" open-dropdown="showDropdown">
+					<div class="header-sort-title"><span>category</span> :</div>
+					<div class="header-sort-value"><span>{{ category.name }}</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+				</div>
+				<ul class="header-sort-dropdown" ng-show="showDropdown">
+					<li ng-repeat="opt in ::categories" ng-click="selectCate(opt)" class="cursor-pointer">{{ opt.name }}</li>
+				</ul>
+			</div>
+			<div class="header-button">
+				<div class="button-like cursor-pointer" ng-click="newQuestion()"><i class="fa fa-plus" aria-hidden="true"></i> New Question</div>
+			</div>
+		</div>
+	</div>
+	<div id="essay-content" class="dash-content">
+		<div id="essay-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#essay-content'">
+			<div class="essay-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-class="{ noenabled: !o.question_enabled }" ng-click="edit(o.id)">
+				<div class="essay-question-container">
+					<div class="dash-label">question</div>
+					<div class="dash-value essay-question">{{ o.question }}</div>
+				</div>
+				<div class="essay-divider"></div>
+				<div class="essay-category">
+					category: <span class="color-{{ o.ID_category }}">{{ o.category_name }}</span>
+				</div>
+				<i class="fa fa-times" ng-click="delete(o.id, o.question, $event)"></i>
+			</div>
+		</div>
+		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>
+		<div class="dash-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
+	</div>
+</div>

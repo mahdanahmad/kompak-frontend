@@ -19,6 +19,12 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 		putQuestion: (id, data, callback) => { $http.put(baseURL + 'question/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteQuestion: (id, callback) => { $http.delete(baseURL + 'question/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
+		getAllEssay: (data, callback) => { $http.get(baseURL + 'essay' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getEssay: (id, callback) => { $http.get(baseURL + 'essay/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postEssay: (data, callback) => { $http.post(baseURL + 'essay', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		putEssay: (id, data, callback) => { $http.put(baseURL + 'essay/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		deleteEssay: (id, callback) => { $http.delete(baseURL + 'essay/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+
 		getAllEducation: (data, callback) => { $http.get(baseURL + 'education' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
 		getAllInstitution: (data, callback) => { $http.get(baseURL + 'institution' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },

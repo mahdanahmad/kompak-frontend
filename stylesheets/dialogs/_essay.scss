@@ -1,0 +1,17 @@
+#essaymodal-wrapper {
+	#essaymodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		textarea { line-height: initial; }
+		#essayinput-question { width: 80%; }
+		#essayinput-ID_category { width: 20%; }
+	}
+	#essaymodal-buttons {
+	    width: 50%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

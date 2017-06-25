@@ -81,6 +81,42 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			});
 		},
 
+		getAllEssay: function getAllEssay(data, callback) {
+			$http.get(baseURL + 'essay' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getEssay: function getEssay(id, callback) {
+			$http.get(baseURL + 'essay/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postEssay: function postEssay(data, callback) {
+			$http.post(baseURL + 'essay', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putEssay: function putEssay(id, data, callback) {
+			$http.put(baseURL + 'essay/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteEssay: function deleteEssay(id, callback) {
+			$http.delete(baseURL + 'essay/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
 		getAllEducation: function getAllEducation(data, callback) {
 			$http.get(baseURL + 'education' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);

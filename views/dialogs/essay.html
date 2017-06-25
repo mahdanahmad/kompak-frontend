@@ -1,0 +1,26 @@
+<form id="essaymodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="essaymodal-header" class="modal-header cursor-default">
+		{{ data.id ? 'edit' : 'new' }} question
+	</div>
+	<div id="essaymodal-content">
+		<div ng-repeat="o in ::inputs track by $index" id="essayinput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'textarea'">
+				<label>{{ o.label }}</label>
+				<textarea ng-model="data[o.model]" ng-required="o.required" rows="5" max-rows="5" autofocus="{{ $first }}"/>
+			</md-input-container>
+
+			<md-input-container ng-if="o.tag == 'select'">
+				<label>{{ o.label }}</label>
+				<md-select ng-model="data[o.model]" ng-required="o.required">
+					<md-optgroup label="{{ o.label }}">
+						<md-option ng-value="val.id" ng-repeat="val in ::o.value">{{ val.name }}</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+		</div>
+	</div>
+	<div id="essaymodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.id ? 'edit' : 'add' }} question</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+	</div>
+</form>

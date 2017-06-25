@@ -23,7 +23,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 			orderby: $scope.orderby.value + ' ' + $scope.orderby.order,
 		}, _.isNil);
 		fetcher.getAllUser(data, (response) => {
-			if (response.response == 'OK' && response.status_code == 200) {
+			if (response.response == 'OK' && response.status_code == 200 && response.result) {
 				if (response.result.length < limit) { $scope.doneAjx = true; }
 				$scope.data 	= _.concat($scope.data, response.result);
 			} else {
