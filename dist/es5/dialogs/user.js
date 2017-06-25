@@ -3,7 +3,7 @@
 app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fetcher) {
 	'use strict';
 
-	$scope.data = {};
+	$scope.data = $scope.ngDialogData.content || {};
 	$scope.autoData = { province: [], regency: [], district: [], village: [] };
 	$scope.autoSearch = { province: '', regency: '', district: '', village: '' };
 	$scope.autoModel = { province: null, regency: null, district: null, village: null };
@@ -16,6 +16,13 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 				return key == 'id' ? 'id' : 'name';
 			}).value();
 		}).value();
+	};
+
+	var setAuto = function setAuto(data, id, state) {
+		var selected = _.find(data, ['id', id]);
+
+		$scope.autoData[state] = selected;
+		$scope.autoSearch[state] = selected.name;
 	};
 
 	var createFilterFor = function createFilterFor(query) {
@@ -59,7 +66,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			}
 
 			_.chain(locationList).drop(nextIndex).forEach(function (o) {
-				$scope.autoModel[o] = null;delete $scope.data['usr_' + o];
+				$scope.autoModel[o] = null;$scope.autoSearch[o] = '';$scope.data['usr_' + o] = null;
 			}).value();
 			fetcher.getLocation(locationId, {}, function (response) {
 				if (response.response == 'OK' && response.status_code == 200) {
@@ -92,11 +99,66 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			province: function province(callback) {
 				fetcher.getLocation('', {}, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						callback(null, mapName(response.result));
+						var mappedResult = mapName(response.result);
+						if ($scope.data.usr_province) {
+							setAuto(mappedResult, $scope.data.usr_province, 'province');
+						}
+						callback(null, mappedResult);
 					} else {
 						callback(response.message);
 					}
 				});
+			},
+			regency: function regency(callback) {
+				if ($scope.data.ID && $scope.data.usr_province) {
+					fetcher.getLocation($scope.data.usr_province, {}, function (response) {
+						if (response.response == 'OK' && response.status_code == 200) {
+							var mappedResult = mapName(response.result);
+							if ($scope.data.usr_regency) {
+								setAuto(mappedResult, $scope.data.usr_regency, 'regency');
+							}
+							callback(null, mappedResult);
+						} else {
+							callback(response.message);
+						}
+					});
+				} else {
+					callback(null, []);
+				}
+			},
+			district: function district(callback) {
+				if ($scope.data.ID && $scope.data.usr_province && $scope.data.usr_regency) {
+					fetcher.getLocation($scope.data.usr_province + '/' + $scope.data.usr_regency, {}, function (response) {
+						if (response.response == 'OK' && response.status_code == 200) {
+							var mappedResult = mapName(response.result);
+							if ($scope.data.usr_district) {
+								setAuto(mappedResult, $scope.data.usr_district, 'district');
+							}
+							callback(null, mappedResult);
+						} else {
+							callback(response.message);
+						}
+					});
+				} else {
+					callback(null, []);
+				}
+			},
+			village: function village(callback) {
+				if ($scope.data.ID && $scope.data.usr_province && $scope.data.usr_regency && $scope.data.usr_district) {
+					fetcher.getLocation($scope.data.usr_province + '/' + $scope.data.usr_regency + '/' + $scope.data.usr_district, {}, function (response) {
+						if (response.response == 'OK' && response.status_code == 200) {
+							var mappedResult = mapName(response.result);
+							if ($scope.data.usr_village) {
+								setAuto(mappedResult, $scope.data.usr_village, 'village');
+							}
+							callback(null, mappedResult);
+						} else {
+							callback(response.message);
+						}
+					});
+				} else {
+					callback(null, []);
+				}
 			}
 		}, function (err, results) {
 			if (err) {
@@ -104,6 +166,9 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			}
 
 			$scope.autoData.province = results.province;
+			$scope.autoData.regency = results.regency;
+			$scope.autoData.district = results.district;
+			$scope.autoData.village = results.village;
 
 			$scope.inputs = [{ label: 'name', model: 'usr_display_name', tag: 'input', type: 'text', required: true }, { label: 'email', model: 'usr_email', tag: 'input', type: 'email', required: true }, { label: 'password', model: 'usr_password', tag: 'input', type: 'password', required: true }, { label: 'year of born', model: 'usr_year_born', tag: 'input', type: 'number' }, { label: 'designation', model: 'usr_designation', tag: 'input', type: 'text' }, { label: 'gender', model: 'usr_gender', tag: 'radio', value: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }] }, { label: 'institution', model: 'usr_institution', tag: 'select', value: results.instits }, { label: 'education', model: 'usr_education', tag: 'select', value: results.educats }, { label: 'province', model: 'usr_province', tag: 'autocomplete', value: 'province' }, { label: 'regency', model: 'usr_regency', tag: 'autocomplete', value: 'regency' }, { label: 'district', model: 'usr_district', tag: 'autocomplete', value: 'district' }, { label: 'village', model: 'usr_village', tag: 'autocomplete', value: 'village' }];
 		});

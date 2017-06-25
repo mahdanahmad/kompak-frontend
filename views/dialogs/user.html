@@ -1,12 +1,12 @@
 <form id="usermodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="usermodal-header" class="modal-header cursor-default">
-		new user
+		{{ data.ID ? 'edit' : 'new' }} user
 	</div>
 	<div id="usermodal-content">
 		<div ng-repeat="o in inputs track by $index" id="userinput-{{ o.model }}">
 			<md-input-container ng-if="o.tag == 'input'">
 				<label>{{ o.label }}</label>
-				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="o.required">
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="(o.required && !(o.type == 'password' && data.ID))" ng-disabled="o.type == 'password' && data.ID">
 			</md-input-container>
 
 			<md-input-container ng-if="o.tag == 'radio'" class="md-input-has-value">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="usermodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> Add User</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID ? 'edit' : 'add' }} user</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
 	</div>
 </form>

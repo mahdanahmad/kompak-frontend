@@ -8,6 +8,8 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.search	= "";
 	$scope.nodata	= null;
 
+	$scope.forHide	= false;
+
 	$scope.data		= [];
 	$scope.pauseAjx	= false;
 	$scope.doneAjx	= false;
@@ -73,16 +75,60 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.newUser	= () => {
 		dialog.userDialog({}, (dialResp) => {
-			fetcher.postUser(dialResp, (response) => {
+			if (_.isObject(dialResp)) {
+				fetcher.postUser(dialResp, (response) => {
+					if (response.response == 'OK' && response.status_code == 200) {
+						init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
+					}
+				});
+			}
+		});
+	};
+	$scope.editUser	= (id) => {
+		async.waterfall([
+			(callback) => {
+				fetcher.getUser(id, (response) => {
+					if (response.response == 'OK' && response.status_code == 200) {
+						callback(null, response.result);
+					} else {
+						callback(response.message);
+					}
+				});
+			},
+			(userData, callback) => {
+				let before	= _.clone(userData);
+				dialog.userDialog(userData, (response) => {
+					if (_.isObject(response) && !_.isEqual(before, response)) {
+						callback(null, response);
+					} else {
+						callback(null);
+					}
+				});
+			}
+		], (err, result) => {
+			if (err) { console.log(err); }
+
+			fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), (response) => {
 				if (response.response == 'OK' && response.status_code == 200) {
 					init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 				}
 			});
 		});
 	};
-	$scope.editUser	= (id) => {
-		console.log('edit user by id');
-	};
+
+	$scope.emailTo	= (id, name, e) => {
+		e.stopPropagation();
+	}
+	$scope.delete	= (id, name, e) => {
+		e.stopPropagation();
+		dialog.confirm('Are you sure you wanna delete ' + name + '\'s account?', (response) => {
+			fetcher.deleteUser(id, (response) => {
+				if (response.response == 'OK' && response.status_code == 200) {
+					init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
+				}
+			});
+		});
+	}
 
 	let init	= (like) => {
 		$scope.pauseAjx	= true;

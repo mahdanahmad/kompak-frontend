@@ -57,14 +57,12 @@
 					<div class="user-label">contribution</div>
 					<div class="user-value">{{ o.usr_contribution }} times</div>
 				</div>
-				<!-- <div class="user-actions">
-					<div class="user-label">actions</div>
+				<div class="user-actions">
 					<div class="user-value">
-						<i class="cursor-pointer fa fa-pencil" aria-hidden="true" ng-click="editUser(o.ID)"><md-tooltip>edit {{ o.usr_display_name }}'s account</md-tooltip></i>
-						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.nama, $event)"><md-tooltip>send reset email to {{ o.usr_email }}</md-tooltip></i>
-						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.nama, $event)"><md-tooltip>delete {{ o.usr_display_name }}'s account</md-tooltip></i>
+						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">send reset email to {{ o.usr_email }}</md-tooltip></i>
+						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete {{ o.usr_display_name }}'s account</md-tooltip></i>
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 		<div id="user-load-more" class="cursor-default" ng-show="pauseAjx">loading data</div>

@@ -10,6 +10,8 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.search = "";
 	$scope.nodata = null;
 
+	$scope.forHide = false;
+
 	$scope.data = [];
 	$scope.pauseAjx = false;
 	$scope.doneAjx = false;
@@ -70,15 +72,58 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.newUser = function () {
 		dialog.userDialog({}, function (dialResp) {
-			fetcher.postUser(dialResp, function (response) {
+			if (_.isObject(dialResp)) {
+				fetcher.postUser(dialResp, function (response) {
+					if (response.response == 'OK' && response.status_code == 200) {
+						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+					}
+				});
+			}
+		});
+	};
+	$scope.editUser = function (id) {
+		async.waterfall([function (callback) {
+			fetcher.getUser(id, function (response) {
+				if (response.response == 'OK' && response.status_code == 200) {
+					callback(null, response.result);
+				} else {
+					callback(response.message);
+				}
+			});
+		}, function (userData, callback) {
+			var before = _.clone(userData);
+			dialog.userDialog(userData, function (response) {
+				if (_.isObject(response) && !_.isEqual(before, response)) {
+					callback(null, response);
+				} else {
+					callback(null);
+				}
+			});
+		}], function (err, result) {
+			if (err) {
+				console.log(err);
+			}
+
+			fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), function (response) {
 				if (response.response == 'OK' && response.status_code == 200) {
 					init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
 				}
 			});
 		});
 	};
-	$scope.editUser = function (id) {
-		console.log('edit user by id');
+
+	$scope.emailTo = function (id, name, e) {
+		e.stopPropagation();
+	};
+	$scope.delete = function (id, name, e) {
+		e.stopPropagation();
+		dialog.confirm('Are you sure you wanna delete ' + name + '\'s account?', function (response) {
+			fetcher.deleteUser(id, function (response) {
+				if (response.response == 'OK' && response.status_code == 200) {
+					init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+				}
+			});
+		});
 	};
 
 	var init = function init(like) {
