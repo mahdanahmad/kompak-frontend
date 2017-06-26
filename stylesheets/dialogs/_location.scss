@@ -1,0 +1,17 @@
+#locationmodal-wrapper {
+	#locationmodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		textarea { line-height: initial; }
+		#locationinput-id { width: 30%; }
+		#locationinput-name { width: 70%; }
+	}
+	#locationmodal-buttons {
+	    width: 50%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

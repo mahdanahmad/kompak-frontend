@@ -1,5 +1,5 @@
 var angular	= angular;
-var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial', 'wu.masonry']);
+var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial', 'wu.masonry', 'ngSanitize']);
 
 app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$mdThemingProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';
@@ -58,9 +58,14 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	        //     controller  : 'CategoryController',
 	        // })
 	        .state('dashboard.location', {
-	            url         : '/location',
+	            url         : '/location/:province/:regency/:district',
 	            templateUrl : 'views/dashboard/location.html',
 	            controller  : 'LocationController',
+				params: {
+					province: { squash: true, value: null },
+					regency: { squash: true, value: null },
+					district: { squash: true, value: null },
+				}
 	        })
 	        .state('dashboard.misc', {
 	            url         : '/misc',

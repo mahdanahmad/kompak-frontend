@@ -1,0 +1,25 @@
+$card-width		: 250px;
+$unintended-clr	: #BCB8B1;
+
+#location-wrapper {
+	width: 100%; height: 100%;
+	.header-title { width: calc(40% - 1px - 25px); height: $header-heigth; text-transform: lowercase; span { color: $unintended-clr; } }
+	.header-another {
+		width: 20%;
+		.header-button {
+			width: 100%;
+			.button-like { text-transform: capitalize; }
+		}
+	}
+	#location-content {
+		#location-content-wrapper {
+			width: 100%;
+			.location-card {
+				width: $card-width; text-align: center; padding: 50px 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+
+				.fa-pencil { color: #839791; position: absolute; top: 6px; right: 28px; font-size: 17px; }
+				.fa-times { color: firebrick; position: absolute; top: 5px; right: 5px; font-size: 20px; }
+			}
+		}
+	}
+}

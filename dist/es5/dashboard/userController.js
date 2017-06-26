@@ -39,13 +39,13 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	var delayTimeout = void 0;
 	$scope.$watch('search', function (newVal, oldVal) {
-		if (!_.isNil(newVal)) {
+		if (!_.isNil(newVal) && newVal !== oldVal) {
 			if (delayTimeout) $timeout.cancel(delayTimeout);
 
 			delayTimeout = $timeout(function () {
-				if (newVal !== oldVal && newVal.length >= 3) {
+				if (newVal.length >= 3) {
 					init(newVal);
-				} else if (newVal == '') {
+				} else if (newVal == '' && !$scope.pauseAjx) {
 					init();
 				}
 			}, typeDelay);
@@ -137,7 +137,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
 				if (!response.result) {
-					$scope.nodata = globalVar.nodata;
+					$scope.nodata = globalVar.nodata;$scope.doneAjx = true;
 				} else if (response.result.length < limit) {
 					$scope.doneAjx = true;
 				} else {

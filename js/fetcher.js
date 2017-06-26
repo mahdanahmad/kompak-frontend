@@ -42,6 +42,9 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 		getAllInstitution: (data, callback) => { $http.get(baseURL + 'institution' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
 		getLocation: (id, data, callback) => { $http.get(baseURL + 'location/' + id + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postLocation: (id, data, callback) => { $http.post(baseURL + 'location/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		putLocation: (id, data, callback) => { $http.put(baseURL + 'location/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		deleteLocation: (id, callback) => { $http.delete(baseURL + 'location/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
 		getAllCategory: (data, callback) => { $http.get(baseURL + 'category' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 	};

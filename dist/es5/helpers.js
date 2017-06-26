@@ -33,6 +33,12 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 				callback(data.value);
 			});
 		},
+		locationDialog: function locationDialog(content, callback) {
+			var dialog = createDialog(content, 'location', 'ModalLocationController', 600);
+			dialog.closePromise.then(function (data) {
+				callback(data.value);
+			});
+		},
 		confirm: function confirm(content, callback) {
 			var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
 			dialog.closePromise.then(function (data) {

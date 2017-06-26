@@ -59,6 +59,7 @@ module.exports = function(grunt){
 
 						'node_modules/angular/angular.min.js',
 						'node_modules/angular-animate/angular-animate.min.js',
+						'node_modules/angular-sanitize/angular-sanitize.min.js',
 						'node_modules/angular-material/angular-material.min.js',
 						'node_modules/angular-aria/angular-aria.min.js',
 						'node_modules/angular-local-storage/dist/angular-local-storage.min.js',

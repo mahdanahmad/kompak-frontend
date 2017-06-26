@@ -8,7 +8,7 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 	var typeDelay = 500;
 
 	// $scope.categories	= [];
-	// $scope.category		= {};
+	$scope.category = {};
 
 	$scope.data = [];
 	$scope.pauseAjx = false;
@@ -46,13 +46,13 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 
 	var delayTimeout = void 0;
 	$scope.$watch('search', function (newVal, oldVal) {
-		if (!_.isNil(newVal)) {
+		if (!_.isNil(newVal) && newVal !== oldVal) {
 			if (delayTimeout) $timeout.cancel(delayTimeout);
 
 			delayTimeout = $timeout(function () {
-				if (newVal !== oldVal && newVal.length >= 3) {
+				if (newVal.length >= 3) {
 					initData(newVal);
-				} else if (newVal == '') {
+				} else if (newVal == '' && !$scope.pauseAjx) {
 					initData();
 				}
 			}, typeDelay);
@@ -130,7 +130,7 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
 				if (!response.result) {
-					$scope.nodata = globalVar.nodata;
+					$scope.nodata = globalVar.nodata;$scope.doneAjx = true;
 				} else if (response.result.length < limit) {
 					$scope.doneAjx = true;
 				} else {

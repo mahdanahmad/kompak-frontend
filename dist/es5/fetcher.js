@@ -212,6 +212,27 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 				callback(error.data);
 			});
 		},
+		postLocation: function postLocation(id, data, callback) {
+			$http.post(baseURL + 'location/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putLocation: function putLocation(id, data, callback) {
+			$http.put(baseURL + 'location/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteLocation: function deleteLocation(id, callback) {
+			$http.delete(baseURL + 'location/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
 
 		getAllCategory: function getAllCategory(data, callback) {
 			$http.get(baseURL + 'category' + '?' + $httpParamSerializer(data), config).then(function (success) {
