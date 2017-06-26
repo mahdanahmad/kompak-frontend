@@ -11,7 +11,7 @@ $card-width	: 375px;
 				.essay-divider { width: 100%; border-bottom: 1px solid #ddd; margin: 10px 0px; }
 				.essay-question-container {
 					width: 98%; padding: 0px 1%;
-					.essay-question { @include defJustify(); }
+					.essay-question { font-size: 15px; @include defJustify(); }
 				}
 				.essay-category {
 					width: 98%; padding: 0px 1%; color: $label-clr;

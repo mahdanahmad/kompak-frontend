@@ -13,27 +13,27 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 	);
 
 	return {
-		userDialog	: (content, callback) => {
+		userDialog: (content, callback) => {
 			let dialog	= createDialog(content, 'user', 'ModalUserController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
-		essayDialog	: (content, callback) => {
+		choicesDialog: (content, callback) => {
 			let dialog	= createDialog(content, 'choices', 'ModalChoicesController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
-		essayDialog	: (content, callback) => {
+		essayDialog: (content, callback) => {
 			let dialog	= createDialog(content, 'essay', 'ModalEssayController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
-		confirm		: (content, callback) => {
+		confirm: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });
 		},
-		notif		: (content) => {
+		notif: (content) => {
 			let dialog	= createDialog(content, 'notif', ['$scope', ($scope) => { }]);
 			// dialog.closePromise.then((data) => { callback(); });
 		},
-		error		: (content) => {
+		error: (content) => {
 			let dialog	= createDialog(content, 'error', ['$scope', ($scope) => { }]);
 			// dialog.closePromise.then((data) => { callback(); });
 		},

@@ -42,8 +42,8 @@
 				<div class="choices-category">
 					category: <span class="color-{{ o.ID_category }}">{{ o.category_name }}</span>
 				</div>
-				<i class="fa fa-thumbs-o-{{ o.question_enabled ? 'down' : 'up' }}" ng-click="changeEna(o, $event)"></i>
-				<i class="fa fa-times" ng-click="delete(o.ID_question, o.question_text, $event)"></i>
+				<i class="fa fa-thumbs-o-{{ o.question_enabled ? 'down' : 'up' }}" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.question_enabled ? 'disable' : 'enable' }} this question</md-tooltip></i>
+				<i class="fa fa-times" ng-click="delete(o.ID_question, o.question_text, $event)"><md-tooltip md-autohide="true">delete this question</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

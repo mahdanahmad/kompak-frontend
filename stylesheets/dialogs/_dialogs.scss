@@ -6,7 +6,7 @@
 @import "user";
 
 .ngdialog {
-	z-index: 50;
+	z-index: 50; padding-bottom: 0px!important; padding-top: 125px!important;
 	.ngdialog-content {
 		background: $modal-clr;
 		.modal-header { width: 100%; font-family: $signika; font-size: 30px; font-weight: bolder; text-align: center; padding: 10px 0px; letter-spacing: -2px; }

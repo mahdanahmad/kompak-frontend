@@ -81,6 +81,42 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			});
 		},
 
+		getAllAnswer: function getAllAnswer(data, callback) {
+			$http.get(baseURL + 'answer' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getAnswer: function getAnswer(id, callback) {
+			$http.get(baseURL + 'answer/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postAnswer: function postAnswer(data, callback) {
+			$http.post(baseURL + 'answer', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putAnswer: function putAnswer(id, data, callback) {
+			$http.put(baseURL + 'answer/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteAnswer: function deleteAnswer(id, callback) {
+			$http.delete(baseURL + 'answer/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
 		getAllEssay: function getAllEssay(data, callback) {
 			$http.get(baseURL + 'essay' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);

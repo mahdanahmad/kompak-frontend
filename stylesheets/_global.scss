@@ -64,7 +64,7 @@ div.dash-content {
 
 .text-ellipsis { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 
-.md-tooltip { background-color: $label-clr; color: white; }
+.md-tooltip { background-color: $label-clr; color: white; font-size: 13px; }
 md-input-container {
 	width: 100%;
 	label { font-family: $signika-neg; color: $label-clr; }
