@@ -1,1 +1,75 @@
-Ini Miscellaneous page.
+<div id="misc-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">miscellaneous</div>
+	</div>
+	<div id="misc-content-container" class="dash-content">
+		<div id="misc-content-wrapper">
+			<div id="misc-setting" class="misc-section">
+				<label>setting</label>
+				<form class="misc-content" ng-submit="updateSetting()">
+					<div ng-repeat="o in ::settingInputs track by $index" id="miscsetting-{{ o.model }}" class="miscsetting-inputs">
+						<md-input-container ng-if="o.tag == 'input'">
+							<label>{{ o.label }}</label>
+							<input type="{{o.type}}" ng-model="setting[o.model]" autofocus="{{ $first }}" />
+						</md-input-container>
+					</div>
+
+					<input type="submit" value="Submit" ng-hide="true"/>
+				</form>
+				<div class="button-like cursor-pointer" ng-click="updateSetting()">update</div>
+			</div>
+
+			<div id="misc-category" class="misc-section">
+				<label>category</label>
+				<div class="misc-content need-margin" masonry preserve-order>
+					<div ng-repeat="o in categories track by $index" class="category-card misc-card masonry-brick cursor-pointer ellipsis" ng-class="{ notenabled: !o.category_enabled }" ng-click="edit(o, 'category')">
+						{{ o.category_name }}
+						<i class="fa fa-{{ o.category_enabled ? 'dot-circle-o' : 'circle' }} cursor-pointer" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.category_enabled ? 'disable' : 'enable' }} this category</md-tooltip></i>
+						<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID_category, o.category_name, 'category', $event)"><md-tooltip md-autohide="true">delete this category</md-tooltip></i>
+					</div>
+				</div>
+				<div class="button-like cursor-pointer" ng-click="new('category')">add category</div>
+			</div>
+
+			<div id="misc-badge" class="misc-section">
+				<label>badge</label>
+				<div class="misc-content">
+					<div class="misc-content need-margin" masonry preserve-order>
+						<div ng-repeat="o in badges track by $index" class="badge-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'badge')">
+							<div class="badge-ceil">
+								{{ o.badge_text }} ({{ o.badge_name }})
+							</div>
+							<div class="badge-floor">
+								<span>range:</span> {{ o.score_min }} - {{ o.score_max }}
+							</div>
+							<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID_Badge, o.badge_name, 'badge', $event)"><md-tooltip md-autohide="true">delete this badge</md-tooltip></i>
+						</div>
+					</div>
+				</div>
+				<div class="button-like cursor-pointer" ng-click="new('badge')">add badge</div>
+			</div>
+
+			<div id="misc-institution" class="misc-section">
+				<label>institution</label>
+				<div class="misc-content need-margin" masonry preserve-order>
+					<div ng-repeat="o in institutions track by $index" class="institution-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'institution')">
+						{{ o.name_institution }}
+						<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name_institution, 'institution', $event)"><md-tooltip md-autohide="true">delete this institution</md-tooltip></i>
+					</div>
+				</div>
+				<div class="button-like cursor-pointer" ng-click="new('institution')">add institution</div>
+			</div>
+
+			<div id="misc-education" class="misc-section">
+				<label>education</label>
+				<div class="misc-content need-margin" masonry preserve-order>
+					<div ng-repeat="o in educations track by $index" class="education-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'education')">
+						{{ o.education }}
+						<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.education, 'education', $event)"><md-tooltip md-autohide="true">delete this education</md-tooltip></i>
+					</div>
+				</div>
+				<div class="button-like cursor-pointer" ng-click="new('education')">add education</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -196,9 +196,65 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 				callback(error.data);
 			});
 		},
+		getEducation: function getEducation(id, callback) {
+			$http.get(baseURL + 'education/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postEducation: function postEducation(data, callback) {
+			$http.post(baseURL + 'education', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putEducation: function putEducation(id, data, callback) {
+			$http.put(baseURL + 'education/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteEducation: function deleteEducation(id, callback) {
+			$http.delete(baseURL + 'education/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
 
 		getAllInstitution: function getAllInstitution(data, callback) {
 			$http.get(baseURL + 'institution' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getInstitution: function getInstitution(id, callback) {
+			$http.get(baseURL + 'institution/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postInstitution: function postInstitution(data, callback) {
+			$http.post(baseURL + 'institution', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putInstitution: function putInstitution(id, data, callback) {
+			$http.put(baseURL + 'institution/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteInstitution: function deleteInstitution(id, callback) {
+			$http.delete(baseURL + 'institution/' + id, config).then(function (success) {
 				callback(success.data);
 			}, function (error) {
 				callback(error.data);
@@ -236,6 +292,85 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 
 		getAllCategory: function getAllCategory(data, callback) {
 			$http.get(baseURL + 'category' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getCategory: function getCategory(id, callback) {
+			$http.get(baseURL + 'category/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postCategory: function postCategory(data, callback) {
+			$http.post(baseURL + 'category', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putCategory: function putCategory(id, data, callback) {
+			$http.put(baseURL + 'category/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteCategory: function deleteCategory(id, callback) {
+			$http.delete(baseURL + 'category/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
+		getSetting: function getSetting(callback) {
+			$http.get(baseURL + 'setting', config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putSetting: function putSetting(data, callback) {
+			$http.put(baseURL + 'setting', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
+		getAllBadge: function getAllBadge(data, callback) {
+			$http.get(baseURL + 'badge' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getBadge: function getBadge(id, callback) {
+			$http.get(baseURL + 'badge/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postBadge: function postBadge(data, callback) {
+			$http.post(baseURL + 'badge', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putBadge: function putBadge(id, data, callback) {
+			$http.put(baseURL + 'badge/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteBadge: function deleteBadge(id, callback) {
+			$http.delete(baseURL + 'badge/' + id, config).then(function (success) {
 				callback(success.data);
 			}, function (error) {
 				callback(error.data);

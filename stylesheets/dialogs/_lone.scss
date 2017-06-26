@@ -1,12 +1,9 @@
-#locationmodal-wrapper {
-	#locationmodal-content {
+#lonemodal-wrapper {
+	#lonemodal-content {
 		padding: 15px 10px; @include clearfix();
-		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
-		textarea { line-height: initial; }
-		#locationinput-id { width: 30%; }
-		#locationinput-name { width: 70%; }
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; width: 100%; }
 	}
-	#locationmodal-buttons {
+	#lonemodal-buttons {
 	    width: 88%; margin: auto; @include clearfix();
 		button {
 			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;

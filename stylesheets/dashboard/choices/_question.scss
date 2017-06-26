@@ -29,9 +29,9 @@ $card-width	: 375px;
 					& > span { font-weight: bolder; }
 				}
 				.fa-times { color: firebrick; position: absolute; top: 5px; right: 5px; font-size: 20px; }
-				.fa-thumbs-o-up, .fa-thumbs-o-down { position: absolute; top: 6.5px; right: 28px; font-size: 17px; }
-				.fa-thumbs-o-up { color: cornsilk; }
-				.fa-thumbs-o-down { color: slategray; }
+				.fa-circle, .fa-dot-circle-o { position: absolute; right: 24px; font-size: 16px; }
+				.fa-circle { color: cornsilk; top: 6px; }
+				.fa-dot-circle-o { color: slategray; top: 7px; }
 
 				&.noenabled {
 					background: $noenabled-back; color: $noenabled-clr;

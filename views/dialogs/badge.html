@@ -1,0 +1,17 @@
+<form id="badgemodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="badgemodal-header" class="modal-header cursor-default">
+		{{ data.ID_Badge ? 'edit' : 'new' }} badge
+	</div>
+	<div id="badgemodal-content">
+		<div ng-repeat="o in ::inputs track by $index" id="badgeinput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'input'">
+				<label>{{ o.label }}</label>
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="o.required" autofocus="{{ $first }}"/>
+			</md-input-container>
+		</div>
+	</div>
+	<div id="badgemodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_Badge ? 'edit' : 'add' }} badge</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+	</div>
+</form>

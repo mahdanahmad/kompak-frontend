@@ -1,12 +1,16 @@
-#locationmodal-wrapper {
-	#locationmodal-content {
+#categorymodal-wrapper {
+	#categorymodal-content {
 		padding: 15px 10px; @include clearfix();
-		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; width: 100%; }
 		textarea { line-height: initial; }
-		#locationinput-id { width: 30%; }
-		#locationinput-name { width: 70%; }
+
+		md-checkbox {
+			line-height: 68px;
+			&.md-checked .md-label { color: $radio-clr; }
+		}
+
 	}
-	#locationmodal-buttons {
+	#categorymodal-buttons {
 	    width: 88%; margin: auto; @include clearfix();
 		button {
 			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;

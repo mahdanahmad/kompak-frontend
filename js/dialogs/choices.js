@@ -13,7 +13,7 @@ app.controller('ModalChoicesController', ['$scope', function ($scope) {
 		{ label: 'category', model: 'question_category', tag: 'select', value: _.omitBy($scope.ngDialogData.content.categories, (o) => (_.isNil(o.id))), required: true },
 		{ label: 'point value', model: 'bonus_value', tag: 'input', type: 'number' },
 		{ label: 'time to answer (minutes)', model: 'time_to_answer', tag: 'input', type: 'number' },
-		{ label: 'enabled question', model: 'question_enabled', tag: 'checkbox' },
+		{ label: 'enable question', model: 'question_enabled', tag: 'checkbox' },
 	];
 
 }]);

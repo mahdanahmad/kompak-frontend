@@ -33,7 +33,7 @@ div.header {
 		.header-button {
 			width: 50%; display: inline-block; float: right;
 			& > .button-like {
-				background: $addbutton-clr; color: white; padding: 0px; width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px;
+				width: 75%; margin: calc((#{$header-heigth} - 40px) / 2) auto;
 				& > i { font-size: 12px; }
 			}
 		}
@@ -61,8 +61,7 @@ div.dash-content {
 }
 
 .ellipsis { @include ellipsis(); }
-
-.text-ellipsis { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+.button-like { background: $addbutton-clr; color: white; padding: 0px; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px; }
 
 .md-tooltip { background-color: $label-clr; color: white; font-size: 13px; }
 md-input-container {

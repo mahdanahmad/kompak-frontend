@@ -11,6 +11,6 @@ app.controller('ModalChoicesController', ['$scope', function ($scope) {
 			return { id: o, name: o };
 		}).value(), required: true }, { label: 'category', model: 'question_category', tag: 'select', value: _.omitBy($scope.ngDialogData.content.categories, function (o) {
 			return _.isNil(o.id);
-		}), required: true }, { label: 'point value', model: 'bonus_value', tag: 'input', type: 'number' }, { label: 'time to answer (minutes)', model: 'time_to_answer', tag: 'input', type: 'number' }, { label: 'enabled question', model: 'question_enabled', tag: 'checkbox' }];
+		}), required: true }, { label: 'point value', model: 'bonus_value', tag: 'input', type: 'number' }, { label: 'time to answer (minutes)', model: 'time_to_answer', tag: 'input', type: 'number' }, { label: 'enable question', model: 'question_enabled', tag: 'checkbox' }];
 }]);
 //# sourceMappingURL=choices.js.map

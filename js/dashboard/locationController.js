@@ -119,9 +119,9 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 		});
 	};
 
-	$scope.delete	= (locId, question, e) => {
+	$scope.delete	= (locId, location, e) => {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete location \"' + question + '\"?', (response) => {
+		dialog.confirm('Are you sure you wanna delete location \"' + location + '\"?', (response) => {
 			if (response) {
 				fetcher.deleteLocation(id + locId, (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -140,7 +140,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 		iterate	= 0;
 		fetcher.getLocation(id, _.omitBy({ limit, like, offset: 0 }, _.isNil), (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
-				$scope.title	= $scope.state == 'province' ? '<span>all</span> province' : (($scope.state == 'regency' ? 'regencie' : $scope.state) + 's <span>of ' + response.result.name + '</span>');
+				$scope.title	= $scope.state == 'province' ? '<span>all</span> provinces' : (($scope.state == 'regency' ? 'regencie' : $scope.state) + 's <span>of ' + response.result.name + '</span>');
 				$scope.data		= mapName(response.result.data);
 				if (!response.result.data) {
 					$scope.nodata = globalVar.nodata; $scope.doneAjx = true;

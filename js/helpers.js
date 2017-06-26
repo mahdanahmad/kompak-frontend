@@ -29,6 +29,18 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 			let dialog	= createDialog(content, 'location', 'ModalLocationController', 600);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
+		categoryDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'category', 'ModalCategoryController', 600);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
+		badgeDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'badge', 'ModalBadgeController', 750);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
+		loneDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'lone', 'ModalLoneController', 600);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
 		confirm: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });
@@ -51,5 +63,7 @@ app.factory('globalVar', [function() {
 	return {
 		nodata: 'no data available at this point.',
 		loading: 'loading data',
+		globalError: 'something something happened. please smell your coffee while we fixing this.',
+		settingUpdated: 'setting successfully updated.',
 	}
 }]);

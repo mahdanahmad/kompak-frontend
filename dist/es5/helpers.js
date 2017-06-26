@@ -39,6 +39,24 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 				callback(data.value);
 			});
 		},
+		categoryDialog: function categoryDialog(content, callback) {
+			var dialog = createDialog(content, 'category', 'ModalCategoryController', 600);
+			dialog.closePromise.then(function (data) {
+				callback(data.value);
+			});
+		},
+		badgeDialog: function badgeDialog(content, callback) {
+			var dialog = createDialog(content, 'badge', 'ModalBadgeController', 750);
+			dialog.closePromise.then(function (data) {
+				callback(data.value);
+			});
+		},
+		loneDialog: function loneDialog(content, callback) {
+			var dialog = createDialog(content, 'lone', 'ModalLoneController', 600);
+			dialog.closePromise.then(function (data) {
+				callback(data.value);
+			});
+		},
 		confirm: function confirm(content, callback) {
 			var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
 			dialog.closePromise.then(function (data) {
@@ -61,7 +79,9 @@ app.factory('globalVar', [function () {
 
 	return {
 		nodata: 'no data available at this point.',
-		loading: 'loading data'
+		loading: 'loading data',
+		globalError: 'something something happened. please smell your coffee while we fixing this.',
+		settingUpdated: 'setting successfully updated.'
 	};
 }]);
 //# sourceMappingURL=helpers.js.map

@@ -1,7 +1,10 @@
+@import "badge";
+@import "category";
 @import "choices";
 @import "confirm";
 @import "error";
 @import "location";
+@import "lone";
 @import "notif";
 @import "essay";
 @import "user";
@@ -11,7 +14,7 @@
 	.ngdialog-content {
 		background: $modal-clr;
 		.modal-header { width: 100%; font-family: $signika; font-size: 30px; font-weight: bolder; text-align: center; padding: 10px 0px; letter-spacing: -2px; }
-		.modal-content { text-align: center; margin: 25px 0px; font-size: 14px; }
+		.modal-content { text-align: center; margin: 25px 0px; font-size: 16px; font-family: $signika-neg; }
 		button { width: 50%; margin: auto; height: 30px; font-size: 13px; border-radius: 3px; border: none; display: block; }
 	}
 }
