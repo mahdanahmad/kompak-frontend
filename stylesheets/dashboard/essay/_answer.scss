@@ -1,0 +1,29 @@
+$card-width	: 550px;
+
+#essayans-wrapper {
+	width: 100%; height: 100%;
+	#essayans-content {
+		#essayans-content-wrapper {
+			width: 100%;
+			.essayans-card {
+				width: $card-width; padding: 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+				.dash-label { margin-bottom: 5px; }
+				.essayans-divider { width: 100%; border-bottom: 1px solid #ddd; margin: 10px 0px; }
+				.essayans-question-container {
+					width: 100%;
+					.essayans-question { font-size: 15px; @include defJustify(); }
+				}
+				.essayans-answer-container {
+					width: 100%; @include clearfix();
+					.essayans-answer { font-size: 15px; @include defJustify(); }
+				}
+				.essayans-timestamp {
+					width: 100%; color: $label-clr;
+					& > span { font-weight: bolder; }
+				}
+
+				.fa-times { color: firebrick; position: absolute; top: 5px; right: 5px; font-size: 20px; }
+			}
+		}
+	}
+}

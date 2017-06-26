@@ -22,21 +22,18 @@
 	<div id="choicesans-content" class="dash-content">
 		<div id="choicesans-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#choicesans-content'">
 			<div class="choicesans-card cursor-default masonry-brick" ng-repeat="o in data track by $index" ng-class="{ 'wrong-answer': o.correct_response !== o.status_answer }">
-				<div class="choicesans-flag" force-height></div>
-				<div class="choicesans-value">
-					<div class="choicesans-question-container">
-						<div class="dash-label">question</div>
-						<div class="dash-value choicesans-question">{{ o.question_text }}</div>
-					</div>
-					<div class="choicesans-divider"></div>
-					<div class="choicesans-answer-container">
-						<div class="dash-label">answer by <strong>{{ o.usr_display_name }}</strong></div>
-						<div class="dash-value choicesans-answer">{{ o['response_' + o.status_answer] }}</div>
-					</div>
-					<div class="choicesans-divider"></div>
-					<div class="choicesans-timestamp">
-						submited: <span>{{ toDate(o.answered_date) }}</span>
-					</div>
+				<div class="choicesans-question-container">
+					<div class="dash-label">question</div>
+					<div class="dash-value choicesans-question">{{ o.question_text }}</div>
+				</div>
+				<div class="choicesans-divider"></div>
+				<div class="choicesans-answer-container">
+					<div class="dash-label">answer by <strong>{{ o.usr_display_name }}</strong></div>
+					<div class="dash-value choicesans-answer">{{ o['response_' + o.status_answer] }}</div>
+				</div>
+				<div class="choicesans-divider"></div>
+				<div class="choicesans-timestamp">
+					submited: <span>{{ toDate(o.answered_date) }}</span>
 				</div>
 				<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete this answer</md-tooltip></i>
 			</div>

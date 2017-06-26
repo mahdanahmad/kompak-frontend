@@ -153,6 +153,42 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			});
 		},
 
+		getAllEssayAns: function getAllEssayAns(data, callback) {
+			$http.get(baseURL + 'essayanswer' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getEssayAns: function getEssayAns(id, callback) {
+			$http.get(baseURL + 'essayanswer/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postEssayAns: function postEssayAns(data, callback) {
+			$http.post(baseURL + 'essayanswer', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putEssayAns: function putEssayAns(id, data, callback) {
+			$http.put(baseURL + 'essayanswer/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteEssayAns: function deleteEssayAns(id, callback) {
+			$http.delete(baseURL + 'essayanswer/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
 		getAllEducation: function getAllEducation(data, callback) {
 			$http.get(baseURL + 'education' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);

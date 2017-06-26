@@ -1,1 +1,44 @@
-Ini essay answer.
+<div id="essayans-wrapper">
+	<div class="header">
+		<div class="header-title cursor-default">essay answers</div>
+		<div class="header-divider"></div>
+		<div class="header-input-container">
+			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
+			<input type="text" placeholder="type to search essay answer by user (min. 3 characters)" ng-model="search" type-everywhere>
+		</div>
+		<div class="header-divider"></div>
+		<div class="header-another">
+			<div class="header-sort">
+				<div class="header-sort-container cursor-pointer" open-dropdown="showDropdown">
+					<div class="header-sort-title"><span>category</span> :</div>
+					<div class="header-sort-value"><span>{{ category.name }}</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+				</div>
+				<ul class="header-sort-dropdown" ng-show="showDropdown">
+					<li ng-repeat="opt in ::categories" ng-click="selectCate(opt)" class="cursor-pointer">{{ opt.name }}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="essayans-content" class="dash-content">
+		<div id="essayans-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#essayans-content'">
+			<div class="essayans-card cursor-default masonry-brick" ng-repeat="o in data track by $index">
+				<div class="essayans-question-container">
+					<div class="dash-label">question</div>
+					<div class="dash-value essayans-question">{{ o.question }}</div>
+				</div>
+				<div class="essayans-divider"></div>
+				<div class="essayans-answer-container">
+					<div class="dash-label">answer by <strong>{{ o.usr_display_name }}</strong></div>
+					<div class="dash-value essayans-answer">{{ o.answer }}</div>
+				</div>
+				<div class="essayans-divider"></div>
+				<div class="essayans-timestamp">
+					submited: <span>{{ toDate(o.submitted_date) }}</span>
+				</div>
+				<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete this answer</md-tooltip></i>
+			</div>
+		</div>
+		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>
+		<div class="dash-no-data" class="cursor-default" ng-show="nodata">{{ nodata }}</div>
+	</div>
+</div>
