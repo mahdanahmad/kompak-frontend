@@ -1,9 +1,48 @@
-app.controller('StatisticController', ['$scope', 'fetcher', '$interval', 'dialog', 'globalVar', function ($scope, fetcher, $interval, dialog, globalVar) {
+app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeout', '$window', 'dialog', 'globalVar', function ($scope, fetcher, $interval, $timeout, $window, dialog, globalVar) {
     'use strict';
 
 	let refreshRate	= 5; // in minutes
 
+	let pieColor	= ['#535657', '#4F646F', '#519872', '#97B1A6', '#79AEA3', '#8E936D', '#779FA1', '#88AB75', '#2D93AD', '08605F', '#177E89'];
+
 	$scope.data	= {};
+	$scope.pieoptions = {
+		chart: {
+			type: 'pieChart',
+			// width: 400,
+			// height: 500,
+			x: (o) => (o.name),
+			y: (o) => (o.jumlah),
+			showLabels: false,
+			duration: 500,
+			labelThreshold: 0.01,
+			labelSunbeamLayout: true,
+			labelsOutside: false,
+			valueFormat: (o) => (d3.format(",")(o)),
+			cornerRadius: 4,
+			showLegend: false,
+			color: (o, i) => (pieColor[i] || '#000'),
+			legend: {}
+		}
+	};
+
+	$scope.baroptions = {
+		chart: {
+			type: 'discreteBarChart',
+			margin : {
+				top: 20,
+				right: 20,
+				bottom: 50,
+				left: 55
+			},
+			x: (o) => (o.label),
+			y: (o) => (o.jumlah),
+			showValues: true,
+			valueFormat: (o) => (d3.format(",")(o)),
+			duration: 500,
+			color: (o, i) => ('#6dc0f9'),
+		}
+	};
 
 	$scope.overview	= [
 		[

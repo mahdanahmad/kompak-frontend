@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = angular;
-var app = angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial', 'wu.masonry', 'ngSanitize']);
+var app = angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial', 'wu.masonry', 'ngSanitize', 'nvd3']);
 
 app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$mdThemingProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
 				'use strict';

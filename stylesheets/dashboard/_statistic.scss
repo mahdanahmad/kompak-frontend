@@ -15,10 +15,10 @@ $inst-back		: #fff;
 
 $age-back		: #fff;
 $hardq-back		: #928779;
-$easyq-back		: #92dfd7;
+$easyq-back		: #9DB5B2;
 $hardcat-back	: #928779;
-$easycat-back	: #92dfd7;
-$average-back	: #6d5cae;
+$easycat-back	: #9DB5B2;
+$average-back	: #A2C5AC;
 
 #statistic-wrapper {
 	width: calc(100% - (#{$wrap-padding} * 2)); height: calc(100% - (#{$wrap-padding} * 2) - 3px); overflow: auto; padding: $wrap-padding; border-top: 3px solid $sidebar-clr2;
@@ -134,11 +134,22 @@ $average-back	: #6d5cae;
 
 			&#widget-hardestquestion { background: $hardq-back; }
 			&#widget-easiestquestion { background: $easyq-back; }
+			&#widget-hardestquestion, &#widget-easiestquestion {
+				color: white; .sideview-content { letter-spacing: -0.5px!important; }
+			}
+
 			&#widget-hardestcategory { background: $hardcat-back; }
 			&#widget-easiestcategory { background: $easycat-back; }
-			&#widget-averagetime { background: $average-back; span { font-family: $signika; font-size: 45px; line-height: 35px; }}
-			&#widget-hardestquestion, &#widget-easiestquestion, &#widget-hardestcategory, &#widget-easiestcategory, &#widget-averagetime {
-				color: white; .sideview-content { letter-spacing: -0.5px!important; }
+			&#widget-hardestcategory, &#widget-easiestcategory {
+				color: white; text-align: center; .sideview-content { letter-spacing: -0.5px!important; padding-top: 20%; }
+			}
+
+			&#widget-averagetime {
+				background: $average-back; color: white; text-align: center;
+				.sideview-content {
+					letter-spacing: -0.5px!important; padding-top: 15%;
+					span { font-family: $signika; font-size: 50px; line-height: 30px; display: block; }
+				}
 			}
 		}
 	}
