@@ -1,1 +1,258 @@
-ini statistic page.
+<div id="statistic-wrapper">
+	<div class="row">
+		<div class="col-6">
+			<div class="col-12" force-height="{{ 3 / 4 }}">
+				<div class="statistic-container">
+					<div id="widget-overview" class="statistic-card">
+						<div id="overview-container" class="cursor-default">
+							<div id="overview-title">gapura desa in numbers</div>
+							<div ng-repeat="o in ::overview track by $index" class="row" ng-class="{ 'need-margin': !$last }">
+								<div class="col-{{ 12 / o.length }} overview-content" ng-repeat="d in ::o track by $index">
+									<!-- <div class="overview-value">{{ data.status[d.model] || 0 }}</div>
+									<div class="overview-label">{{ d.label }}</div> -->
+									<span>{{ data.status[d.model] || 0 }}</span> {{ d.label }}
+								</div>
+							</div>
+						</div>
+						<div id="overview-disclaimer" class="cursor-default">* data retrieved at {{ currentTime }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 cursor-default" force-height="{{ 1 / 4 }}">
+				<div class="col-6 full-height">
+					<div class="statistic-container">
+						<div id="widget-male" class="statistic-card">
+							<div class="icon-container float-left">
+								<i class="fa fa-mars" aria-hidden="true"></i>
+							</div>
+							<div class="value-container float-right">
+								<div class="value-ceil align-right">{{ data.gender.m || 0 }}</div>
+								<div class="value-floor align-right">male user(s)</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 full-height">
+					<div class="statistic-container">
+						<div id="widget-female" class="statistic-card">
+							<div class="icon-container float-right">
+								<i class="fa fa-venus" aria-hidden="true"></i>
+							</div>
+							<div class="value-container float-left">
+								<div class="value-ceil align-left">{{ data.gender.f || 0 }}</div>
+								<div class="value-floor align-left">female user(s)</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="col-6" force-height>
+				<div class="statistic-container">
+					<div id="widget-topscore" class="statistic-card">
+						<div class="sideview-title cursor-default">top scores</div>
+						<div class="sideview-content cursor-default">
+							<div class="sideview-podium-container">
+								<div class="sideview-podium">
+									<div class="podium-2"><div class="podium-number">2</div></div>
+									<div class="podium-1"><div class="podium-number">1</div></div>
+									<div class="podium-3"><div class="podium-number">3</div></div>
+								</div>
+								<div class="sideview-achiever">
+									<div class="achiever-2">
+										<div class="achiever-ceil ellipsis">{{ data.topscore[1].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topscore[1].usr_score || 0 }} points</div>
+									</div>
+									<div class="achiever-1">
+										<div class="achiever-ceil ellipsis">{{ data.topscore[0].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topscore[0].usr_score || 0 }} points</div>
+									</div>
+									<div class="achiever-3">
+										<div class="achiever-ceil ellipsis">{{ data.topscore[2].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topscore[2].usr_score || 0 }} points</div>
+									</div>
+								</div>
+							</div>
+							<div class="sideview-rest-container">
+								<div class="sideview-rest" ng-repeat="o in data.topscore | startFrom : 3">
+									<div class="sideview-rest-number">{{ $index + 4 }}.</div>
+									<div class="sideview-rest-name">{{ o.usr_display_name }}</div>
+									<div class="sideview-rest-points">{{ o.usr_score }} points</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6" force-height>
+				<div class="statistic-container">
+					<div id="widget-topcontributor" class="statistic-card">
+						<div class="sideview-title cursor-default">top contributors</div>
+						<div class="sideview-content cursor-default">
+							<div class="sideview-podium-container">
+								<div class="sideview-podium">
+									<div class="podium-2"><div class="podium-number">2</div></div>
+									<div class="podium-1"><div class="podium-number">1</div></div>
+									<div class="podium-3"><div class="podium-number">3</div></div>
+								</div>
+								<div class="sideview-achiever">
+									<div class="achiever-2">
+										<div class="achiever-ceil ellipsis">{{ data.topcontribution[1].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topcontribution[1].usr_contribution || 0 }} contributions</div>
+									</div>
+									<div class="achiever-1">
+										<div class="achiever-ceil ellipsis">{{ data.topcontribution[0].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topcontribution[0].usr_contribution || 0 }} contributions</div>
+									</div>
+									<div class="achiever-3">
+										<div class="achiever-ceil ellipsis">{{ data.topcontribution[2].usr_display_name || '-' }}</div>
+										<div class="achiever-floor">{{ data.topcontribution[2].usr_contribution || 0 }} contributions</div>
+									</div>
+								</div>
+							</div>
+							<div class="sideview-rest-container">
+								<div class="sideview-rest" ng-repeat="o in data.topcontribution | startFrom : 3">
+									<div class="sideview-rest-number">{{ $index + 4 }}.</div>
+									<div class="sideview-rest-name">{{ o.usr_display_name }}</div>
+									<div class="sideview-rest-points">{{ o.usr_contribution }} conts</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6" force-height>
+				<div class="statistic-container">
+					<div id="widget-topvillage" class="statistic-card">
+						<div class="sideview-title cursor-default">highest participation villages</div>
+						<div class="sideview-content cursor-default">
+							<div class="sideview-village-container" ng-repeat="o in data.topvillage track by $index" set-village-width="{{ o.jumlah }}">
+								{{ o.name_desa }}
+								<div class="sideview-village-number">
+									{{ $index + 1 | ordinal }}
+								</div>
+								<!-- <md-tooltip>{{ o.jumlah }} user from {{ o.name_desa }}</md-tooltip> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6" force-height>
+				<div class="statistic-container">
+					<div id="widget-notmyprovince" class="statistic-card">
+						<div class="sideview-title cursor-default">not yet joined provinces</div>
+						<div class="sideview-content cursor-default">
+							<div class="sideview-notmyprovince" ng-repeat="o in data.notMyProvince | orderNotMyProvince">
+								{{ o }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-3" force-height>
+			<div class="statistic-container">
+				<div id="widget-institution" class="statistic-card">
+					<div class="sideview-title cursor-default">users' institution</div>
+					<div class="sideview-content cursor-default">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3" force-height>
+			<div class="statistic-container">
+				<div id="widget-education" class="statistic-card">
+					<div class="sideview-title cursor-default">users' education</div>
+					<div class="sideview-content cursor-default">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="col-12" force-height="{{ 1 / 4 }}">
+
+			</div>
+			<div class="col-12" force-height="{{ 1 / 4 }}">
+				<div class="col-6" force-height="{{ 1 / 2 }}">
+					<div class="statistic-container">
+						<div id="widget-hardestquestion" class="statistic-card">
+							<div class="sideview-title cursor-default">hardest question</div>
+							<div class="sideview-content cursor-default">
+								{{ data.easiestquestion }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6" force-height="{{ 1 / 2 }}">
+					<div class="statistic-container">
+						<div id="widget-easiestquestion" class="statistic-card">
+							<div class="sideview-title cursor-default">easiest question</div>
+							<div class="sideview-content cursor-default">
+								{{ data.hardestquestion }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-3" force-height>
+			<div class="statistic-container">
+				<div id="widget-designation" class="statistic-card">
+					<div class="sideview-title cursor-default">users' designation</div>
+					<div class="sideview-content cursor-default">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6" force-height="{{ 1 / 2 }}">
+			<div class="statistic-container">
+				<div id="widget-age" class="statistic-card">
+					<div class="sideview-title cursor-default">users' age distribution</div>
+					<div class="sideview-content cursor-default">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="col-12" force-height="{{ 1 / 3 }}">
+				<div class="statistic-container">
+					<div id="widget-hardestcategory" class="statistic-card">
+						<div class="sideview-title cursor-default">hardest category</div>
+						<div class="sideview-content cursor-default">
+							{{ data.hardestcategory }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" force-height="{{ 1 / 3 }}">
+				<div class="statistic-container">
+					<div id="widget-easiestcategory" class="statistic-card">
+						<div class="sideview-title cursor-default">easiest category</div>
+						<div class="sideview-content cursor-default">
+							{{ data.easiestcategory }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" force-height="{{ 1 / 3 }}">
+				<div class="statistic-container">
+					<div id="widget-averagetime" class="statistic-card">
+						<div class="sideview-title cursor-default">answer average time</div>
+						<div class="sideview-content cursor-default">
+							<span>{{ data.averagetime || 0 }}</span> second
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

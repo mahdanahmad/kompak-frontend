@@ -33,6 +33,7 @@ module.exports = function(grunt){
 						'node_modules/ng-dialog/css/ngDialog-theme-default.min.css',
 						'node_modules/angular-loading-bar/build/loading-bar.min.css',
 						'node_modules/angular-material/angular-material.min.css',
+						'node_modules/nvd3/build/nv.d3.min.css',
 					]
 				}
 			}
@@ -71,6 +72,10 @@ module.exports = function(grunt){
 						'node_modules/angular-loading-bar/build/loading-bar.min.js',
 						'node_modules/ng-dialog/js/ngDialog.min.js',
 						'node_modules/angular-masonry/angular-masonry.js',
+
+						'node_modules/d3/build/d3.min.js',
+						'node_modules/nvd3/build/nv.d3.min.js',
+						'node_modules/angular-nvd3/dist/angular-nvd3.min.js',
 
 						'node_modules/moment/min/moment.min.js',
 						'node_modules/lodash/lodash.min.js',

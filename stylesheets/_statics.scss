@@ -14,13 +14,13 @@ $sidebar-clr	: #21252d;
 $sidebar-clr2	: #2b303b;
 $sidebar-shadow	: rgba(48,48,48,0.2);
 
-$menu-size		: 50px;
+$menu-size		: 45px;
 $menu-inflated	: 240px;
 $menu-clr		: #788195;
 // $menu-act-clr	: #10cfbd;
 $menu-act-clr	: #FC7E01;
 $menu-hvr-clr	: #272b35;
-$icon-margin	: 17px;
+$icon-margin	: 14px;
 
 $header-heigth	: 70px;
 $header-clr		: #fff;
@@ -47,4 +47,15 @@ $colors			: #1F76C6 #93032E #C69F89 #84894A #034C3C #493B2A #18A999;
 @each $color in $colors {
 	$i: index($colors, $color);
 	.color-#{$i} { color: $color; }
+}
+
+@each $color in $colors {
+	$i: index($colors, $color);
+	.back-#{$i} { background-color: $color; }
+}
+
+$i: 12;
+@while $i > 0 {
+  .col-#{$i} { width: calc((#{$i} * 100% / 12))!important; position: relative; float: left; }
+  $i: $i - 1;
 }

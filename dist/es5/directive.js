@@ -67,4 +67,37 @@ app.directive('openDropdown', ['$document', function ($document) {
 		}
 	};
 }]);
+
+app.directive('forceHeight', [function () {
+	return {
+		restrict: 'A',
+		link: function link(scope, elem, attrs) {
+			var wantedRatio = attrs.forceHeight || 1;
+
+			scope.$watch(function () {
+				return elem.width();
+			}, function (newVal, oldVal) {
+				elem.css('height', newVal * wantedRatio + 'px');
+			});
+
+			elem.bind('resize', function () {
+				scope.$apply();
+			});
+		}
+	};
+}]);
+
+app.directive('setVillageWidth', [function () {
+	return {
+		restrict: 'A',
+		link: function link(scope, elem, attrs) {
+			var wantedRatio = attrs.setVillageWidth || 0;
+
+			var minWidth = 50; // in percent
+			var finalWidth = minWidth + (100 - minWidth) * (wantedRatio / scope.$parent.maxVillage);
+
+			elem.css('width', 'calc(' + finalWidth + '% - ' + +_.replace(elem.css('padding'), 'px', '') * 2 + 'px)');
+		}
+	};
+}]);
 //# sourceMappingURL=directive.js.map

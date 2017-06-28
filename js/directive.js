@@ -51,3 +51,28 @@ app.directive('openDropdown', ['$document', ($document) => ({
 		});
 	}
 })]);
+
+app.directive('forceHeight', [() => ({
+	restrict: 'A',
+	link: (scope, elem, attrs) => {
+		let wantedRatio	= attrs.forceHeight || 1;
+
+		scope.$watch(() => (elem.width()), (newVal, oldVal) => {
+			elem.css('height', (newVal * wantedRatio) + 'px');
+		});
+
+		elem.bind('resize', () => { scope.$apply(); });
+	}
+})]);
+
+app.directive('setVillageWidth', [() => ({
+	restrict: 'A',
+	link: (scope, elem, attrs) => {
+		let wantedRatio	= attrs.setVillageWidth || 0;
+
+		let minWidth	= 50; // in percent
+		let finalWidth	= minWidth + (100 - minWidth) * (wantedRatio / scope.$parent.maxVillage);
+
+		elem.css('width', 'calc(' + (finalWidth) + '% - ' + (+_.replace(elem.css('padding'), 'px', '') * 2) + 'px)');
+	}
+})]);

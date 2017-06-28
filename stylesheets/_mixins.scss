@@ -16,6 +16,10 @@
 	hyphens: auto; -ms-hyphens: auto; -moz-hyphens: auto;
 }
 
+@mixin nopadding {
+	padding: 0px!important;
+}
+
 @mixin noselect {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;

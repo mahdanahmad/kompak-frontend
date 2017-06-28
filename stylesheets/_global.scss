@@ -60,7 +60,6 @@ div.dash-content {
 	.dash-value { font-size: 17px; }
 }
 
-.ellipsis { @include ellipsis(); }
 .button-like { background: $addbutton-clr; color: white; padding: 0px; line-height: 40px; text-align: center; font-size: 14px; border-radius: 10px; }
 
 .md-tooltip { background-color: $label-clr; color: white; font-size: 13px; }

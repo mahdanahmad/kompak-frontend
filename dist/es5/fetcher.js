@@ -375,6 +375,14 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			}, function (error) {
 				callback(error.data);
 			});
+		},
+
+		getStatistic: function getStatistic(callback) {
+			$http.get(baseURL + 'statistic', config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
 		}
 	};
 }]);

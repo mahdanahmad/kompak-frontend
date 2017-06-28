@@ -21,7 +21,17 @@
 					width: 100%; padding: 5px 0px; font-family: $menutitle-font; letter-spacing: 0.25px;
 					.sidebar-menu-content {
 						width: $menu-size; height: $menu-size; margin: auto; background: $sidebar-clr; line-height: $menu-size; border-radius: 5px; z-index: 82; position:relative;
-						& > i { font-size: 17px; margin-left: $icon-margin; }
+						& > i {
+							font-size: 17px; margin-left: $icon-margin; position: relative;
+							&.fa-line-chart { left: 0px; }
+							&.fa-user { left: 3px; }
+							&.fa-th-large { left: 1px; top: 1px; }
+							&.fa-square { left: 2px; }
+							&.fa-pencil-square-o { left: 2px; }
+							&.fa-file-text-o { left: 2px; }
+							&.fa-map-o { left: 0px; }
+							&.fa-cogs { left: 0px; }
+						}
 						& > span { display: none; text-transform: lowercase; }
 
 						&.active { color: white; background: $menu-act-clr!important; }
