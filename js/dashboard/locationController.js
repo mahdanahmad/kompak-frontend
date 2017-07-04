@@ -8,6 +8,9 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	let id			= '';
 	let defId		= '';
 	let prevState	= '';
+
+	$scope.locMap	= { province : 'provinsi', regency: 'kabupaten', district: 'kecamatan', village: 'desa' };
+
 	switch (true) {
 		case !_.isNil($stateParams.province) && !_.isNil($stateParams.regency) && !_.isNil($stateParams.district):
 			id	= $stateParams.province + '/' + $stateParams.regency + '/' + $stateParams.district + '/';
@@ -92,7 +95,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	});
 
 	$scope.newLocation	= () => {
-		dialog.locationDialog({ state: $scope.state, isNew: true, data: { id: defId } }, (dialResp) => {
+		dialog.locationDialog({ state: $scope.locMap[$scope.state], isNew: true, data: { id: defId } }, (dialResp) => {
 			if (_.isObject(dialResp)) {
 				fetcher.postLocation(id, _.mapValues(dialResp, _.toString), (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -106,7 +109,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	};
 	$scope.edit	= (o, e) => {
 		e.stopPropagation();
-		dialog.locationDialog({ state: $scope.state, isNew: false, data: _.clone(o) }, (dialResp) => {
+		dialog.locationDialog({ state: $scope.locMap[$scope.state], isNew: false, data: _.clone(o) }, (dialResp) => {
 			if (_.isObject(dialResp)) {
 				fetcher.putLocation(id + o.id, _.mapValues(dialResp, _.toString), (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -121,7 +124,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 
 	$scope.delete	= (locId, location, e) => {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete location \"' + location + '\"?', (response) => {
+		dialog.confirm('Apakah anda yakin akan menghapus \"' + location + '\"?', (response) => {
 			if (response) {
 				fetcher.deleteLocation(id + locId, (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -140,7 +143,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 		iterate	= 0;
 		fetcher.getLocation(id, _.omitBy({ limit, like, offset: 0 }, _.isNil), (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
-				$scope.title	= $scope.state == 'province' ? '<span>all</span> provinces' : (($scope.state == 'regency' ? 'regencie' : $scope.state) + 's <span>of ' + response.result.name + '</span>');
+				$scope.title	= $scope.state == 'province' ? '<span>semua</span> provinsi' : ($scope.locMap[$scope.state] + ' <span>di ' + response.result.name + '</span>');
 				$scope.data		= mapName(response.result.data);
 				if (!response.result.data) {
 					$scope.nodata = globalVar.nodata; $scope.doneAjx = true;

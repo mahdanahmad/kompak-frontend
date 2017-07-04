@@ -81,6 +81,7 @@ module.exports = function(grunt){
 						// 'node_modules/angular-chart.js/dist/angular-chart.min.js',
 
 						'node_modules/moment/min/moment.min.js',
+						'node_modules/moment/locale/id.js',
 						'node_modules/lodash/lodash.min.js',
 						'node_modules/async/dist/async.min.js',
 

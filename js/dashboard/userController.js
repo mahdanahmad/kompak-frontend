@@ -51,12 +51,12 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	});
 
 	$scope.orderOptions	= [
-		{ title: 'name', value: 'usr_display_name', order: 'ASC' },
-		{ title: 'designation', value: 'usr_designation', order: 'ASC' },
-		{ title: 'village', value: 'usr_village', order: 'ASC' },
-		{ title: 'age', value: 'usr_years', order: 'ASC' },
-		{ title: 'score', value: 'usr_score', order: 'ASC' },
-		{ title: 'contribution', value: 'usr_contribution', order: 'ASC' },
+		{ title: 'nama', value: 'usr_display_name', order: 'ASC' },
+		{ title: 'jabatan', value: 'usr_designation', order: 'ASC' },
+		{ title: 'desa', value: 'usr_village', order: 'ASC' },
+		{ title: 'umur', value: 'usr_years', order: 'ASC' },
+		{ title: 'skor', value: 'usr_score', order: 'ASC' },
+		{ title: 'kontribusi', value: 'usr_contribution', order: 'ASC' },
 	];
 
 	$scope.orderby		= _.head($scope.orderOptions);
@@ -122,7 +122,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	}
 	$scope.delete	= (id, name, e) => {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete ' + name + '\'s account?', (response) => {
+		dialog.confirm('Apakah anda yakin akan menghapus ' + name + ' akun?', (response) => {
 			if  (response) {
 				fetcher.deleteUser(id, (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {

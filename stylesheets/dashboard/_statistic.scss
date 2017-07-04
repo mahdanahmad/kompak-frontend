@@ -57,7 +57,7 @@ $average-back	: #A2C5AC;
 
 			&:not(#overview-container):not(#widget-male):not(#widget-female) {
 				padding: 15px; width: calc(100% - 30px); height: calc(100% - 30px); position: relative;
-				.sideview-title { font-family: $signika; font-weight: 100; font-size: 21px; letter-spacing: -1.25px; }
+				.sideview-title { font-family: $signika; font-weight: 100; font-size: 19px; letter-spacing: -1.25px; }
 				.sideview-content { font-family: $signika-neg; font-size: 17px; width: 100%; height: calc(100% - 35px); overflow: auto; margin-top: 8px; @include clearfix(); &::-webkit-scrollbar { display: none; }}
 			}
 

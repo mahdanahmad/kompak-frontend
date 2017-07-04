@@ -1,6 +1,6 @@
 <form id="locationmodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="locationmodal-header" class="modal-header cursor-default">
-		{{ ngDialogData.content.isNew ? 'new' : 'edit' }} {{ ngDialogData.content.state }}
+		{{ ngDialogData.content.isNew ? 'buat' : 'ubah' }} {{ ngDialogData.content.state }}
 	</div>
 	<div id="locationmodal-content">
 		<div ng-repeat="o in ::inputs track by $index" id="locationinput-{{ o.model }}">
@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div id="locationmodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ ngDialogData.content.isNew ? 'add' : 'edit' }} {{ ngDialogData.content.state }}</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ ngDialogData.content.isNew ? 'buat' : 'ubah' }} {{ ngDialogData.content.state }}</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
 	</div>
 </form>

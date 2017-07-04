@@ -18,7 +18,7 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
-	$scope.toDate	= (stringDate) => (moment(stringDate).format("dddd, MMMM Do YYYY, h:mm a"));
+	$scope.toDate	= (stringDate) => (moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm"));
 
 	$scope.loadMoar	= () => {
 		$scope.pauseAjx	= true;
@@ -94,7 +94,7 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 	let init = () => {
 		fetcher.getAllCategory({}, (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
-				$scope.categories	= _.chain(response.result).map((o) => ({ id: o.ID_category, name: o.category_name })).concat([{ id: null, name: 'All' }]).sortBy(['name']).value();
+				$scope.categories	= _.chain(response.result).map((o) => ({ id: o.ID_category, name: o.category_name })).sortBy(['name']).unshift({ id: null, name: 'Semua' }).value();
 				$scope.category		= _.head($scope.categories);
 
 				initData();

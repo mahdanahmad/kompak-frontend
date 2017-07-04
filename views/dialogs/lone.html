@@ -1,6 +1,6 @@
 <form id="lonemodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="lonemodal-header" class="modal-header cursor-default">
-		{{ data.id ? 'edit' : 'new' }} {{ ngDialogData.content.state }}
+		{{ data.id ? 'ubah' : 'buat' }} {{ ngDialogData.content.state }}
 	</div>
 	<div id="lonemodal-content">
 		<div ng-repeat="o in ::inputs track by $index" id="loneinput-{{ o.model }}">
@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div id="lonemodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.id ? 'edit' : 'add' }} {{ ngDialogData.content.state }}</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.id ? 'ubah' : 'buat' }} {{ ngDialogData.content.state }}</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
 	</div>
 </form>

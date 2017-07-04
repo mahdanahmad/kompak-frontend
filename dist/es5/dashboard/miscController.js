@@ -9,7 +9,14 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.institutions = {};
 	$scope.educations = {};
 
-	$scope.settingInputs = [{ label: 'version', model: 'version', tag: 'input', type: 'text' }, { label: 'life', model: 'life', tag: 'input', type: 'number' }, { label: 'number of top score list', model: 'num_top_skor_list', tag: 'input', type: 'number' }];
+	var settingMap = {
+		badge: 'lencana',
+		category: 'kategori',
+		education: 'pendidikan',
+		institution: 'lembaga'
+	};
+
+	$scope.settingInputs = [{ label: 'versi aplikasi', model: 'version', tag: 'input', type: 'text' }, { label: 'life', model: 'life', tag: 'input', type: 'number' }, { label: 'jumlah pemain pada daftar top score', model: 'num_top_skor_list', tag: 'input', type: 'number' }];
 	$scope.updateSetting = function () {
 		fetcher.putSetting(_.mapValues($scope.setting, _.toString), function (response) {
 			if (response.response == 'OK' && response.status_code == 200) {
@@ -81,7 +88,7 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.delete = function (id, name, state, e) {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete ' + state + ' \"' + name + '\"?', function (response) {
+		dialog.confirm('Apakah anda yakin akan menghapus ' + settingMap[state] + ' \"' + name + '\"?', function (response) {
 			if (response) {
 				fetcher['delete' + _.upperFirst(state)](id, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {

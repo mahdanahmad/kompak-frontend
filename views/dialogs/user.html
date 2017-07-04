@@ -1,6 +1,6 @@
 <form id="usermodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="usermodal-header" class="modal-header cursor-default">
-		{{ data.ID ? 'edit' : 'new' }} user
+		{{ data.ID ? 'ubah' : 'buat' }} pemain
 	</div>
 	<div id="usermodal-content">
 		<div ng-repeat="o in inputs track by $index" id="userinput-{{ o.model }}">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="usermodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID ? 'edit' : 'add' }} user</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID ? 'ubah' : 'buat' }} pemain</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
 	</div>
 </form>

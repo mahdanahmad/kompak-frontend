@@ -1,6 +1,6 @@
 <form id="categorymodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="categorymodal-header" class="modal-header cursor-default">
-		{{ data.ID_category ? 'edit' : 'new' }} category
+		{{ data.ID_category ? 'ubah' : 'buat' }} kategori
 	</div>
 	<div id="categorymodal-content">
 		<div ng-repeat="o in ::inputs track by $index" id="categoryinput-{{ o.model }}">
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div id="categorymodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_category ? 'edit' : 'add' }} category</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_category ? 'ubah' : 'buat' }} kategori</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
 	</div>
 </form>

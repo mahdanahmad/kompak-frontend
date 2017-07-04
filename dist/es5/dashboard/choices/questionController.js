@@ -123,7 +123,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 	};
 	$scope.delete = function (id, question, e) {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete question \"' + question + '\"?', function (response) {
+		dialog.confirm('Apakah anda yakin akan menghapus pertanyaan \"' + question + '\"?', function (response) {
 			if (response) {
 				fetcher.deleteQuestion(id, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -158,7 +158,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.categories = _.chain(response.result).map(function (o) {
 					return { id: o.ID_category, name: o.category_name };
-				}).concat([{ id: null, name: 'All' }]).sortBy(['name']).value();
+				}).sortBy(['name']).unshift({ id: null, name: 'Semua' }).value();
 				$scope.category = _.head($scope.categories);
 
 				initData();

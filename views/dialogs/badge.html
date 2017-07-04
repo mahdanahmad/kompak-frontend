@@ -1,6 +1,6 @@
 <form id="badgemodal-wrapper" ng-submit="closeThisDialog(data)">
 	<div id="badgemodal-header" class="modal-header cursor-default">
-		{{ data.ID_Badge ? 'edit' : 'new' }} badge
+		{{ data.ID_Badge ? 'ubah' : 'buat' }} lencana
 	</div>
 	<div id="badgemodal-content">
 		<div ng-repeat="o in ::inputs track by $index" id="badgeinput-{{ o.model }}">
@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div id="badgemodal-buttons">
-		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_Badge ? 'edit' : 'add' }} badge</button>
-		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> cancel</button>
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.ID_Badge ? 'ubah' : 'buat' }} lencana</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
 	</div>
 </form>

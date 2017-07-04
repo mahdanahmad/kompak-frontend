@@ -5,6 +5,6 @@ app.controller('ModalLoneController', ['$scope', function ($scope) {
 
 	$scope.data = $scope.ngDialogData.content.data || {};
 
-	$scope.inputs = [{ label: 'name', model: 'name', tag: 'input', type: 'text', required: true }];
+	$scope.inputs = [{ label: 'nama', model: 'name', tag: 'input', type: 'text', required: true }];
 }]);
 //# sourceMappingURL=lone.js.map

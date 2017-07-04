@@ -62,13 +62,13 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		}
 	};
 
-	$scope.overview = [[{ label: 'users', model: 'total' }, { label: 'login', model: 'login' }, { label: 'transactions', model: 'transaction' }], [{ label: 'provinces', model: 'province' }, { label: 'regencies', model: 'regency' }, { label: 'districts', model: 'district' }, { label: 'villages', model: 'village' }]];
+	$scope.overview = [[{ label: 'total pemain', model: 'total' }, { label: 'pemain masuk', model: 'login' }, { label: 'transaksi', model: 'transaction' }], [{ label: 'provinsi', model: 'province' }, { label: 'kabupaten', model: 'regency' }, { label: 'kecamatan', model: 'district' }, { label: 'desa', model: 'village' }]];
 
 	var init = function init() {
 		fetcher.getStatistic(function (response) {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
-				$scope.currentTime = moment().format("dddd, MMMM Do YYYY, h:mm a");
+				$scope.currentTime = moment().format("dddd, Do MMMM YYYY, hh:mm");
 				$scope.maxVillage = _.chain(response).get(['result', 'topvillage']).maxBy('jumlah').get('jumlah').value() || 1;
 			}
 		});

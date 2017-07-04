@@ -10,12 +10,12 @@ $card-height	: 70px;
 				& > div { display: inline-block; float: left; }
 				& > div:not(.user-gender) { margin-top: 15px; padding: 0px 1%; }
 				.user-gender { height: 100%; width: 1%; &.male { background: $male-color } &.female { background: $female-color; } }
-				.user-name { width: 13%; }
-				.user-email { width: 13%; }
+				.user-name { width: 12%; }
+				.user-email { width: 11%; }
 				.user-designation { width: 8%; }
 				.user-institution { width: 8%; }
 				.user-village { width: 12%; }
-				.user-age { width: 4%; }
+				.user-age { width: 7%; }
 				.user-score { width: 10%; }
 				.user-contribution { width: 8%; }
 				.user-actions {

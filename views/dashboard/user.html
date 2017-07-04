@@ -1,6 +1,6 @@
 <div id="user-wrapper">
 	<div class="header">
-		<div class="header-title cursor-default">user list</div>
+		<div class="header-title cursor-default">daftar pemain</div>
 		<div class="header-divider"></div>
 		<div class="header-input-container">
 			<div class="search-sign"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -10,7 +10,7 @@
 		<div class="header-another">
 			<div class="header-sort">
 				<div class="header-sort-container cursor-pointer" open-dropdown="showDropdown">
-					<div class="header-sort-title"><span>order by</span> :</div>
+					<div class="header-sort-title"><span>urutan</span> :</div>
 					<div class="header-sort-value"><span>{{ orderby.title }}</span> <i class="fa fa-caret-{{ orderby.order == 'ASC' ? 'up' : 'down' }}" aria-hidden="true"></i></div>
 				</div>
 				<ul class="header-sort-dropdown" ng-show="showDropdown">
@@ -18,7 +18,7 @@
 				</ul>
 			</div>
 			<div class="header-button">
-				<div class="button-like cursor-pointer" ng-click="newUser()"><i class="fa fa-plus" aria-hidden="true"></i> New User</div>
+				<div class="button-like cursor-pointer" ng-click="newUser()"><i class="fa fa-plus" aria-hidden="true"></i> Pemain Baru</div>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 			<div class="user-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-click="editUser(o.ID)">
 				<div class="user-gender" ng-class="{ male: o.usr_gender == 'm', female: o.usr_gender == 'f' }"></div>
 				<div class="user-name">
-					<div class="dash-label">name</div>
+					<div class="dash-label">nama</div>
 					<div class="dash-value ellipsis">{{ o.usr_display_name }}</div>
 				</div>
 				<div class="user-email">
@@ -35,33 +35,33 @@
 					<div class="dash-value ellipsis">{{ o.usr_email }}</div>
 				</div>
 				<div class="user-designation">
-					<div class="dash-label">designation</div>
+					<div class="dash-label">jabatan</div>
 					<div class="dash-value ellipsis">{{ o.usr_designation || '-' }}</div>
 				</div>
 				<div class="user-institution">
-					<div class="dash-label">institution</div>
+					<div class="dash-label">lembaga</div>
 					<div class="dash-value ellipsis">{{ o.name_institution || '-' }}</div>
 				</div>
 				<div class="user-village capitalize">
-					<div class="dash-label">village</div>
+					<div class="dash-label">desa</div>
 					<div class="dash-value ellipsis">{{ o.name_desa || '-' }}</div>
 				</div>
 				<div class="user-age">
-					<div class="dash-label">age</div>
-					<div class="dash-value ellipsis">{{ o.usr_years || '-' }} yo</div>
+					<div class="dash-label">umur</div>
+					<div class="dash-value ellipsis">{{ o.usr_years || '-' }} tahun</div>
 				</div>
 				<div class="user-score">
-					<div class="dash-label">score</div>
+					<div class="dash-label">skor</div>
 					<div class="dash-value ellipsis">{{ o.usr_score }} points</div>
 				</div>
 				<div class="user-contribution">
-					<div class="dash-label">contribution</div>
-					<div class="dash-value ellipsis">{{ o.usr_contribution }} times</div>
+					<div class="dash-label">kontribusi</div>
+					<div class="dash-value ellipsis">{{ o.usr_contribution }} kali</div>
 				</div>
 				<div class="user-actions">
 					<div class="dash-value">
-						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">send reset email to {{ o.usr_email }}</md-tooltip></i>
-						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete {{ o.usr_display_name }}'s account</md-tooltip></i>
+						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">kirim reset password email kepada {{ o.usr_email }}</md-tooltip></i>
+						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">hapus {{ o.usr_display_name }} akun</md-tooltip></i>
 					</div>
 				</div>
 			</div>

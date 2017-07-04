@@ -46,13 +46,7 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 								url: '/essayAns',
 								templateUrl: 'views/dashboard/essay/answer.html',
 								controller: 'EssayAnsController'
-				})
-				// .state('dashboard.category', {
-				//     url         : '/category',
-				//     templateUrl : 'views/dashboard/category.html',
-				//     controller  : 'CategoryController',
-				// })
-				.state('dashboard.location', {
+				}).state('dashboard.location', {
 								url: '/location/:province/:regency/:district',
 								templateUrl: 'views/dashboard/location.html',
 								controller: 'LocationController',

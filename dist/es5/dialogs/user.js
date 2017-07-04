@@ -70,7 +70,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			}).value();
 			fetcher.getLocation(locationId, {}, function (response) {
 				if (response.response == 'OK' && response.status_code == 200) {
-					$scope.autoData[locationList[nextIndex]] = mapName(response.result);
+					$scope.autoData[locationList[nextIndex]] = mapName(response.result.data);
 				}
 			});
 		}
@@ -99,7 +99,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			province: function province(callback) {
 				fetcher.getLocation('', {}, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						var mappedResult = mapName(response.result);
+						var mappedResult = mapName(response.result.data);
 						if ($scope.data.usr_province) {
 							setAuto(mappedResult, $scope.data.usr_province, 'province');
 						}
@@ -113,7 +113,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 				if ($scope.data.ID && $scope.data.usr_province) {
 					fetcher.getLocation($scope.data.usr_province, {}, function (response) {
 						if (response.response == 'OK' && response.status_code == 200) {
-							var mappedResult = mapName(response.result);
+							var mappedResult = mapName(response.result.data);
 							if ($scope.data.usr_regency) {
 								setAuto(mappedResult, $scope.data.usr_regency, 'regency');
 							}
@@ -130,7 +130,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 				if ($scope.data.ID && $scope.data.usr_province && $scope.data.usr_regency) {
 					fetcher.getLocation($scope.data.usr_province + '/' + $scope.data.usr_regency, {}, function (response) {
 						if (response.response == 'OK' && response.status_code == 200) {
-							var mappedResult = mapName(response.result);
+							var mappedResult = mapName(response.result.data);
 							if ($scope.data.usr_district) {
 								setAuto(mappedResult, $scope.data.usr_district, 'district');
 							}
@@ -147,7 +147,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 				if ($scope.data.ID && $scope.data.usr_province && $scope.data.usr_regency && $scope.data.usr_district) {
 					fetcher.getLocation($scope.data.usr_province + '/' + $scope.data.usr_regency + '/' + $scope.data.usr_district, {}, function (response) {
 						if (response.response == 'OK' && response.status_code == 200) {
-							var mappedResult = mapName(response.result);
+							var mappedResult = mapName(response.result.data);
 							if ($scope.data.usr_village) {
 								setAuto(mappedResult, $scope.data.usr_village, 'village');
 							}
@@ -170,7 +170,7 @@ app.controller('ModalUserController', ['$scope', 'fetcher', function ($scope, fe
 			$scope.autoData.district = results.district;
 			$scope.autoData.village = results.village;
 
-			$scope.inputs = [{ label: 'name', model: 'usr_display_name', tag: 'input', type: 'text', required: true }, { label: 'email', model: 'usr_email', tag: 'input', type: 'email', required: true }, { label: 'password', model: 'usr_password', tag: 'input', type: 'password', required: true }, { label: 'year of born', model: 'usr_year_born', tag: 'input', type: 'number' }, { label: 'designation', model: 'usr_designation', tag: 'input', type: 'text' }, { label: 'gender', model: 'usr_gender', tag: 'radio', value: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }] }, { label: 'institution', model: 'usr_institution', tag: 'select', value: results.instits }, { label: 'education', model: 'usr_education', tag: 'select', value: results.educats }, { label: 'province', model: 'usr_province', tag: 'autocomplete', value: 'province' }, { label: 'regency', model: 'usr_regency', tag: 'autocomplete', value: 'regency' }, { label: 'district', model: 'usr_district', tag: 'autocomplete', value: 'district' }, { label: 'village', model: 'usr_village', tag: 'autocomplete', value: 'village' }];
+			$scope.inputs = [{ label: 'nama', model: 'usr_display_name', tag: 'input', type: 'text', required: true }, { label: 'email', model: 'usr_email', tag: 'input', type: 'email', required: true }, { label: 'password', model: 'usr_password', tag: 'input', type: 'password', required: true }, { label: 'tahun lahir', model: 'usr_year_born', tag: 'input', type: 'number' }, { label: 'jabatan', model: 'usr_designation', tag: 'input', type: 'text' }, { label: 'jenis kelamin', model: 'usr_gender', tag: 'radio', value: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }] }, { label: 'lembaga', model: 'usr_institution', tag: 'select', value: results.instits }, { label: 'pendidikan', model: 'usr_education', tag: 'select', value: results.educats }, { label: 'provinsi', model: 'usr_province', tag: 'autocomplete', value: 'province' }, { label: 'kabupaten', model: 'usr_regency', tag: 'autocomplete', value: 'regency' }, { label: 'kecamatan', model: 'usr_district', tag: 'autocomplete', value: 'district' }, { label: 'desa', model: 'usr_village', tag: 'autocomplete', value: 'village' }];
 		});
 	};
 

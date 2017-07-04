@@ -104,7 +104,7 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 
 	$scope.delete	= (id, question, e) => {
 		e.stopPropagation();
-		dialog.confirm('Are you sure you wanna delete question \"' + question + '\"?', (response) => {
+		dialog.confirm('Apakah anda yakin akan menghapus pertanyaan \"' + question + '\"?', (response) => {
 			if (response) {
 				fetcher.deleteEssay(id, (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -137,7 +137,7 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 	let init = () => {
 		fetcher.getAllCategory({}, (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
-				$scope.categories	= _.chain(response.result).map((o) => ({ id: o.ID_category, name: o.category_name })).concat([{ id: null, name: 'All' }]).sortBy(['name']).value();
+				$scope.categories	= _.chain(response.result).map((o) => ({ id: o.ID_category, name: o.category_name })).sortBy(['name']).unshift({ id: null, name: 'Semua' }).value();
 				$scope.category		= _.head($scope.categories);
 
 				initData();

@@ -23,7 +23,7 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 	};
 
 	$scope.toDate = function (stringDate) {
-		return moment(stringDate).format("dddd, MMMM Do YYYY, h:mm a");
+		return moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm");
 	};
 
 	$scope.loadMoar = function () {
@@ -106,7 +106,7 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.categories = _.chain(response.result).map(function (o) {
 					return { id: o.ID_category, name: o.category_name };
-				}).concat([{ id: null, name: 'All' }]).sortBy(['name']).value();
+				}).sortBy(['name']).unshift({ id: null, name: 'Semua' }).value();
 				$scope.category = _.head($scope.categories);
 
 				initData();
