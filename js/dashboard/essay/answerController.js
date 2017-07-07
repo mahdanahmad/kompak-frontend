@@ -18,6 +18,7 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
+	$scope.openHint	= () => { dialog.notif(globalVar.essayAnsHint); }
 	$scope.toDate	= (stringDate) => (moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm"));
 
 	$scope.loadMoar	= () => {

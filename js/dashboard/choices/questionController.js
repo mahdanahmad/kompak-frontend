@@ -18,6 +18,8 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
+	$scope.openHint	= () => { dialog.notif(globalVar.choicesHint); }
+
 	$scope.loadMoar	= () => {
 		$scope.pauseAjx	= true;
 		iterate++;

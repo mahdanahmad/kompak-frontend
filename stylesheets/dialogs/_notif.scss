@@ -1,5 +1,5 @@
 #notification-wrapper {
-	#notification-content { }
+	#notification-content { ol { text-align: justify; }}
 	#notification-buttons {
 	    width: 100%; @include clearfix();
 		button { background: $addbutton-clr; color: white; }

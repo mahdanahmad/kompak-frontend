@@ -22,6 +22,10 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
 	};
 
+	$scope.openHint = function () {
+		dialog.notif(globalVar.essayHint);
+	};
+
 	$scope.loadMoar = function () {
 		$scope.pauseAjx = true;
 		iterate++;

@@ -22,6 +22,10 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
 	};
 
+	$scope.openHint = function () {
+		dialog.notif(globalVar.choicesHint);
+	};
+
 	$scope.loadMoar = function () {
 		$scope.pauseAjx = true;
 		iterate++;

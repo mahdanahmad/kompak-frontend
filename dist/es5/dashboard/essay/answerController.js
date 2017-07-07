@@ -22,6 +22,9 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
 	};
 
+	$scope.openHint = function () {
+		dialog.notif(globalVar.essayAnsHint);
+	};
 	$scope.toDate = function (stringDate) {
 		return moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm");
 	};

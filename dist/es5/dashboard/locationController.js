@@ -11,7 +11,12 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	var defId = '';
 	var prevState = '';
 
+	// let hint		= '<i class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"><md-tooltip md-autohide="true">petunjuk penggunaan halaman</md-tooltip></i>';
 	$scope.locMap = { province: 'provinsi', regency: 'kabupaten', district: 'kecamatan', village: 'desa' };
+
+	$scope.openHint = function () {
+		dialog.notif(globalVar.locationHint);
+	};
 
 	switch (true) {
 		case !_.isNil($stateParams.province) && !_.isNil($stateParams.regency) && !_.isNil($stateParams.district):

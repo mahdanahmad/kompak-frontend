@@ -9,7 +9,10 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	let defId		= '';
 	let prevState	= '';
 
+	// let hint		= '<i class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"><md-tooltip md-autohide="true">petunjuk penggunaan halaman</md-tooltip></i>';
 	$scope.locMap	= { province : 'provinsi', regency: 'kabupaten', district: 'kecamatan', village: 'desa' };
+
+	$scope.openHint	= () => { dialog.notif(globalVar.locationHint); }
 
 	switch (true) {
 		case !_.isNil($stateParams.province) && !_.isNil($stateParams.regency) && !_.isNil($stateParams.district):
@@ -143,7 +146,7 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 		iterate	= 0;
 		fetcher.getLocation(id, _.omitBy({ limit, like, offset: 0 }, _.isNil), (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
-				$scope.title	= $scope.state == 'province' ? '<span>semua</span> provinsi' : ($scope.locMap[$scope.state] + ' <span>di ' + response.result.name + '</span>');
+				$scope.title	= ($scope.state == 'province' ? '<span>semua</span> provinsi' : ($scope.locMap[$scope.state] + ' <span>di ' + response.result.name + '</span>'));
 				$scope.data		= mapName(response.result.data);
 				if (!response.result.data) {
 					$scope.nodata = globalVar.nodata; $scope.doneAjx = true;

@@ -18,6 +18,8 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
+	$scope.openHint	= () => { dialog.notif(globalVar.essayHint); }
+
 	$scope.loadMoar	= () => {
 		$scope.pauseAjx	= true;
 		iterate++;

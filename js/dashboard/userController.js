@@ -13,6 +13,8 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.pauseAjx	= false;
 	$scope.doneAjx	= false;
 
+	$scope.openHint	= () => { dialog.notif(globalVar.userHint); }
+
 	$scope.loadMoar	= () => {
 		$scope.pauseAjx	= true;
 		iterate++;

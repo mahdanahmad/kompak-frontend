@@ -4,6 +4,10 @@ $unintended-clr	: #BCB8B1;
 #location-wrapper {
 	width: 100%; height: 100%;
 	.header-title { width: calc(40% - 1px - 25px); height: $header-heigth; text-transform: lowercase; span { color: $unintended-clr; } }
+	.header-divider {
+		position: relative;
+		i.fa-question-circle-o { position: absolute; right: 10px; top: 8px; font-size: 20px; }
+	}
 	.header-another {
 		width: 20%;
 		.header-button {

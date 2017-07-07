@@ -22,6 +22,9 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
 	};
 
+	$scope.openHint = function () {
+		dialog.notif(globalVar.choicesAnsHint);
+	};
 	$scope.toDate = function (stringDate) {
 		return moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm");
 	};

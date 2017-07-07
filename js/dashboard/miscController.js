@@ -13,6 +13,8 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		institution: 'lembaga'
 	};
 
+	$scope.openHint	= () => { dialog.notif(globalVar.miscHint); }
+
 	$scope.settingInputs	= [
 		{ label: 'versi aplikasi', model: 'version', tag: 'input', type: 'text' },
 		{ label: 'life', model: 'life', tag: 'input', type: 'number' },
@@ -30,7 +32,7 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.new		= (state) => {
 		let funcName	= _.includes(['institution', 'education'], state) ? 'loneDialog' : (state + 'Dialog');
-		dialog[funcName](_.includes(['institution', 'education'], state) ? { state } : {}, (dialResp) => {
+		dialog[funcName](_.includes(['institution', 'education'], state) ? { state: settingMap[state] } : {}, (dialResp) => {
 			if (_.isObject(dialResp)) {
 				if (!_.isNil(dialResp.category_enabled)) { dialResp.category_enabled = (dialResp.category_enabled) ? '1' : '0'; }
 				if (!_.isNil(dialResp.name) && state == 'institution') { dialResp.name_institution = dialResp.name; }

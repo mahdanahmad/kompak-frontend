@@ -1,7 +1,10 @@
 div.header {
 	@include clearfix(); height: $header-heigth; width: 100%; background: $header-clr; border-bottom: 1px solid rgba(230,230,230,0.7);
 	& > div { display: inline-block; float: left; }
-	div.header-title { width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; letter-spacing: -2px; }
+	div.header-title {
+		width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; letter-spacing: -2px; position: relative;
+		i.fa-question-circle-o { position: absolute; right: 10px; top: calc((#{$header-heigth} / 2) - 10px); font-size: 20px; }
+	}
 	div.header-divider { width: 1px; height: calc(#{$header-heigth} / 2); background: #e6e6e6; margin: calc(#{$header-heigth} / 4) 0px;}
 	div.header-input-container {
 		width: calc(40% - 1px); @include clearfix();

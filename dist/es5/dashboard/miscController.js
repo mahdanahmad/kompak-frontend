@@ -16,6 +16,10 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		institution: 'lembaga'
 	};
 
+	$scope.openHint = function () {
+		dialog.notif(globalVar.miscHint);
+	};
+
 	$scope.settingInputs = [{ label: 'versi aplikasi', model: 'version', tag: 'input', type: 'text' }, { label: 'life', model: 'life', tag: 'input', type: 'number' }, { label: 'jumlah pemain pada daftar top score', model: 'num_top_skor_list', tag: 'input', type: 'number' }];
 	$scope.updateSetting = function () {
 		fetcher.putSetting(_.mapValues($scope.setting, _.toString), function (response) {
@@ -29,7 +33,7 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	$scope.new = function (state) {
 		var funcName = _.includes(['institution', 'education'], state) ? 'loneDialog' : state + 'Dialog';
-		dialog[funcName](_.includes(['institution', 'education'], state) ? { state: state } : {}, function (dialResp) {
+		dialog[funcName](_.includes(['institution', 'education'], state) ? { state: settingMap[state] } : {}, function (dialResp) {
 			if (_.isObject(dialResp)) {
 				if (!_.isNil(dialResp.category_enabled)) {
 					dialResp.category_enabled = dialResp.category_enabled ? '1' : '0';
