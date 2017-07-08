@@ -383,6 +383,13 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			}, function (error) {
 				callback(error.data);
 			});
+		},
+		postAuth: function postAuth(data, callback) {
+			$http.post(baseURL + 'auth', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
 		}
 	};
 }]);

@@ -13,17 +13,22 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 
 				$urlRouterProvider.otherwise(function ($injector) {
 								var $state = $injector.get("$state");
-								$state.go('dashboard');
+								$state.go('auth');
 				});
 
-				$stateProvider.state('dashboard', {
+				$stateProvider.state('auth', {
 								url: '',
+								templateUrl: 'views/auth/auth.html',
+								controller: 'AuthController',
+								data: { permissions: { except: ['isAuthorized'], redirectTo: 'dashboard.statistic' } }
+				}).state('dashboard', {
+								url: 'dash',
 								templateUrl: 'views/dashboard/dashboard.html',
 								controller: 'DashboardController',
-								abstract: true
-								// data        : { permissions: { except: ['isAuthorized'], redirectTo: '' } }
+								abstract: true,
+								data: { permissions: { only: ['isAuthorized'], redirectTo: 'auth' } }
 				}).state('dashboard.statistic', {
-								url: '',
+								url: '/statistic',
 								templateUrl: 'views/dashboard/statistic.html',
 								controller: 'StatisticController'
 				}).state('dashboard.user', {
@@ -72,7 +77,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$location', 'localSto
 }]);
 
 app.run(['PermPermissionStore', 'localStorageService', '$templateCache', function (PermPermissionStore, localStorageService, $templateCache) {
-				// PermPermissionStore.definePermission('isAuthorized', () => (!_.isNull(localStorageService.get('_id'))));
-
+				PermPermissionStore.definePermission('isAuthorized', function () {
+								return !_.isNull(localStorageService.get('id'));
+				});
 }]);
 //# sourceMappingURL=app.js.map

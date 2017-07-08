@@ -17,77 +17,77 @@ module.exports = function(grunt){
 			}
 		},
 
-		cssmin: {
-			options: {
-				mergeIntoShorthands: false,
-				specialComments: -1,
-				compatibility: { properties: { urlQuotes: true } },
-				rebase: true,
-				rebaseTo: 'dist/css/'
-			},
-			components: {
-				files: {
-					'dist/css/components.min.css': [
-						'node_modules/font-awesome/css/font-awesome.min.css',
-						'node_modules/ng-dialog/css/ngDialog.min.css',
-						'node_modules/ng-dialog/css/ngDialog-theme-default.min.css',
-						'node_modules/angular-loading-bar/build/loading-bar.min.css',
-						'node_modules/angular-material/angular-material.min.css',
-						'node_modules/nvd3/build/nv.d3.min.css',
-					]
-				}
-			}
-		},
+		// cssmin: {
+		// 	options: {
+		// 		mergeIntoShorthands: false,
+		// 		specialComments: -1,
+		// 		compatibility: { properties: { urlQuotes: true } },
+		// 		rebase: true,
+		// 		rebaseTo: 'dist/css/'
+		// 	},
+		// 	components: {
+		// 		files: {
+		// 			'dist/css/components.min.css': [
+		// 				'node_modules/font-awesome/css/font-awesome.min.css',
+		// 				'node_modules/ng-dialog/css/ngDialog.min.css',
+		// 				'node_modules/ng-dialog/css/ngDialog-theme-default.min.css',
+		// 				'node_modules/angular-loading-bar/build/loading-bar.min.css',
+		// 				'node_modules/angular-material/angular-material.min.css',
+		// 				'node_modules/nvd3/build/nv.d3.min.css',
+		// 			]
+		// 		}
+		// 	}
+		// },
 
 		uglify: {
-			components: {
-				options: {
-					sourceMap: true,
-					// sourceMapName: 'dist/js/components.map'
-				},
-				files: {
-					'dist/js/components.min.js': [
-						'node_modules/jquery/dist/jquery.min.js',
-						'node_modules/jquery-bridget/jquery-bridget.js',
-						'node_modules/ev-emitter/ev-emitter.js',
-						'node_modules/desandro-matches-selector/matches-selector.js',
-						'node_modules/fizzy-ui-utils/utils.js',
-						'node_modules/get-size/get-size.js',
-						'node_modules/outlayer/item.js',
-						'node_modules/outlayer/outlayer.js',
-						'node_modules/masonry-layout/masonry.js',
-						'node_modules/imagesloaded/imagesloaded.js',
-
-						'node_modules/angular/angular.min.js',
-						'node_modules/angular-animate/angular-animate.min.js',
-						'node_modules/angular-sanitize/angular-sanitize.min.js',
-						'node_modules/angular-material/angular-material.min.js',
-						'node_modules/angular-aria/angular-aria.min.js',
-						'node_modules/angular-local-storage/dist/angular-local-storage.min.js',
-						'node_modules/@uirouter/angularjs/release/angular-ui-router.min.js',
-						'node_modules/ui-router-extras/release/ct-ui-router-extras.min.js',
-						'node_modules/angular-permission/dist/angular-permission.min.js',
-						'node_modules/angular-permission/dist/angular-permission-ui.min.js',
-						'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js',
-						'node_modules/angular-loading-bar/build/loading-bar.min.js',
-						'node_modules/ng-dialog/js/ngDialog.min.js',
-						'node_modules/angular-masonry/angular-masonry.js',
-
-						'node_modules/d3/d3.min.js',
-						'node_modules/nvd3/build/nv.d3.min.js',
-						'node_modules/angular-nvd3/dist/angular-nvd3.min.js',
-
-						// 'node_modules/chart.js/dist/Chart.min.js',
-						// 'node_modules/angular-chart.js/dist/angular-chart.min.js',
-
-						'node_modules/moment/min/moment.min.js',
-						'node_modules/moment/locale/id.js',
-						'node_modules/lodash/lodash.min.js',
-						'node_modules/async/dist/async.min.js',
-
-					]
-				}
-			},
+			// components: {
+			// 	options: {
+			// 		sourceMap: true,
+			// 		// sourceMapName: 'dist/js/components.map'
+			// 	},
+			// 	files: {
+			// 		'dist/js/components.min.js': [
+			// 			'node_modules/jquery/dist/jquery.min.js',
+			// 			'node_modules/jquery-bridget/jquery-bridget.js',
+			// 			'node_modules/ev-emitter/ev-emitter.js',
+			// 			'node_modules/desandro-matches-selector/matches-selector.js',
+			// 			'node_modules/fizzy-ui-utils/utils.js',
+			// 			'node_modules/get-size/get-size.js',
+			// 			'node_modules/outlayer/item.js',
+			// 			'node_modules/outlayer/outlayer.js',
+			// 			'node_modules/masonry-layout/masonry.js',
+			// 			'node_modules/imagesloaded/imagesloaded.js',
+			//
+			// 			'node_modules/angular/angular.min.js',
+			// 			'node_modules/angular-animate/angular-animate.min.js',
+			// 			'node_modules/angular-sanitize/angular-sanitize.min.js',
+			// 			'node_modules/angular-material/angular-material.min.js',
+			// 			'node_modules/angular-aria/angular-aria.min.js',
+			// 			'node_modules/angular-local-storage/dist/angular-local-storage.min.js',
+			// 			'node_modules/@uirouter/angularjs/release/angular-ui-router.min.js',
+			// 			'node_modules/ui-router-extras/release/ct-ui-router-extras.min.js',
+			// 			'node_modules/angular-permission/dist/angular-permission.min.js',
+			// 			'node_modules/angular-permission/dist/angular-permission-ui.min.js',
+			// 			'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js',
+			// 			'node_modules/angular-loading-bar/build/loading-bar.min.js',
+			// 			'node_modules/ng-dialog/js/ngDialog.min.js',
+			// 			'node_modules/angular-masonry/angular-masonry.js',
+			//
+			// 			'node_modules/d3/d3.min.js',
+			// 			'node_modules/nvd3/build/nv.d3.min.js',
+			// 			'node_modules/angular-nvd3/dist/angular-nvd3.min.js',
+			//
+			// 			// 'node_modules/chart.js/dist/Chart.min.js',
+			// 			// 'node_modules/angular-chart.js/dist/angular-chart.min.js',
+			//
+			// 			'node_modules/moment/min/moment.min.js',
+			// 			'node_modules/moment/locale/id.js',
+			// 			'node_modules/lodash/lodash.min.js',
+			// 			'node_modules/async/dist/async.min.js',
+			//
+			// 		]
+			// 	}
+			// },
 			dist: {
 				options: {
 					sourceMap: true,
@@ -146,6 +146,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
 	// Default tasks
-	grunt.registerTask('default', ['clean', 'sass', 'cssmin', 'babel', 'uglify']);
+	grunt.registerTask('default', ['clean', 'sass', 'babel', 'uglify']);
 
 };

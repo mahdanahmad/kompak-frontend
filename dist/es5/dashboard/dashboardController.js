@@ -5,12 +5,16 @@ app.controller('DashboardController', ['$scope', '$location', '$document', '$sta
 
 	$scope.menus = [{ title: 'Statistik', icon: 'line-chart', state: 'statistic' }, { title: 'Daftar Pemain', icon: 'user', state: 'user' }, { title: 'Pertanyaan Pilihan Ganda', icon: 'th-large', state: 'choices' }, { title: 'Jawaban Pilihan Ganda', icon: 'square', state: 'choicesAns' }, { title: 'Pertanyaan Essai', icon: 'pencil-square-o', state: 'essay' }, { title: 'Jawaban Essai', icon: 'file-text-o', state: 'essayAns' }, { title: 'Lokasi', icon: 'map-o', state: 'location' }, { title: 'Pengaturan', icon: 'cogs', state: 'misc' }];
 
-	var state = $location.url().split('/')[1];
-	$scope.active = state ? state : _.chain($scope.menus).head().get('state').value();
+	$scope.active = $location.url().split('/')[2];
 	$scope.setActive = function (selected) {
 		$scope.active = selected;$state.go('dashboard.' + selected);
 	};
 
+	$scope.logout = function () {
+		localStorageService.remove('id', 'role');
+
+		$state.go('auth');
+	};
 	// $scope.showUserMenu	= true;
 }]);
 //# sourceMappingURL=dashboardController.js.map

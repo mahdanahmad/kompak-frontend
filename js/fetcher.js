@@ -70,5 +70,6 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 		deleteBadge: (id, callback) => { $http.delete(baseURL + 'badge/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
 		getStatistic: (callback) => { $http.get(baseURL + 'statistic', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postAuth: (data, callback) => { $http.post(baseURL + 'auth', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 	};
 }]);

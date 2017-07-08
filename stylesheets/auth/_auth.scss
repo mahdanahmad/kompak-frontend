@@ -1,0 +1,31 @@
+$ceil-clr	: white;
+$floor-clr	: #79afb1;
+$err-clr	: firebrick;
+
+#auth-container {
+	width: 100%; height: 100%; overflow: hidden; display: table; position: absolute;
+	background-image: url('../../public/images/auth-background.jpg'); background-repeat: no-repeat; background-position: center center; background-size: cover;
+	#auth-wrapper {
+		display: table-cell; vertical-align: middle;
+		#auth-content {
+			width: 100%; max-width: 400px; margin: auto; position: relative;
+			#auth-title {
+				font-family: $signika; font-size: 49px; letter-spacing: -5px; padding: 5px 10px; border-left: 5px solid $ceil-clr; border-radius: 5px;
+				span.ceil { color: $ceil-clr; } span.floor { color: $floor-clr; }
+			}
+			#auth-login {
+				font-size: 17px; width: 75%; margin: 45px auto 75px;
+				label { color: $ceil-clr; padding-left: 10px; width: calc(100% - 10px); }
+				input { border-bottom: 1px solid $ceil-clr; color: $ceil-clr; font-size: 16px; padding-left: 5px; }
+				md-input-container {
+					margin: 0px;
+					&.md-input-focused {
+						label { color: $floor-clr; }
+						input { border-bottom-color: $floor-clr; color: $floor-clr; }
+					}
+				}
+			}
+			#auth-error { width: 100%; text-align: center; color: $err-clr; position: absolute; bottom: -12px; left: 0px; }
+		}
+	}
+}

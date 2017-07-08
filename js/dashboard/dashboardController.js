@@ -18,9 +18,13 @@ app.controller('DashboardController', ['$scope', '$location', '$document', '$sta
 	];
 
 
-	let state			= $location.url().split('/')[1];
-	$scope.active		= (state) ? state : _.chain($scope.menus).head().get('state').value();
+	$scope.active	= $location.url().split('/')[2];
 	$scope.setActive	= (selected) => { $scope.active = selected; $state.go('dashboard.' + selected); }
 
+
+	$scope.logout	= () => {
+		localStorageService.remove('id', 'role');
+		$state.go('auth');
+	};
 	// $scope.showUserMenu	= true;
 }]);

@@ -1,0 +1,22 @@
+<div id="auth-container">
+	<div id="auth-wrapper">
+		<div id="auth-content">
+			<div id="auth-title" class="cursor-default">
+				<span class="ceil">gapuradesa</span> <span class="floor">dashboard</span>
+			</div>
+			<form id="auth-login" ng-submit="signin()">
+				<md-input-container>
+					<label>username</label>
+					<input type="text" ng-model="username" spellcheck="false" autofocus required/>
+				</md-input-container>
+				<md-input-container>
+					<label>password</label>
+					<input type="password" ng-model="password" autofocus required/>
+				</md-input-container>
+
+				<button type="submit" class="hidden">Login</button>
+			</form>
+			<div id="auth-error" class="cursor-default" ng-show="errmessage">{{ errmessage }}</div>
+		</div>
+	</div>
+</div>
