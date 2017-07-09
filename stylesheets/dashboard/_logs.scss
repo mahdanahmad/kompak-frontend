@@ -1,0 +1,33 @@
+$card-width		: 375px;
+$card-color		: #EDEDEE;
+
+$delete-back	: #BB342F;
+$update-back	: #949B26;
+$insert-back	: #79afb1;
+
+
+#logs-wrapper {
+	width: 100%; height: 100%;
+	#logs-content {
+		#logs-content-wrapper {
+			width: 100%;
+			.logs-card {
+				width: $card-width; color: $card-color; padding: 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+				.dash-label { margin-bottom: 5px; color: $card-color; }
+				.logs-divider { width: 100%; border-bottom: 1px solid #ddd; margin: 10px 0px; }
+				.logs-action-container {
+					width: 98%; padding: 0px 1%;
+					.logs-action { font-size: 15px; @include defJustify(); }
+				}
+				.logs-defendant, .logs-timestamp {
+					width: 98%; padding: 0px 1%; color: $card-color; 
+					& > span { font-weight: bolder; }
+				}
+
+				&.DELETE { background-color: $delete-back; }
+				&.UPDATE { background-color: $update-back; }
+				&.INSERT { background-color: $insert-back; }
+			}
+		}
+	}
+}

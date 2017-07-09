@@ -78,6 +78,11 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	            url         : '/misc',
 	            templateUrl : 'views/dashboard/misc.html',
 	            controller  : 'MiscController',
+	        })
+	        .state('dashboard.logs', {
+	            url         : '/logs',
+	            templateUrl : 'views/dashboard/logs.html',
+	            controller  : 'LogsController',
 	        });
 
 	localStorageServiceProvider.setPrefix('gapuradesa');

@@ -11,6 +11,7 @@ app.controller('DashboardController', ['$scope', '$location', '$document', '$sta
 		{ title: 'Jawaban Essai', icon: 'file-text-o', state: 'essayAns' },
 		{ title: 'Lokasi', icon: 'map-o', state: 'location' },
 		{ title: 'Pengaturan', icon: 'cogs', state: 'misc' },
+		{ title: 'Logs', icon: 'newspaper-o', state: 'logs' },
 		// { title: 'Category', icon: 'object-group', state: 'category' },
 		// { title: 'Badge', icon: 'map-o', state: 'badge' },
 		// { title: 'Institution', icon: 'university', state: 'institution' },
