@@ -4,6 +4,7 @@ app.controller('ModalChoicesController', ['$scope', function ($scope) {
 	'use strict';
 
 	$scope.data = $scope.ngDialogData.content.data || {};
+	$scope.data.question_enabled = $scope.data.question_enabled == 1 || false;
 
 	$scope.inputs = [{ label: 'pertanyaan', model: 'question_text', tag: 'textarea', required: true }, { label: 'jawaban 1', model: 'response_1', tag: 'textarea', required: true }, { label: 'jawaban 2', model: 'response_2', tag: 'textarea', required: true }, { label: 'jawaban 3', model: 'response_3', tag: 'textarea', required: true }, { label: 'jawaban 4', model: 'response_4', tag: 'textarea', required: true }, { label: 'jawaban benar', model: 'correct_response', tag: 'select', value: _.chain(4).times(function (o) {
 			return o + 1;

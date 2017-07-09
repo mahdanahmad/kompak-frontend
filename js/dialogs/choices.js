@@ -2,6 +2,7 @@ app.controller('ModalChoicesController', ['$scope', function ($scope) {
     'use strict';
 
 	$scope.data			= $scope.ngDialogData.content.data || {};
+	$scope.data.question_enabled	= ($scope.data.question_enabled == 1 || false);
 
 	$scope.inputs	= [
 		{ label: 'pertanyaan', model: 'question_text', tag: 'textarea', required: true },

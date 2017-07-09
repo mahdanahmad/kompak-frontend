@@ -1,0 +1,18 @@
+#profilemodal-wrapper {
+	#profilemodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		#profileinput-name { width: 50%; }
+		#profileinput-username { width: 50%; }
+		#profileinput-email { width: 50%; }
+		#profileinput-newpassword { width: 50%; }
+	}
+	#profilemodal-buttons {
+	    width: 88%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

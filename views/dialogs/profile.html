@@ -1,0 +1,17 @@
+<form id="profilemodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="profilemodal-header" class="modal-header cursor-default">
+		ubah profile
+	</div>
+	<div id="profilemodal-content">
+		<div ng-repeat="o in inputs track by $index" id="profileinput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'input'">
+				<label>{{ o.label }}</label>
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="o.required" autofocus="{{ $first }}"/>
+			</md-input-container>
+		</div>
+	</div>
+	<div id="profilemodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> ubah profile</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
+	</div>
+</form>

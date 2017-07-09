@@ -14,12 +14,16 @@
 			</div>
 		</div>
 		<div id="sidebar-user">
-			<div id="user-photo" class="cursor-pointer" style="background-image: url('public/images/Sam_Harris_2016.jpg')" open-dropdown="showUserMenu"></div>
+			<!-- <div id="user-photo" class="cursor-pointer" style="background-image: url('public/images/Sam_Harris_2016.jpg')" open-dropdown="showUserMenu"></div>
 			<div id="dropdown-menu" ng-show="showUserMenu">
-				<div id="dropdown-username" class="cursor-default">Username</div>
+				<div id="dropdown-username" class="cursor-default">{{ username }}</div>
 				<ul>
 					<li class="cursor-pointer" ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> keluar</li>
 				</ul>
+			</div> -->
+			<div id="logout-button">
+				<i class="fa fa-cog cursor-pointer" aria-hidden="true" ng-click="editprofile()"><md-tooltip md-direction="top" md-autohide="true">ubah profile</md-tooltip></i>
+				<i class="fa fa-power-off cursor-pointer" aria-hidden="true" ng-click="logout()"><md-tooltip md-direction="top" md-autohide="true">sign out</md-tooltip></i>
 			</div>
 		</div>
 	</div>

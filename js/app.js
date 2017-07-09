@@ -16,14 +16,14 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 
     $stateProvider
         .state('auth', {
-            url         : '',
+            url         : '/auth',
             templateUrl : 'views/auth/auth.html',
             controller  : 'AuthController',
             data        : { permissions: { except: ['isAuthorized'], redirectTo: 'dashboard.statistic' } }
         })
 
         .state('dashboard', {
-            url         : 'dash',
+            url         : '',
             templateUrl : 'views/dashboard/dashboard.html',
             controller  : 'DashboardController',
             abstract    : true,
@@ -38,6 +38,11 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 	            url         : '/user',
 	            templateUrl : 'views/dashboard/user.html',
 	            controller  : 'UserController',
+	        })
+	        .state('dashboard.admin', {
+	            url         : '/admin',
+	            templateUrl : 'views/dashboard/admin.html',
+	            controller  : 'AdminController',
 	        })
 	        .state('dashboard.choices', {
 	            url         : '/choices',

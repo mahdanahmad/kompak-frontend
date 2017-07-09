@@ -7,7 +7,7 @@ $menutitle-font	: $signika;
 $title-font		: $signika;
 
 $background-clr	: #fafafa;
-$loadingcolor	: #FC7E01;
+$loadingcolor	: #79afb1;
 
 $sidebar-width	: 70px;
 $sidebar-clr	: #21252d;
@@ -18,7 +18,7 @@ $menu-size		: 45px;
 $menu-inflated	: 270px;
 $menu-clr		: #788195;
 // $menu-act-clr	: #10cfbd;
-$menu-act-clr	: #FC7E01;
+$menu-act-clr	: #79afb1;
 $menu-hvr-clr	: #272b35;
 $icon-margin	: 14px;
 
@@ -26,7 +26,7 @@ $header-heigth	: 70px;
 $header-clr		: #fff;
 $search-clr		: #626262;
 
-$addbutton-clr	: #FC7E01;
+$addbutton-clr	: #79afb1;
 
 $def-padding	: 25px;
 
@@ -36,14 +36,15 @@ $label-clr		: #626262;
 
 $modal-clr		: #f0f0f0;
 
-$float-clr		: #FC7E01;
-$radio-clr		: #FC7E01;
+//#FC7E01;
+$float-clr		: #79afb1;
+$radio-clr		: #79afb1;
 
-$noenabled-back	: #FC7E01;
+$noenabled-back	: #79afb1;
 $noenabled-clr	: #FBF5F4;
-$noenabled-lbl	: #FFE824;
+$noenabled-lbl	: #FFE066;
 
-$colors			: #1F76C6 #93032E #C69F89 #84894A #034C3C #493B2A #18A999;
+$colors			: #1F76C6 #93032E #FFE824 #84894A #034C3C #493B2A #18A999;
 @each $color in $colors {
 	$i: index($colors, $color);
 	.color-#{$i} { color: $color; }

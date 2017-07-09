@@ -1,0 +1,28 @@
+#adminmodal-wrapper {
+	#adminmodal-content {
+		padding: 15px 10px; @include clearfix();
+		& > div { display: inline-block; float: left; padding: 0px 1%; min-height: 94px; }
+		#admininput-name { width: 25%; }
+		#admininput-username { width: 25%; }
+		#admininput-email { width: 25%; }
+		#admininput-password { width: 25%; }
+		#admininput-role {
+			width: 100%;
+			.roles-selector {
+				label { color: $float-clr; font-size: 12px; display: block; }
+				.roles-option {
+					display: inline-block; padding: 5px 15px; border: 1px solid; margin-right: 5px; border-radius: 50px;
+					&.active { background: $float-clr; color: white; border-color: $float-clr; }
+				}
+			}
+		}
+	}
+	#adminmodal-buttons {
+	    width: 50%; margin: auto; @include clearfix();
+		button {
+			width: 48%; margin: 0px 1%; float: left; display: inline-block; height: 30px;
+			&#confirm-button { background: $addbutton-clr; color: white; }
+			&#cancel-button { background: white; border: 1px solid #ddd; }
+		}
+	}
+}

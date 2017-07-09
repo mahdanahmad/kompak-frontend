@@ -45,6 +45,42 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 			});
 		},
 
+		getAllAdmin: function getAllAdmin(data, callback) {
+			$http.get(baseURL + 'admin' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getAdmin: function getAdmin(id, callback) {
+			$http.get(baseURL + 'admin/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		postAdmin: function postAdmin(data, callback) {
+			$http.post(baseURL + 'admin', data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		putAdmin: function putAdmin(id, data, callback) {
+			$http.put(baseURL + 'admin/' + id, data, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		deleteAdmin: function deleteAdmin(id, callback) {
+			$http.delete(baseURL + 'admin/' + id, config).then(function (success) {
+				callback(success.data);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+
 		getAllQuestion: function getAllQuestion(data, callback) {
 			$http.get(baseURL + 'question' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);

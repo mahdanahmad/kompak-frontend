@@ -1,0 +1,22 @@
+<form id="adminmodal-wrapper" ng-submit="closeThisDialog(data)">
+	<div id="adminmodal-header" class="modal-header cursor-default">
+		{{ data.ID ? 'ubah' : 'buat' }} administrator
+	</div>
+	<div id="adminmodal-content">
+		<div ng-repeat="o in inputs track by $index" id="admininput-{{ o.model }}">
+			<md-input-container ng-if="o.tag == 'input'">
+				<label>{{ o.label }}</label>
+				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="(o.required && !(o.type == 'password' && data.id))" ng-disabled="o.type == 'password' && data.id" autofocus="{{ $first }}"/>
+			</md-input-container>
+
+			<div class="roles-selector" ng-if="o.tag == 'roles'">
+				<label>roles</label>
+				<div class="roles-option cursor-pointer" ng-repeat="d in roles track by $index" ng-class="{ active: checkActive(d) }" ng-click="toggleActive(d)">{{ d }}</div>
+			</div>
+		</div>
+	</div>
+	<div id="adminmodal-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> {{ data.id ? 'ubah' : 'buat' }} pemain</button>
+		<button type="button" id="cancel-button" class="cursor-pointer" ng-click="closeThisDialog()"><i class="fa fa-times" aria-hidden="true"></i> batal</button>
+	</div>
+</form>

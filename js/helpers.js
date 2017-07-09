@@ -17,6 +17,14 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 			let dialog	= createDialog(content, 'user', 'ModalUserController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
+		adminDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'admin', 'ModalAdminController', 1000);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
+		profileDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'profile', 'ModalProfileController', 600);
+			dialog.closePromise.then((data) => { callback(data.value); });
+		},
 		choicesDialog: (content, callback) => {
 			let dialog	= createDialog(content, 'choices', 'ModalChoicesController', 1000);
 			dialog.closePromise.then((data) => { callback(data.value); });
@@ -73,6 +81,12 @@ app.factory('globalVar', [function() {
 			 				'<li>Warna pada bagian kiri melambangkan <span style="color: #b24f9c;">pemain wanita</span> dan <span style="color: #41658A"> pemain pria</span>.</li>' +
 			 				'<li>Icon <i class="fa fa-envelope-open" aria-hidden="true"></i> digunakan untuk mengirim email berisi reset password ke email pemain yang telah terdaftar.</li>' +
 			 				'<li>Icon <i class="fa fa-times" aria-hidden="true"></i> dapat digunakan untuk menghapus pemain.</li>' +
+			 				'<li>Anda dapat melihat atau mengubah data pemain dengan cara menekan kotak yang anda inginkan.</li>' +
+						'<ol>',
+		adminHint: 		'<ol>' +
+			 				'<li>Anda dapat mencari admin melalui nama dengan mengetik pada kolom yang disediakan.</li>' +
+			 				'<li>Pemain baru dapat ditambahkan melalu tombol <i class="fa fa-plus" aria-hidden="true"></i> Admin Baru.</li>' +
+			 				'<li>Icon <i class="fa fa-times" aria-hidden="true"></i> dapat digunakan untuk menghapus admin.</li>' +
 			 				'<li>Anda dapat melihat atau mengubah data pemain dengan cara menekan kotak yang anda inginkan.</li>' +
 						'<ol>',
 		choicesHint: 	'<ol>' +

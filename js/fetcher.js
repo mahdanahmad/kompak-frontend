@@ -13,6 +13,12 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', '$window', '$location',
 		putUser: (id, data, callback) => { $http.put(baseURL + 'user/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteUser: (id, callback) => { $http.delete(baseURL + 'user/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
+		getAllAdmin: (data, callback) => { $http.get(baseURL + 'admin' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getAdmin: (id, callback) => { $http.get(baseURL + 'admin/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		postAdmin: (data, callback) => { $http.post(baseURL + 'admin', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		putAdmin: (id, data, callback) => { $http.put(baseURL + 'admin/' + id, data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		deleteAdmin: (id, callback) => { $http.delete(baseURL + 'admin/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+
 		getAllQuestion: (data, callback) => { $http.get(baseURL + 'question' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		getQuestion: (id, callback) => { $http.get(baseURL + 'question/' + id, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		postQuestion: (data, callback) => { $http.post(baseURL + 'question', data, config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
