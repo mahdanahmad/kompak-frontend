@@ -35,6 +35,8 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		});
 	}
 
+	$scope.toYear	= (birthyear) => ( birthyear < moment().format('YYYY') ? moment().diff(moment().year(birthyear), 'years') : null);
+
 	let delayTimeout;
 	$scope.$watch('search', (newVal, oldVal) => {
 		if (!_.isNil(newVal) && newVal !== oldVal) {
@@ -56,7 +58,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		{ title: 'nama', value: 'usr_display_name', order: 'ASC' },
 		{ title: 'jabatan', value: 'usr_designation', order: 'ASC' },
 		{ title: 'desa', value: 'usr_village', order: 'ASC' },
-		{ title: 'umur', value: 'usr_years', order: 'ASC' },
+		{ title: 'umur', value: 'usr_year_born', order: 'ASC' },
 		{ title: 'skor', value: 'usr_score', order: 'ASC' },
 		{ title: 'kontribusi', value: 'usr_contribution', order: 'ASC' },
 	];

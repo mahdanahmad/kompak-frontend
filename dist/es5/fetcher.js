@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', '$window', '$location', function ($http, $httpParamSerializer, localStorageService, $window, $location) {
-	var baseURL = "http://localhost:3010/";
+	var baseURL = "http://gapura-desa.id:3010/";
 
 	var config = {
 		// withCredentials: true,

@@ -41,6 +41,10 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		});
 	};
 
+	$scope.toYear = function (birthyear) {
+		return birthyear < moment().format('YYYY') ? moment().diff(moment().year(birthyear), 'years') : null;
+	};
+
 	var delayTimeout = void 0;
 	$scope.$watch('search', function (newVal, oldVal) {
 		if (!_.isNil(newVal) && newVal !== oldVal) {
@@ -58,7 +62,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		}
 	});
 
-	$scope.orderOptions = [{ title: 'nama', value: 'usr_display_name', order: 'ASC' }, { title: 'jabatan', value: 'usr_designation', order: 'ASC' }, { title: 'desa', value: 'usr_village', order: 'ASC' }, { title: 'umur', value: 'usr_years', order: 'ASC' }, { title: 'skor', value: 'usr_score', order: 'ASC' }, { title: 'kontribusi', value: 'usr_contribution', order: 'ASC' }];
+	$scope.orderOptions = [{ title: 'nama', value: 'usr_display_name', order: 'ASC' }, { title: 'jabatan', value: 'usr_designation', order: 'ASC' }, { title: 'desa', value: 'usr_village', order: 'ASC' }, { title: 'umur', value: 'usr_year_born', order: 'ASC' }, { title: 'skor', value: 'usr_score', order: 'ASC' }, { title: 'kontribusi', value: 'usr_contribution', order: 'ASC' }];
 
 	$scope.orderby = _.head($scope.orderOptions);
 	$scope.selectSort = function (selected) {

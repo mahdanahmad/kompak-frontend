@@ -44,7 +44,7 @@ html, body, body > div#root {
 }
 #loading-bar-container {
 	width: 100%; position: fixed;
-	#loading-bar .bar { position: relative; height: 3px; background-color: $loadingcolor; }
+	#loading-bar .bar { position: relative; height: 4px; background-color: $loadingcolor; }
 	#loading-bar-spinner {
 		position: relative;
 		.spinner-icon { border-top-color: $loadingcolor; border-left-color: $loadingcolor; position: absolute; right: 15px; }
