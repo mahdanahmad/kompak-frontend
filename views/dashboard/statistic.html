@@ -51,7 +51,10 @@
 			<div class="col-6" force-height>
 				<div class="statistic-container">
 					<div id="widget-topscore" class="statistic-card">
-						<div class="sideview-title cursor-default">skor tertinggi</div>
+						<div class="sideview-title cursor-default">
+							skor tertinggi
+							<a target="_self" href="{{downloadLink('topscore')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						</div>
 						<div class="sideview-content cursor-default">
 							<div class="sideview-podium-container">
 								<div class="sideview-podium">
@@ -88,7 +91,10 @@
 			<div class="col-6" force-height>
 				<div class="statistic-container">
 					<div id="widget-topcontributor" class="statistic-card">
-						<div class="sideview-title cursor-default">kontribusi terbanyak</div>
+						<div class="sideview-title cursor-default">
+							kontribusi terbanyak
+							<a target="_self" href="{{downloadLink('contributors')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						</div>
 						<div class="sideview-content cursor-default">
 							<div class="sideview-podium-container">
 								<div class="sideview-podium">
@@ -125,7 +131,10 @@
 			<div class="col-6" force-height>
 				<div class="statistic-container">
 					<div id="widget-topvillage" class="statistic-card">
-						<div class="sideview-title cursor-default">desa dengan partisipasi tertinggi</div>
+						<div class="sideview-title cursor-default">
+							desa dengan partisipasi tertinggi
+							<a target="_self" href="{{downloadLink('topvillage')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						</div>
 						<div class="sideview-content cursor-default">
 							<div class="sideview-village-container" ng-repeat="o in data.topvillage track by $index" set-village-width="{{ o.jumlah }}">
 								{{ o.name_desa }}
@@ -141,7 +150,10 @@
 			<div class="col-6" force-height>
 				<div class="statistic-container">
 					<div id="widget-notmyprovince" class="statistic-card">
-						<div class="sideview-title cursor-default">provinsi yang belum bergabung</div>
+						<div class="sideview-title cursor-default">
+							provinsi yang belum bergabung
+							<a target="_self" href="{{downloadLink('notmyprovince')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						</div>
 						<div class="sideview-content cursor-default">
 							<div class="sideview-notmyprovince" ng-repeat="o in data.notMyProvince | orderNotMyProvince">
 								{{ o }}
@@ -156,7 +168,10 @@
 		<div class="col-3" force-height>
 			<div class="statistic-container">
 				<div id="widget-institution" class="statistic-card">
-					<div class="sideview-title cursor-default">lembaga pemain</div>
+					<div class="sideview-title cursor-default">
+						lembaga pemain
+						<a target="_self" href="{{downloadLink('institution')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+					</div>
 					<div class="sideview-content cursor-default">
 						<nvd3 options="pieoptions" data="data.institution"></nvd3>
 					</div>
@@ -166,7 +181,10 @@
 		<div class="col-3" force-height>
 			<div class="statistic-container">
 				<div id="widget-education" class="statistic-card">
-					<div class="sideview-title cursor-default">pendidikan pemain</div>
+					<div class="sideview-title cursor-default">
+						pendidikan pemain
+						<a target="_self" href="{{downloadLink('education')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+					</div>
 					<div class="sideview-content cursor-default">
 						<nvd3 options="pieoptions" data="data.education"></nvd3>
 					</div>
@@ -234,7 +252,10 @@
 		<div class="col-3" force-height>
 			<div class="statistic-container">
 				<div id="widget-designation" class="statistic-card">
-					<div class="sideview-title cursor-default">jabatan pemain</div>
+					<div class="sideview-title cursor-default">
+						jabatan pemain
+						<a target="_self" href="{{downloadLink('designation')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+					</div>
 					<div class="sideview-content cursor-default">
 						<nvd3 options="pieoptions" data="data.designation"></nvd3>
 					</div>
@@ -244,7 +265,10 @@
 		<div class="col-6" force-height="{{ 1 / 2 }}">
 			<div class="statistic-container">
 				<div id="widget-age" class="statistic-card">
-					<div class="sideview-title cursor-default">distribusi umur pemain</div>
+					<div class="sideview-title cursor-default">
+						distribusi umur pemain
+						<a target="_self" href="{{downloadLink('age')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+					</div>
 					<div class="sideview-content cursor-default">
 						<nvd3 options="baroptions" data="data.age"></nvd3>
 					</div>

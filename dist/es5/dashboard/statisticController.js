@@ -7,6 +7,25 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 
 	var pieColor = ['#535657', '#4F646F', '#519872', '#97B1A6', '#79AEA3', '#8E936D', '#779FA1', '#88AB75', '#2D93AD', '08605F', '#177E89'];
 
+	$scope.downloadLink = function (name) {
+		return fetcher.getFilesLink(name);
+	};
+
+	$scope.download = function (name) {
+		fetcher.getFiles(name, function (response, headers) {
+			console.log(headers('Content-Disposition'));
+			// let anchor	= angular.element('<a/>');
+			// angular.element(document.body).append(anchor);
+			// anchor.attr({
+			// 	href: 'data:attachment/csv;charset=utf-8,' + encodeURI(response),
+			// 	target: '_self',
+			// 	// download: 'filename.csv'
+			// })[0].click();
+			//
+			// anchor.remove();
+		});
+	};
+
 	$scope.data = {};
 	$scope.pieoptions = {
 		chart: {

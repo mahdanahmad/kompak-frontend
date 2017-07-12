@@ -20,7 +20,7 @@ app.controller('LogsController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	};
 
 	$scope.openHint = function () {
-		dialog.notif(globalVar.choicesHint);
+		dialog.notif(globalVar.logsHint);
 	};
 	$scope.toDate = function (stringDate) {
 		return moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm");

@@ -78,5 +78,7 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 		getStatistic: (callback) => { $http.get(baseURL + 'statistic', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		postAuth: (data, callback) => { $http.post(baseURL + 'auth', _.assign(data, { defendant: localStorageService.get('id') }), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		getLogs: (data, callback) => { $http.get(baseURL + 'logs' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getFiles: (name, callback) => { $http.get(baseURL + 'files/' + name, config).then((success) => { callback(success.data, success.headers); }, (error) => { callback(error.data); }); },
+		getFilesLink: (name) => (baseURL + '/files/' + name),
 	};
 }]);

@@ -433,6 +433,16 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 			}, function (error) {
 				callback(error.data);
 			});
+		},
+		getFiles: function getFiles(name, callback) {
+			$http.get(baseURL + 'files/' + name, config).then(function (success) {
+				callback(success.data, success.headers);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
+		getFilesLink: function getFilesLink(name) {
+			return baseURL + '/files/' + name;
 		}
 	};
 }]);

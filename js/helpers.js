@@ -130,5 +130,10 @@ app.factory('globalVar', [function() {
 			 				'<li>Icon <i class="fa fa-times" aria-hidden="true"></i> dapat digunakan untuk menghapus (kategori / lencana / lembaga / pendidikan).</li>' +
 							'<li>Anda dapat melihat atau mengubah data (kategori / lencana / lembaga / pendidikan) dengan cara menekan kotak yang anda inginkan.</li>' +
 						'<ol>',
+		logsHint: 		'<ol>' +
+			 				'<li>Anda dapat mencari logs berdasarkan nama admin dengan mengetik pada kolom yang disediakan.</li>' +
+			 				'<li>Log dapat difilter berdasarkan aksi dengan menekan kata "aksi".</li>' +
+			 				'<li>Warna pada latar menunjukkan aksi <span style="color: #949B26;">pengubahan data</span>, <span style="color: #79afb1;">pengisian data</span>, dan <span style="color: #BB342F;">penghapusan data</span>.' +
+						'<ol>',
 	}
 }]);

@@ -15,7 +15,7 @@ app.controller('LogsController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
-	$scope.openHint	= () => { dialog.notif(globalVar.choicesHint); }
+	$scope.openHint	= () => { dialog.notif(globalVar.logsHint); }
 	$scope.toDate	= (stringDate) => (moment(stringDate).format("dddd, Do MMMM YYYY, hh:mm"));
 
 	$scope.stateOptions	= [
