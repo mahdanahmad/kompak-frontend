@@ -73,13 +73,16 @@ app.factory('globalVar', [function() {
 		loading: 'loading data',
 		globalError: 'something something happened. please smell your coffee while we fixing this.',
 		settingUpdated: 'pengaturan berhasil diperbarui.',
-
+		questionStatus: {
+			0: 'Sedang direview',
+			1: 'Disetujui',
+			2: 'Ditolak'
+		},
 		userHint: 		'<ol>' +
 			 				'<li>Anda dapat mencari pemain melalui nama dengan mengetik pada kolom yang disediakan.</li>' +
 			 				'<li>Urutan daftar pemain dapat diubah dengan cara menekan kata "urutan" dan memilih urutan yang telh disediakan.</li>' +
 			 				'<li>Pemain baru dapat ditambahkan melalu tombol <i class="fa fa-plus" aria-hidden="true"></i> Pemain Baru.</li>' +
 			 				'<li>Warna pada bagian kiri melambangkan <span style="color: #b24f9c;">pemain wanita</span> dan <span style="color: #41658A"> pemain pria</span>.</li>' +
-			 				'<li>Icon <i class="fa fa-envelope-open" aria-hidden="true"></i> digunakan untuk mengirim email berisi reset password ke email pemain yang telah terdaftar.</li>' +
 			 				'<li>Icon <i class="fa fa-times" aria-hidden="true"></i> dapat digunakan untuk menghapus pemain.</li>' +
 			 				'<li>Anda dapat melihat atau mengubah data pemain dengan cara menekan kotak yang anda inginkan.</li>' +
 						'<ol>',

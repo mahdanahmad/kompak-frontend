@@ -1,4 +1,4 @@
-$card-width		: 250px;
+$card-width		: calc((100% / 4) - 52px);
 $unintended-clr	: #BCB8B1;
 
 #location-wrapper {
@@ -19,7 +19,7 @@ $unintended-clr	: #BCB8B1;
 		#location-content-wrapper {
 			width: 100%;
 			.location-card {
-				width: $card-width; text-align: center; padding: 50px 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+				width: $card-width; text-align: center; padding: 50px 10px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
 
 				.fa-pencil { color: #839791; position: absolute; top: 6px; right: 28px; font-size: 17px; }
 				.fa-times { color: firebrick; position: absolute; top: 5px; right: 5px; font-size: 20px; }

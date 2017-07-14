@@ -121,9 +121,6 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		});
 	};
 
-	$scope.emailTo = function (id, name, e) {
-		e.stopPropagation();
-	};
 	$scope.delete = function (id, name, e) {
 		e.stopPropagation();
 		dialog.confirm('Apakah anda yakin akan menghapus ' + name + ' akun?', function (response) {

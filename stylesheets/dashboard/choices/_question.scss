@@ -1,4 +1,11 @@
-$card-width	: 375px;
+$card-width		: calc((100% / 3) - 52px);
+
+$noenabled-back	: #79afb1;
+$noenabled-clr	: #FBF5F4;
+$noenabled-lbl	: #FFE066;
+
+$rejected-back	: firebrick;
+$needaprvl-back	: #FC7E01;
 
 #choices-wrapper {
 	width: 100%; height: 100%;
@@ -6,7 +13,7 @@ $card-width	: 375px;
 		#choices-content-wrapper {
 			width: 100%;
 			.choices-card {
-				width: $card-width; padding: 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+				width: $card-width; padding: 15px; margin: 10px; display: inline-block; position: relative; @include cardDefault();
 				.dash-label { margin-bottom: 5px; }
 				.choices-divider { width: 100%; border-bottom: 1px solid #ddd; margin: 10px 0px; }
 				.choices-question-container {
@@ -24,19 +31,34 @@ $card-width	: 375px;
 						}
 					}
 				}
-				.choices-category {
+				.choices-category, .choices-status {
 					width: 98%; padding: 0px 1%; color: $label-clr;
 					& > span { font-weight: bolder; }
 				}
 				.fa-times { color: firebrick; position: absolute; top: 5px; right: 5px; font-size: 20px; }
-				.fa-circle, .fa-dot-circle-o { position: absolute; right: 24px; font-size: 16px; }
-				.fa-circle { color: cornsilk; top: 6px; }
-				.fa-dot-circle-o { color: slategray; top: 7px; }
+				.fa-circle, .fa-dot-circle-o { position: absolute; top: 7px; right: 24px; font-size: 16px; }
+				.fa-circle { color: cornsilk; }
+				.fa-dot-circle-o { color: slategray; }
+				.fa-thumbs-o-up, .fa-thumbs-o-down { position: absolute; font-size: 16px; }
+				.fa-thumbs-o-up { color: #E4FFE1; top: 7px; right: 26px; }
+				.fa-thumbs-o-down { color: #2D2D34; top: 9px; right: 46px; }
 
 				&.noenabled {
 					background: $noenabled-back; color: $noenabled-clr;
 					.dash-label { color: $noenabled-lbl; }
-					.choices-category { color: $noenabled-lbl; }
+					.choices-category, .choices-status { color: $noenabled-lbl; }
+				}
+
+				&.need-approval {
+					background: $needaprvl-back; color: $noenabled-clr;
+					.dash-label { color: $noenabled-lbl; }
+					.choices-category, .choices-status { color: $noenabled-lbl; }
+				}
+				&.rejected {
+					background: $rejected-back; color: $noenabled-clr;
+					.dash-label { color: $noenabled-lbl; }
+					.choices-category, .choices-status { color: $noenabled-lbl; }
+					.fa-times { color: white; }
 				}
 			}
 		}

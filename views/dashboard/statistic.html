@@ -165,28 +165,15 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-3" force-height>
+		<div class="col-6" force-height="{{ 1 / 2 }}">
 			<div class="statistic-container">
-				<div id="widget-institution" class="statistic-card">
+				<div id="widget-age" class="statistic-card">
 					<div class="sideview-title cursor-default">
-						lembaga pemain
-						<a target="_self" href="{{downloadLink('institution')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						distribusi umur pemain
+						<a target="_self" href="{{downloadLink('age')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 					</div>
 					<div class="sideview-content cursor-default">
-						<nvd3 options="pieoptions" data="data.institution"></nvd3>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-3" force-height>
-			<div class="statistic-container">
-				<div id="widget-education" class="statistic-card">
-					<div class="sideview-title cursor-default">
-						pendidikan pemain
-						<a target="_self" href="{{downloadLink('education')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
-					</div>
-					<div class="sideview-content cursor-default">
-						<nvd3 options="pieoptions" data="data.education"></nvd3>
+						<nvd3 options="baroptions" data="data.age"></nvd3>
 					</div>
 				</div>
 			</div>
@@ -215,7 +202,7 @@
 				</div>
 			</div>
 			<div class="col-12" force-height="{{ 1 / 4 }}">
-				<div class="col-4 full-height">
+				<div class="col-6 full-height">
 					<div class="statistic-container">
 						<div id="widget-hardestcategory" class="statistic-card">
 							<div class="sideview-title cursor-default">kategori tersulit</div>
@@ -225,17 +212,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-4 full-height">
-					<div class="statistic-container">
-						<div id="widget-averagetime" class="statistic-card">
-							<div class="sideview-title cursor-default">waktu menjawab</div>
-							<div class="sideview-content cursor-default">
-								<span>{{ data.averagetime || 0 }}</span> detik
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-4 full-height">
+				<div class="col-6 full-height">
 					<div class="statistic-container">
 						<div id="widget-easiestcategory" class="statistic-card">
 							<div class="sideview-title cursor-default">kategori termudah</div>
@@ -249,7 +226,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-3" force-height>
+		<div class="col-4" force-height>
 			<div class="statistic-container">
 				<div id="widget-designation" class="statistic-card">
 					<div class="sideview-title cursor-default">
@@ -262,21 +239,31 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-6" force-height="{{ 1 / 2 }}">
+		<div class="col-4" force-height>
 			<div class="statistic-container">
-				<div id="widget-age" class="statistic-card">
+				<div id="widget-institution" class="statistic-card">
 					<div class="sideview-title cursor-default">
-						distribusi umur pemain
-						<a target="_self" href="{{downloadLink('age')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+						lembaga pemain
+						<a target="_self" href="{{downloadLink('institution')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 					</div>
 					<div class="sideview-content cursor-default">
-						<nvd3 options="baroptions" data="data.age"></nvd3>
+						<nvd3 options="pieoptions" data="data.institution"></nvd3>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-3">
-
+		<div class="col-4" force-height>
+			<div class="statistic-container">
+				<div id="widget-education" class="statistic-card">
+					<div class="sideview-title cursor-default">
+						pendidikan pemain
+						<a target="_self" href="{{downloadLink('education')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
+					</div>
+					<div class="sideview-content cursor-default">
+						<nvd3 options="pieoptions" data="data.education"></nvd3>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

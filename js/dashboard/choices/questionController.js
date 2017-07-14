@@ -15,6 +15,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 	$scope.search	= "";
 	$scope.nodata	= null;
 	$scope.loading	= globalVar.loading;
+	$scope.status	= globalVar.questionStatus;
 
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
@@ -62,6 +63,7 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 	$scope.newQuestion	= () => {
 		dialog.choicesDialog({ categories: $scope.categories }, (dialResp) => {
 			if (_.isObject(dialResp)) {
+				dialResp.status				= '1';
 				dialResp.question_enabled	= dialResp.question_enabled ? '1' : '0';
 				fetcher.postQuestion(_.mapValues(dialResp, _.toString), (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -113,6 +115,15 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 		fetcher.putQuestion(o.ID_question, { question_enabled }, (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
 				o.question_enabled	= !o.question_enabled;
+			}
+		});
+	};
+	$scope.changeStatus	= (o, wish, e) => {
+		e.stopPropagation();
+
+		fetcher.putQuestion(o.ID_question, { status: _.toString(wish) }, (response) => {
+			if (response.response == 'OK' && response.status_code == 200) {
+				o.status	= wish;
 			}
 		});
 	};

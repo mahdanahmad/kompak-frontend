@@ -1,4 +1,4 @@
-$card-width	: 375px;
+$card-width	: calc((100% / 3) - 52px);
 $wrong-back	: #BB342F;
 $wrong-clr	: #F7F0F5;
 $wrong-lbl	: #C5CBD3;
@@ -9,7 +9,7 @@ $wrong-lbl	: #C5CBD3;
 		#choicesans-content-wrapper {
 			width: 100%;
 			.choicesans-card {
-				width: $card-width; padding: 15px; margin: 15px; display: inline-block; position: relative; @include cardDefault();
+				width: $card-width; padding: 15px; margin: 10px; display: inline-block; position: relative; @include cardDefault();
 				.dash-label { margin-bottom: 5px; }
 				.choicesans-divider { width: 100%; border-bottom: 1px solid #ddd; margin: 10px 0px; }
 				.choicesans-question-container {

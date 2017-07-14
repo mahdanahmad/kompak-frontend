@@ -61,12 +61,7 @@
 					<div class="dash-label">kontribusi</div>
 					<div class="dash-value ellipsis">{{ o.usr_contribution }} kali</div>
 				</div>
-				<div class="user-actions">
-					<div class="dash-value">
-						<i class="cursor-pointer fa fa-envelope-open" aria-hidden="true" ng-click="emailTo(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">kirim reset password email kepada {{ o.usr_email }}</md-tooltip></i>
-						<i class="cursor-pointer fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">hapus {{ o.usr_display_name }} akun</md-tooltip></i>
-					</div>
-				</div>
+				<i class="fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">hapus {{ o.usr_display_name }} akun</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

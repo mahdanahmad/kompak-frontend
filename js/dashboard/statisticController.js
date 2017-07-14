@@ -7,21 +7,6 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 
 	$scope.downloadLink	= (name) => (fetcher.getFilesLink(name));
 
-	$scope.download		= (name) => {
-		fetcher.getFiles(name, (response, headers) => {
-			console.log(headers('Content-Disposition'));
-			// let anchor	= angular.element('<a/>');
-			// angular.element(document.body).append(anchor);
-			// anchor.attr({
-			// 	href: 'data:attachment/csv;charset=utf-8,' + encodeURI(response),
-			// 	target: '_self',
-			// 	// download: 'filename.csv'
-			// })[0].click();
-			//
-			// anchor.remove();
-		});
-	};
-
 	$scope.data	= {};
 	$scope.pieoptions = {
 		chart: {
@@ -37,7 +22,8 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			labelsOutside: false,
 			valueFormat: (o) => (d3.format(",")(o)),
 			cornerRadius: 4,
-			showLegend: false,
+			showLegend: true,
+			// legendPosition: 'bottom',
 			color: (o, i) => (pieColor[i] || '#000'),
 			legend: {}
 		}
@@ -86,5 +72,7 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 	}
 
 	init();
-	$interval(() => { init(); }, refreshRate * 60 * 1000);
+	let timer = $interval(() => { init(); }, refreshRate * 60 * 1000);
+	$scope.$on("$destroy", () => { $interval.cancel(timer); });
+
 }]);

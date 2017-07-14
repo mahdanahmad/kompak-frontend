@@ -40,10 +40,6 @@ $modal-clr		: #f0f0f0;
 $float-clr		: #79afb1;
 $radio-clr		: #79afb1;
 
-$noenabled-back	: #79afb1;
-$noenabled-clr	: #FBF5F4;
-$noenabled-lbl	: #FFE066;
-
 $colors			: #1F76C6 #93032E #FFE824 #84894A #034C3C #493B2A #18A999;
 @each $color in $colors {
 	$i: index($colors, $color);

@@ -11,21 +11,6 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		return fetcher.getFilesLink(name);
 	};
 
-	$scope.download = function (name) {
-		fetcher.getFiles(name, function (response, headers) {
-			console.log(headers('Content-Disposition'));
-			// let anchor	= angular.element('<a/>');
-			// angular.element(document.body).append(anchor);
-			// anchor.attr({
-			// 	href: 'data:attachment/csv;charset=utf-8,' + encodeURI(response),
-			// 	target: '_self',
-			// 	// download: 'filename.csv'
-			// })[0].click();
-			//
-			// anchor.remove();
-		});
-	};
-
 	$scope.data = {};
 	$scope.pieoptions = {
 		chart: {
@@ -47,7 +32,8 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 				return d3.format(",")(o);
 			},
 			cornerRadius: 4,
-			showLegend: false,
+			showLegend: true,
+			// legendPosition: 'bottom',
 			color: function color(o, i) {
 				return pieColor[i] || '#000';
 			},
@@ -94,8 +80,11 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 	};
 
 	init();
-	$interval(function () {
+	var timer = $interval(function () {
 		init();
 	}, refreshRate * 60 * 1000);
+	$scope.$on("$destroy", function () {
+		$interval.cancel(timer);
+	});
 }]);
 //# sourceMappingURL=statisticController.js.map

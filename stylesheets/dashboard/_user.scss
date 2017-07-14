@@ -6,29 +6,19 @@ $card-height	: 70px;
 		#user-content-wrapper {
 			width: 100%;
 			.user-card {
-				width: calc(100% - 15px); height: $card-height; overflow: hidden; margin: 0px auto; letter-spacing: -1px; @include clearfix(); @include cardDefault();
+				width: calc(100% - 15px); height: $card-height; overflow: hidden; margin: 0px auto; letter-spacing: -1px; position: relative; @include clearfix(); @include cardDefault();
 				& > div { display: inline-block; float: left; }
 				& > div:not(.user-gender) { margin-top: 15px; padding: 0px 1%; }
 				.user-gender { height: 100%; width: 1%; &.male { background: $male-color } &.female { background: $female-color; } }
-				.user-name { width: 12%; }
-				.user-email { width: 11%; }
-				.user-designation { width: 8%; }
-				.user-institution { width: 8%; }
+				.user-name { width: 13%; }
+				.user-email { width: 13%; }
+				.user-designation { width: 9%; }
+				.user-institution { width: 9%; }
 				.user-village { width: 12%; }
 				.user-age { width: 7%; }
 				.user-score { width: 10%; }
 				.user-contribution { width: 8%; }
-				.user-actions {
-					width: 5%; text-align: center; margin: 0px!important;
-					.dash-value {
-						display: flex; height: $card-height; align-items: center;
-						i {
-							margin: 0px 4px;
-							&.fa-envelope-open { color: gray; font-size: 16px; }
-							&.fa-times { color: firebrick; font-size: 22px; }
-						}
-					}
-				}
+				.fa-times { color: firebrick; position: absolute; top: 7px; right: 12px; font-size: 20px; }
 
 				&:hover { width: 100%; }
 				&:not(:last-child) { margin-bottom: 20px; }
