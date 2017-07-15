@@ -2,6 +2,13 @@
 	<div class="header">
 		<div class="header-title cursor-default">
 			pertanyaan essai
+			<a target="_self" href="{{downloadLink()}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip md-autohide="true">download data</md-tooltip></a>
+			<i class="fa fa-calendar cursor-pointer" aria-hidden="true" open-dropdown="showCalendar"><md-tooltip md-autohide="true">{{ showCalendar ? 'Tutup' : 'Buka' }} filter tanggal</md-tooltip></i>
+			<div class="date-filter" ng-show="showCalendar">
+				<md-datepicker ng-model="startDate" md-max-date="endDate" md-placeholder="Tanggal awal" md-hide-icons="calendar" ng-change="dateChange()" md-open-on-focus></md-datepicker>
+				<span class="date-between">s.d.</span>
+				<md-datepicker ng-model="endDate" md-min-date="startDate" md-placeholder="Tanggal akhir" md-hide-icons="calendar" ng-change="dateChange()" md-open-on-focus></md-datepicker>
+			</div>
 			<i class="fa fa-question-circle-o cursor-pointer" aria-hidden="true" ng-click="openHint()"><md-tooltip md-autohide="true">petunjuk penggunaan halaman</md-tooltip></i>
 		</div>
 		<div class="header-divider"></div>

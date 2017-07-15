@@ -12,6 +12,8 @@ app.controller('LocationController', ['$scope', 'fetcher', '$timeout', '$state',
 	// let hint		= '<i class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"><md-tooltip md-autohide="true">petunjuk penggunaan halaman</md-tooltip></i>';
 	$scope.locMap	= { province : 'provinsi', regency: 'kabupaten', district: 'kecamatan', village: 'desa' };
 
+	$scope.downloadLink	= () => (fetcher.getFilesLink('locationdata', _.pickBy($stateParams, (o, key) => (_.includes(['province', 'regency', 'district'], key) && !_.isNil(o)))));
+
 	$scope.openHint	= () => { dialog.notif(globalVar.locationHint); }
 
 	switch (true) {

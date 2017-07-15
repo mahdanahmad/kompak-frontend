@@ -15,6 +15,24 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	$scope.pauseAjx = false;
 	$scope.doneAjx = false;
 
+	$scope.startDate = moment().year(2017).startOf('year').toDate();
+	$scope.endDate = moment().toDate();
+	$scope.dateChange = function () {
+		init();
+	};
+	$scope.downloadLink = function () {
+		return fetcher.getFilesLink('userdata', _.omitBy({
+			startdate: moment($scope.startDate).format(globalVar.dateFormat),
+			enddate: moment($scope.endDate).format(globalVar.dateFormat),
+			like: getSearch(),
+			orderby: $scope.orderby.value + ' ' + $scope.orderby.order
+		}, _.isNil));
+	};
+
+	var getSearch = function getSearch() {
+		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
+	};
+
 	$scope.openHint = function () {
 		dialog.notif(globalVar.userHint);
 	};
@@ -25,8 +43,10 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		var data = _.omitBy({
 			limit: limit,
 			offset: iterate * limit,
-			like: $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null,
-			orderby: $scope.orderby.value + ' ' + $scope.orderby.order
+			like: getSearch(),
+			orderby: $scope.orderby.value + ' ' + $scope.orderby.order,
+			startdate: moment($scope.startDate).format(globalVar.dateFormat),
+			enddate: moment($scope.endDate).format(globalVar.dateFormat)
 		}, _.isNil);
 		fetcher.getAllUser(data, function (response) {
 			if (response.response == 'OK' && response.status_code == 200 && response.result) {
@@ -74,7 +94,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 
 		$scope.orderby = selected;
 
-		init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+		init(getSearch());
 	};
 
 	$scope.newUser = function () {
@@ -82,7 +102,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 			if (_.isObject(dialResp)) {
 				fetcher.postUser(_.mapValues(dialResp, _.toString), function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+						init(getSearch());
 					}
 				});
 			}
@@ -114,7 +134,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 			if (result) {
 				fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+						init(getSearch());
 					}
 				});
 			}
@@ -127,7 +147,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 			if (response) {
 				fetcher.deleteUser(id, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						init($scope.search ? $scope.search.length >= 3 ? $scope.search : null : null);
+						init(getSearch());
 					}
 				});
 			}
@@ -138,7 +158,7 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		$scope.pauseAjx = true;
 		$scope.nodata = null;
 		iterate = 0;
-		fetcher.getAllUser(_.omitBy({ limit: limit, like: like, offset: 0, orderby: $scope.orderby.value + ' ' + $scope.orderby.order }, _.isNil), function (response) {
+		fetcher.getAllUser(_.omitBy({ limit: limit, like: like, offset: 0, orderby: $scope.orderby.value + ' ' + $scope.orderby.order, startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }, _.isNil), function (response) {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
 				if (!response.result) {

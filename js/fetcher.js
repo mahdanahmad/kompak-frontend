@@ -76,10 +76,10 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 		putBadge: (id, data, callback) => { $http.put(baseURL + 'badge/' + id, _.assign(data, { defendant: localStorageService.get('id') }), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		deleteBadge: (id, callback) => { $http(_.assign({ method: "DELETE", url: baseURL + 'badge/' + id, data: { defendant: localStorageService.get('id') }}, config)).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 
-		getStatistic: (callback) => { $http.get(baseURL + 'statistic', config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getStatistic: (data, callback) => { $http.get(baseURL + 'statistic' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		postAuth: (data, callback) => { $http.post(baseURL + 'auth', _.assign(data, { defendant: localStorageService.get('id') }), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		getLogs: (data, callback) => { $http.get(baseURL + 'logs' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
-		getFiles: (name, callback) => { $http.get(baseURL + 'files/' + name, config).then((success) => { callback(success.data, success.headers); }, (error) => { callback(error.data); }); },
-		getFilesLink: (name) => (baseURL + '/files/' + name),
+		getFiles: (name, data, callback) => { $http.get(baseURL + 'files/' + name + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data, success.headers); }, (error) => { callback(error.data); }); },
+		getFilesLink: (name, data) => (baseURL + 'files/' + name + '?' + $httpParamSerializer(data)),
 	};
 }]);

@@ -18,6 +18,20 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 	$scope.nodata = null;
 	$scope.loading = globalVar.loading;
 
+	$scope.startDate = moment().year(2017).startOf('year').toDate();
+	$scope.endDate = moment().toDate();
+	$scope.dateChange = function () {
+		init();
+	};
+	$scope.downloadLink = function () {
+		return fetcher.getFilesLink('essayansdata', _.omitBy({
+			startdate: moment($scope.startDate).format(globalVar.dateFormat),
+			enddate: moment($scope.endDate).format(globalVar.dateFormat),
+			like: getSearch(),
+			category: $scope.category.id
+		}, _.isNil));
+	};
+
 	var getSearch = function getSearch() {
 		return $scope.search ? $scope.search.length >= 3 ? $scope.search : null : null;
 	};
@@ -36,7 +50,9 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 			limit: limit,
 			offset: iterate * limit,
 			like: getSearch(),
-			category: $scope.category.id
+			category: $scope.category.id,
+			startdate: moment($scope.startDate).format(globalVar.dateFormat),
+			enddate: moment($scope.endDate).format(globalVar.dateFormat)
 		}, _.isNil);
 		fetcher.getAllEssayAns(data, function (response) {
 			if (response.response == 'OK' && response.status_code == 200 && response.result) {
@@ -89,7 +105,7 @@ app.controller('EssayAnsController', ['$scope', 'fetcher', '$timeout', 'dialog',
 		$scope.pauseAjx = true;
 		$scope.nodata = null;
 		iterate = 0;
-		fetcher.getAllEssayAns(_.omitBy({ limit: limit, like: like, offset: 0, category: $scope.category.id }, _.isNil), function (response) {
+		fetcher.getAllEssayAns(_.omitBy({ limit: limit, like: like, offset: 0, category: $scope.category.id, startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }, _.isNil), function (response) {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
 				if (!response.result) {

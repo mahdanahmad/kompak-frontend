@@ -2,6 +2,13 @@
 	<div class="header">
 		<div class="header-title cursor-default">
 			jawaban pilihan ganda
+			<a target="_self" href="{{downloadLink()}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip md-autohide="true">download data</md-tooltip></a>
+			<i class="fa fa-calendar cursor-pointer" aria-hidden="true" open-dropdown="showCalendar"><md-tooltip md-autohide="true">{{ showCalendar ? 'Tutup' : 'Buka' }} filter tanggal</md-tooltip></i>
+			<div class="date-filter" ng-show="showCalendar">
+				<md-datepicker ng-model="startDate" md-max-date="endDate" md-placeholder="Tanggal awal" md-hide-icons="calendar" ng-change="dateChange()" md-open-on-focus></md-datepicker>
+				<span class="date-between">s.d.</span>
+				<md-datepicker ng-model="endDate" md-min-date="startDate" md-placeholder="Tanggal akhir" md-hide-icons="calendar" ng-change="dateChange()" md-open-on-focus></md-datepicker>
+			</div>
 			<i class="fa fa-question-circle-o cursor-pointer" aria-hidden="true" ng-click="openHint()"><md-tooltip md-autohide="true">petunjuk penggunaan halaman</md-tooltip></i>
 		</div>
 		<div class="header-divider"></div>
@@ -24,7 +31,7 @@
 	</div>
 	<div id="choicesans-content" class="dash-content">
 		<div id="choicesans-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#choicesans-content'">
-			<div class="choicesans-card cursor-default masonry-brick" ng-repeat="o in data track by $index" ng-class="{ 'wrong-answer': o.status_answer }">
+			<div class="choicesans-card cursor-default masonry-brick" ng-repeat="o in data track by $index" ng-class="{ 'wrong-answer': !o.status_answer }">
 				<div class="choicesans-question-container">
 					<div class="dash-label">pertanyaan</div>
 					<div class="dash-value choicesans-question">{{ o.question_text || '-' }}</div>

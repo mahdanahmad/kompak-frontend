@@ -8,7 +8,13 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 	var pieColor = ['#535657', '#4F646F', '#519872', '#97B1A6', '#79AEA3', '#8E936D', '#779FA1', '#88AB75', '#2D93AD', '08605F', '#177E89'];
 
 	$scope.downloadLink = function (name) {
-		return fetcher.getFilesLink(name);
+		return fetcher.getFilesLink(name, { startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) });
+	};
+
+	$scope.startDate = moment().year(2017).startOf('year').toDate();
+	$scope.endDate = moment().toDate();
+	$scope.dateChange = function () {
+		init();
 	};
 
 	$scope.data = {};
@@ -67,10 +73,10 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		}
 	};
 
-	$scope.overview = [[{ label: 'total pemain', model: 'total' }, { label: 'pemain masuk', model: 'login' }, { label: 'transaksi', model: 'transaction' }], [{ label: 'provinsi', model: 'province' }, { label: 'kabupaten', model: 'regency' }, { label: 'kecamatan', model: 'district' }, { label: 'desa', model: 'village' }]];
+	$scope.overview = [[{ label: 'total pemain', model: 'total' }, { label: 'pemain masuk', model: 'login' }, { label: 'pertanyaan', model: 'pertanyaan' }, { label: 'jawaban', model: 'jawaban' }], [{ label: 'provinsi', model: 'province' }, { label: 'kabupaten', model: 'regency' }, { label: 'kecamatan', model: 'district' }, { label: 'desa', model: 'village' }]];
 
 	var init = function init() {
-		fetcher.getStatistic(function (response) {
+		fetcher.getStatistic({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }, function (response) {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data = response.result;
 				$scope.currentTime = moment().format("dddd, Do MMMM YYYY, hh:mm");

@@ -32,6 +32,8 @@ app.directive('openDropdown', ['$document', ($document) => ({
 	link: (scope, elem, attrs) => {
 		scope.openDropdown	= false;
 
+		let isCalender	= _.includes(attrs.class, 'fa-calendar');
+
 		let childNode	= [elem[0]];
 		let child		= elem.children().length;
 		let current		= elem.children();
@@ -47,6 +49,19 @@ app.directive('openDropdown', ['$document', ($document) => ({
 
 		$document.bind('click', (e) => {
 			if (_.includes(childNode, e.target)) return;
+			if (isCalender && _.intersection([
+				'date-between',
+				'date-filter',
+				'md-calendar-date',
+				'md-datepicker-input-container',
+				'md-calendar-date-selection-indicator',
+				'md-datepicker-input',
+				'md-datepicker-expand-triangle',
+				'md-datepicker-triangle-button',
+				'md-scroll-mask',
+				'md-datepicker-calendar-pane'
+			], angular.element(e.target).attr('class').split(' ')).length > 0) { return; }
+
 			scope.$apply(() => { scope.openDropdown = false; });
 		});
 	}

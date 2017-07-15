@@ -414,8 +414,8 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 			});
 		},
 
-		getStatistic: function getStatistic(callback) {
-			$http.get(baseURL + 'statistic', config).then(function (success) {
+		getStatistic: function getStatistic(data, callback) {
+			$http.get(baseURL + 'statistic' + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data);
 			}, function (error) {
 				callback(error.data);
@@ -435,15 +435,15 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 				callback(error.data);
 			});
 		},
-		getFiles: function getFiles(name, callback) {
-			$http.get(baseURL + 'files/' + name, config).then(function (success) {
+		getFiles: function getFiles(name, data, callback) {
+			$http.get(baseURL + 'files/' + name + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data, success.headers);
 			}, function (error) {
 				callback(error.data);
 			});
 		},
-		getFilesLink: function getFilesLink(name) {
-			return baseURL + '/files/' + name;
+		getFilesLink: function getFilesLink(name, data) {
+			return baseURL + 'files/' + name + '?' + $httpParamSerializer(data);
 		}
 	};
 }]);

@@ -5,7 +5,11 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 
 	let pieColor	= ['#535657', '#4F646F', '#519872', '#97B1A6', '#79AEA3', '#8E936D', '#779FA1', '#88AB75', '#2D93AD', '08605F', '#177E89'];
 
-	$scope.downloadLink	= (name) => (fetcher.getFilesLink(name));
+	$scope.downloadLink	= (name) => (fetcher.getFilesLink(name, { startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }));
+
+	$scope.startDate	= moment().year(2017).startOf('year').toDate();
+	$scope.endDate		= moment().toDate();
+	$scope.dateChange	= () => { init(); }
 
 	$scope.data	= {};
 	$scope.pieoptions = {
@@ -51,7 +55,8 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		[
 			{ label: 'total pemain', model: 'total'},
 			{ label: 'pemain masuk', model: 'login'},
-			{ label: 'transaksi', model: 'transaction'},
+			{ label: 'pertanyaan', model: 'pertanyaan'},
+			{ label: 'jawaban', model: 'jawaban'},
 		],
 		[
 			{ label: 'provinsi', model: 'province'},
@@ -59,10 +64,10 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			{ label: 'kecamatan', model: 'district'},
 			{ label: 'desa', model: 'village'},
 		],
-	]
+	];
 
 	let init = () => {
-		fetcher.getStatistic((response) => {
+		fetcher.getStatistic({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }, (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data	= response.result;
 				$scope.currentTime = moment().format("dddd, Do MMMM YYYY, hh:mm");

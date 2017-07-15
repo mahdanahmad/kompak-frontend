@@ -3,7 +3,15 @@ div.header {
 	& > div { display: inline-block; float: left; }
 	div.header-title {
 		width: calc(30% - 1px - 25px); font-family: $title-font; font-size: 30px; font-weight: bolder; line-height: $header-heigth; padding-left: 25px; letter-spacing: -2px; position: relative;
+		a { position: absolute; right: 56px; top: calc((#{$header-heigth} / 2) - 11px); font-size: 19px; line-height: initial; }
+		i.fa-calendar { position: absolute; right: 34px; top: calc((#{$header-heigth} / 2) - 9px); font-size: 16px; }
 		i.fa-question-circle-o { position: absolute; right: 10px; top: calc((#{$header-heigth} / 2) - 10px); font-size: 20px; }
+
+		div.date-filter {
+			background: $header-clr; position: absolute; top: 55px; right: 0px; z-index: 10; border: 1px solid #e6e6e6; border-radius: 5px; padding: 0px 15px 15px;
+			span { font-size: 14px; font-family: $signika-neg; line-height: initial; letter-spacing: -0.5px; font-weight: normal; margin: 0px 10px; }
+			md-datepicker .md-datepicker-input-container { line-height: initial; input { width: 150px; }}
+		}
 	}
 	div.header-divider { width: 1px; height: calc(#{$header-heigth} / 2); background: #e6e6e6; margin: calc(#{$header-heigth} / 4) 0px;}
 	div.header-input-container {
@@ -98,4 +106,14 @@ md-radio-group {
 md-checkbox {
 	.md-icon { border-color: $radio-clr; background-color: $modal-clr; }
 	&.md-checked .md-icon { background: $radio-clr; color: $modal-clr; }
+}
+md-datepicker input { text-align: center; font-family: $def-font-stack; letter-spacing: -0.5px; }
+.md-datepicker-calendar-pane {
+	border: none!important;
+	.md-datepicker-calendar {
+		background: rgba(white, .975);
+		.md-calendar-date-disabled { color: lightgray; cursor: not-allowed; }
+		.md-calendar-selected-date span { background: $radio-clr!important; color: $modal-clr; }
+		.md-calendar-date:hover span { background: $modal-clr; }
+	}
 }

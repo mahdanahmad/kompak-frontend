@@ -1,7 +1,7 @@
 var angular	= angular;
 var app		= angular.module('app', ['ui.router', 'ct.ui.router.extras.core', 'permission', 'permission.ui', 'LocalStorageModule', 'ngDialog', 'angular-loading-bar', 'ngAnimate', 'infinite-scroll', 'ngMaterial', 'wu.masonry', 'ngSanitize', 'nvd3']);
 
-app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$mdThemingProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
+app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpProvider', '$mdThemingProvider', '$mdDateLocaleProvider', 'localStorageServiceProvider', 'cfpLoadingBarProvider', function ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $mdThemingProvider, $mdDateLocaleProvider, localStorageServiceProvider, cfpLoadingBarProvider) {
     'use strict';
 
     // use the HTML5 History API
@@ -89,6 +89,7 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$httpP
 
 	cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 	$mdThemingProvider.disableTheming();
+	$mdDateLocaleProvider.formatDate = (date) => (moment(date).format('DD MMMM YYYY'));
 }]);
 
 app.controller('MainController', ['$scope', '$rootScope', '$location', 'localStorageService', 'fetcher', function ($scope, $rootScope, $location, localStorageService, fetcher) {

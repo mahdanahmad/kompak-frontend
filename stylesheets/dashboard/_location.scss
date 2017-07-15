@@ -6,6 +6,7 @@ $unintended-clr	: #BCB8B1;
 	.header-title { width: calc(40% - 1px - 25px); height: $header-heigth; text-transform: lowercase; span { color: $unintended-clr; } }
 	.header-divider {
 		position: relative;
+		a { position: absolute; right: 34px; top: 8px; font-size: 19px; line-height: initial; }
 		i.fa-question-circle-o { position: absolute; right: 10px; top: 8px; font-size: 20px; }
 	}
 	.header-another {

@@ -16,6 +16,16 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 	$scope.nodata	= null;
 	$scope.loading	= globalVar.loading;
 
+	$scope.startDate	= moment().year(2017).startOf('year').toDate();
+	$scope.endDate		= moment().toDate();
+	$scope.dateChange	= () => { init(); }
+	$scope.downloadLink	= () => (fetcher.getFilesLink('choicesansdata', _.omitBy({
+		startdate: moment($scope.startDate).format(globalVar.dateFormat),
+		enddate: moment($scope.endDate).format(globalVar.dateFormat),
+		like: getSearch(),
+		category: $scope.category.id
+	}, _.isNil)));
+
 	let getSearch	= () => ($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
 
 	$scope.openHint	= () => { dialog.notif(globalVar.choicesAnsHint); }
@@ -28,7 +38,9 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 			limit,
 			offset: iterate * limit,
 			like: getSearch(),
-			category: $scope.category.id
+			category: $scope.category.id,
+			startdate: moment($scope.startDate).format(globalVar.dateFormat),
+			enddate: moment($scope.endDate).format(globalVar.dateFormat)
 		}, _.isNil);
 		fetcher.getAllAnswer(data, (response) => {
 			if (response.response == 'OK' && response.status_code == 200 && response.result) {
@@ -77,7 +89,7 @@ app.controller('ChoicesAnsController', ['$scope', 'fetcher', '$timeout', 'dialog
 		$scope.pauseAjx	= true;
 		$scope.nodata	= null;
 		iterate	= 0;
-		fetcher.getAllAnswer(_.omitBy({ limit, like, offset: 0, category: $scope.category.id }, _.isNil), (response) => {
+		fetcher.getAllAnswer(_.omitBy({ limit, like, offset: 0, category: $scope.category.id, startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat) }, _.isNil), (response) => {
 			if (response.response == 'OK' && response.status_code == 200) {
 				$scope.data	= response.result;
 				if (!response.result) {

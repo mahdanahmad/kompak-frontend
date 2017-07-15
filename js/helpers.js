@@ -71,6 +71,7 @@ app.factory('globalVar', [function() {
 	return {
 		nodata: 'no data available at this point.',
 		loading: 'loading data',
+		dateFormat: 'YYYY-MM-DD',
 		globalError: 'something something happened. please smell your coffee while we fixing this.',
 		settingUpdated: 'pengaturan berhasil diperbarui.',
 		questionStatus: {
@@ -96,7 +97,9 @@ app.factory('globalVar', [function() {
 			 				'<li>Anda dapat mencari pertanyaan pilihan ganda berdasarkan pertanyaan dengan mengetik pada kolom yang disediakan.</li>' +
 			 				'<li>Pertanyaan pilihan ganda dapat difilter berdasarkan kategori dengan menekan kata "kategori".</li>' +
 			 				'<li>Pertanyaan pilihan ganda baru dapat ditambahkan melalu tombol <i class="fa fa-plus" aria-hidden="true"></i> Pertanyaan Baru.</li>' +
-			 				'<li><span style="color: #FC7E01;">Warna pada latar</span> melambangkan pertanyaan yang tidak aktif.' +
+			 				'<li><span style="color: #FC7E01;">Warna pada latar</span> melambangkan pertanyaan belum direview dan menunggu konfirmasi anda.' +
+			 				'<li><span style="color: #79afb1;">Warna pada latar</span> melambangkan pertanyaan yang tidak aktif.' +
+			 				'<li><span style="color: firebrick;">Warna pada latar</span> melambangkan pertanyaan yang ditolak.' +
 			 				'<li>Icon <i class="fa fa-dot-circle-o" aria-hidden="true"></i> melambangkan pertanyaan aktif dan <i class="fa fa-circle" aria-hidden="true"></i> melambangkan pertanyaan yang tidak aktif. Anda dapat merubah status aktif pertanyaan dengan menekan icon ini.</li>' +
 							'<li>Icon <i class="fa fa-times" aria-hidden="true"></i> dapat digunakan untuk menghapus pertanyaan.</li>' +
 							'<li>Anda dapat melihat atau mengubah data pertanyaan pilihan ganda dengan cara menekan kotak yang anda inginkan.</li>' +
