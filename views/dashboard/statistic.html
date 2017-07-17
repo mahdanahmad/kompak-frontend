@@ -7,7 +7,7 @@
 						<div id="overview-container" class="cursor-default">
 							<div id="overview-title">gapura desa dalam angka</div>
 							<div ng-repeat="o in ::overview track by $index" class="row" ng-class="{ 'need-margin': !$last }">
-								<div class="col-{{ 12 / o.length }} overview-content" ng-repeat="d in ::o track by $index">
+								<div class="col-{{ 12 / o.length }} overview-content cursor-pointer" ng-repeat="d in ::o track by $index" ng-click="openList(d.model)">
 									<!-- <div class="overview-value">{{ data.status[d.model] || 0 }}</div>
 									<div class="overview-label">{{ d.label }}</div> -->
 									<span>{{ data.status[d.model] || 0 }}</span> {{ d.label }}
@@ -31,7 +31,7 @@
 							<div class="icon-container float-left">
 								<i class="fa fa-mars" aria-hidden="true"></i>
 							</div>
-							<div class="value-container float-right">
+							<div class="value-container float-right cursor-pointer" ng-click="openList('male')">
 								<div class="value-ceil align-right">{{ data.gender.m || 0 }}</div>
 								<div class="value-floor align-right">pemain laki-laki</div>
 							</div>
@@ -44,7 +44,7 @@
 							<div class="icon-container float-right">
 								<i class="fa fa-venus" aria-hidden="true"></i>
 							</div>
-							<div class="value-container float-left">
+							<div class="value-container float-left cursor-pointer" ng-click="openList('female')">
 								<div class="value-ceil align-left">{{ data.gender.f || 0 }}</div>
 								<div class="value-floor ">pemain perempuan</div>
 							</div>

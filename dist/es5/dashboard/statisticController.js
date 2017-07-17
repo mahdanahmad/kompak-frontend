@@ -17,6 +17,14 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		init();
 	};
 
+	$scope.openList = function (state) {
+		fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: state }, function (response) {
+			if (response.response == 'OK' && response.status_code == 200) {
+				dialog.listDialog(response.result);
+			}
+		});
+	};
+
 	$scope.data = {};
 	$scope.pieoptions = {
 		chart: {

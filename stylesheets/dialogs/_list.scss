@@ -1,0 +1,10 @@
+#list-wrapper {
+	#list-content {
+		max-height: 300px; overflow: auto;
+		.list-value { display: inline-block; float: left; padding: 2px 10px; border: 1px solid $addbutton-clr; border-radius: 10px; margin: 2.5px; }
+	}
+	#list-buttons {
+	    width: 100%; @include clearfix();
+		button { width: 250px; background: $addbutton-clr; color: white; }
+	}
+}

@@ -1,0 +1,8 @@
+<form id="list-wrapper" ng-submit="closeThisDialog()">
+	<div id="list-content" class="modal-content">
+		<div class="list-value" ng-repeat="o in ngDialogData.content track by $index">{{ o }}</div>
+	</div>
+	<div id="list-buttons">
+		<button type="submit" id="confirm-button" class="cursor-pointer"><i class="fa fa-check" aria-hidden="true"></i> OK</button>
+	</div>
+</form>

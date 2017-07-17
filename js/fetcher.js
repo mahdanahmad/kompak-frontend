@@ -1,6 +1,6 @@
 app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', '$window', '$location', function($http, $httpParamSerializer, localStorageService, $window, $location) {
-	let baseURL	= "http://api.server1.gapura-desa.id/";
-	// let baseURL	= "http://localhost:3010/";
+	// let baseURL	= "http://api.server1.gapura-desa.id/";
+	let baseURL	= "http://localhost:3010/";
 
 	let config  = {
 		// withCredentials: true,
@@ -79,7 +79,9 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 		getStatistic: (data, callback) => { $http.get(baseURL + 'statistic' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		postAuth: (data, callback) => { $http.post(baseURL + 'auth', _.assign(data, { defendant: localStorageService.get('id') }), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
 		getLogs: (data, callback) => { $http.get(baseURL + 'logs' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data); }, (error) => { callback(error.data); }); },
+		getList: (data, callback) => { $http.get(baseURL + 'list' + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data, success.headers); }, (error) => { callback(error.data); }); },
 		getFiles: (name, data, callback) => { $http.get(baseURL + 'files/' + name + '?' + $httpParamSerializer(data), config).then((success) => { callback(success.data, success.headers); }, (error) => { callback(error.data); }); },
 		getFilesLink: (name, data) => (baseURL + 'files/' + name + '?' + $httpParamSerializer(data)),
+
 	};
 }]);

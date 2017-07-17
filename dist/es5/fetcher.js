@@ -1,8 +1,8 @@
 'use strict';
 
 app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', '$window', '$location', function ($http, $httpParamSerializer, localStorageService, $window, $location) {
-	var baseURL = "http://api.server1.gapura-desa.id/";
-	// let baseURL	= "http://localhost:3010/";
+	// let baseURL	= "http://api.server1.gapura-desa.id/";
+	var baseURL = "http://localhost:3010/";
 
 	var config = {
 		// withCredentials: true,
@@ -435,6 +435,13 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 				callback(error.data);
 			});
 		},
+		getList: function getList(data, callback) {
+			$http.get(baseURL + 'list' + '?' + $httpParamSerializer(data), config).then(function (success) {
+				callback(success.data, success.headers);
+			}, function (error) {
+				callback(error.data);
+			});
+		},
 		getFiles: function getFiles(name, data, callback) {
 			$http.get(baseURL + 'files/' + name + '?' + $httpParamSerializer(data), config).then(function (success) {
 				callback(success.data, success.headers);
@@ -445,6 +452,7 @@ app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', 
 		getFilesLink: function getFilesLink(name, data) {
 			return baseURL + 'files/' + name + '?' + $httpParamSerializer(data);
 		}
+
 	};
 }]);
 //# sourceMappingURL=fetcher.js.map

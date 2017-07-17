@@ -69,6 +69,10 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 				callback(data.value);
 			});
 		},
+		listDialog: function listDialog(content, callback) {
+			var dialog = createDialog(content, 'list', ['$scope', function ($scope) {}], 750);
+			// dialog.closePromise.then((data) => { callback(data.value); });
+		},
 		confirm: function confirm(content, callback) {
 			var dialog = createDialog(content, 'confirm', ['$scope', function ($scope) {}]);
 			dialog.closePromise.then(function (data) {

@@ -49,6 +49,10 @@ app.factory('dialog', ['ngDialog', function(ngDialog) {
 			let dialog	= createDialog(content, 'lone', 'ModalLoneController', 600);
 			dialog.closePromise.then((data) => { callback(data.value); });
 		},
+		listDialog: (content, callback) => {
+			let dialog	= createDialog(content, 'list', ['$scope', ($scope) => { }], 750);
+			// dialog.closePromise.then((data) => { callback(data.value); });
+		},
 		confirm: (content, callback) => {
 			let dialog	= createDialog(content, 'confirm', ['$scope', ($scope) => { }]);
 			dialog.closePromise.then((data) => { callback(data.value == 'yes'); });
