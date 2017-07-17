@@ -19,6 +19,14 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		});
 	}
 
+	$scope.openListVillage	= (id) => {
+		fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: 'villagedetil', id }, (response) => {
+			if (response.response == 'OK' && response.status_code == 200) {
+				dialog.listDialog(response.result);
+			}
+		});
+	}
+
 	$scope.data	= {};
 	$scope.pieoptions = {
 		chart: {
@@ -37,8 +45,21 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			showLegend: true,
 			// legendPosition: 'bottom',
 			color: (o, i) => (pieColor[i] || '#000'),
-			legend: {}
-		}
+			legend: {},
+			pie: {
+				dispatch: {
+					elementClick: (e) => {
+						let state	= angular.element(e.element).parent().parent().parent().parent().parent().parent().parent().parent().attr('id');
+						let id		= e.data.id;
+						fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state, id }, (response) => {
+							if (response.response == 'OK' && response.status_code == 200) {
+								dialog.listDialog(response.result);
+							}
+						});
+					}
+				}
+			}
+		},
 	};
 
 	$scope.baroptions = {
@@ -56,6 +77,17 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			valueFormat: (o) => (d3.format(",")(o)),
 			duration: 500,
 			color: (o, i) => ('#6dc0f9'),
+			discretebar: {
+				dispatch: {
+					elementClick: (e) => {
+						fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: 'age', id: e.data.label }, (response) => {
+							if (response.response == 'OK' && response.status_code == 200) {
+								dialog.listDialog(response.result);
+							}
+						});
+					}
+				}
+			}
 		}
 	};
 

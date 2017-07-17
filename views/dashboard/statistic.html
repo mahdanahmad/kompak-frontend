@@ -142,7 +142,7 @@
 							<a target="_self" href="{{downloadLink('topvillage')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 						</div>
 						<div class="sideview-content cursor-default">
-							<div class="sideview-village-container" ng-repeat="o in data.topvillage track by $index" set-village-width="{{ o.jumlah }}">
+							<div class="sideview-village-container cursor-pointer" ng-repeat="o in data.topvillage track by $index" set-village-width="{{ o.jumlah }}" ng-click="openListVillage(o.id)">
 								{{ o.name_desa }}
 								<div class="sideview-village-number">
 									{{ $index + 1 | ordinal }}, {{ o.jumlah }} org
@@ -240,7 +240,7 @@
 						<a target="_self" href="{{downloadLink('designation')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 					</div>
 					<div class="sideview-content cursor-default">
-						<nvd3 options="pieoptions" data="data.designation"></nvd3>
+						<nvd3 id="designation" options="pieoptions" data="data.designation"></nvd3>
 					</div>
 				</div>
 			</div>
@@ -253,7 +253,7 @@
 						<a target="_self" href="{{downloadLink('institution')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 					</div>
 					<div class="sideview-content cursor-default">
-						<nvd3 options="pieoptions" data="data.institution"></nvd3>
+						<nvd3 id="institution" options="pieoptions" data="data.institution"></nvd3>
 					</div>
 				</div>
 			</div>
@@ -266,7 +266,7 @@
 						<a target="_self" href="{{downloadLink('education')}}" class="cursor-pointer"><i class="fa fa-cloud-download" aria-hidden="true"></i><md-tooltip>download data</md-tooltip></a>
 					</div>
 					<div class="sideview-content cursor-default">
-						<nvd3 options="pieoptions" data="data.education"></nvd3>
+						<nvd3 id="education" options="pieoptions" data="data.education"></nvd3>
 					</div>
 				</div>
 			</div>

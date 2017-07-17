@@ -25,6 +25,14 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 		});
 	};
 
+	$scope.openListVillage = function (id) {
+		fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: 'villagedetil', id: id }, function (response) {
+			if (response.response == 'OK' && response.status_code == 200) {
+				dialog.listDialog(response.result);
+			}
+		});
+	};
+
 	$scope.data = {};
 	$scope.pieoptions = {
 		chart: {
@@ -51,7 +59,20 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			color: function color(o, i) {
 				return pieColor[i] || '#000';
 			},
-			legend: {}
+			legend: {},
+			pie: {
+				dispatch: {
+					elementClick: function elementClick(e) {
+						var state = angular.element(e.element).parent().parent().parent().parent().parent().parent().parent().parent().attr('id');
+						var id = e.data.id;
+						fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: state, id: id }, function (response) {
+							if (response.response == 'OK' && response.status_code == 200) {
+								dialog.listDialog(response.result);
+							}
+						});
+					}
+				}
+			}
 		}
 	};
 
@@ -77,6 +98,17 @@ app.controller('StatisticController', ['$scope', 'fetcher', '$interval', '$timeo
 			duration: 500,
 			color: function color(o, i) {
 				return '#6dc0f9';
+			},
+			discretebar: {
+				dispatch: {
+					elementClick: function elementClick(e) {
+						fetcher.getList({ startdate: moment($scope.startDate).format(globalVar.dateFormat), enddate: moment($scope.endDate).format(globalVar.dateFormat), state: 'age', id: e.data.label }, function (response) {
+							if (response.response == 'OK' && response.status_code == 200) {
+								dialog.listDialog(response.result);
+							}
+						});
+					}
+				}
 			}
 		}
 	};
