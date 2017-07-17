@@ -1,6 +1,6 @@
 app.factory('fetcher', ['$http', '$httpParamSerializer', 'localStorageService', '$window', '$location', function($http, $httpParamSerializer, localStorageService, $window, $location) {
-	// let baseURL	= "http://api.server1.gapura-desa.id/";
-	let baseURL	= "http://localhost:3010/";
+	let baseURL	= "http://api.server1.gapura-desa.id/";
+	// let baseURL	= "http://localhost:3010/";
 
 	let config  = {
 		// withCredentials: true,
