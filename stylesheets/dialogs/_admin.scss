@@ -6,16 +6,7 @@
 		#admininput-username { width: 25%; }
 		#admininput-email { width: 25%; }
 		#admininput-password { width: 25%; }
-		#admininput-role {
-			width: 100%;
-			.roles-selector {
-				label { color: $float-clr; font-size: 12px; display: block; }
-				.roles-option {
-					display: inline-block; padding: 5px 15px; border: 1px solid; margin-right: 5px; border-radius: 50px;
-					&.active { background: $float-clr; color: white; border-color: $float-clr; }
-				}
-			}
-		}
+		#admininput-role { width: 30%; }
 	}
 	#adminmodal-buttons {
 	    width: 50%; margin: auto; @include clearfix();

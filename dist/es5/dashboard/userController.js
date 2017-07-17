@@ -109,36 +109,38 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		});
 	};
 	$scope.editUser = function (id) {
-		async.waterfall([function (callback) {
-			fetcher.getUser(id, function (response) {
-				if (response.response == 'OK' && response.status_code == 200) {
-					callback(null, response.result);
-				} else {
-					callback(response.message);
-				}
-			});
-		}, function (userData, callback) {
-			var before = _.clone(userData);
-			dialog.userDialog(userData, function (response) {
-				if (_.isObject(response) && !_.isEqual(before, response)) {
-					callback(null, response);
-				} else {
-					callback(null);
-				}
-			});
-		}], function (err, result) {
-			if (err) {
-				console.log(err);
-			}
-
-			if (result) {
-				fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), function (response) {
+		if ($scope.$parent.role) {
+			async.waterfall([function (callback) {
+				fetcher.getUser(id, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						init(getSearch());
+						callback(null, response.result);
+					} else {
+						callback(response.message);
 					}
 				});
-			}
-		});
+			}, function (userData, callback) {
+				var before = _.clone(userData);
+				dialog.userDialog(userData, function (response) {
+					if (_.isObject(response) && !_.isEqual(before, response)) {
+						callback(null, response);
+					} else {
+						callback(null);
+					}
+				});
+			}], function (err, result) {
+				if (err) {
+					console.log(err);
+				}
+
+				if (result) {
+					fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), function (response) {
+						if (response.response == 'OK' && response.status_code == 200) {
+							init(getSearch());
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete = function (id, name, e) {

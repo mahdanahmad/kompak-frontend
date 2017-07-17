@@ -13,65 +13,65 @@
 					<div ng-repeat="o in ::settingInputs track by $index" id="miscsetting-{{ o.model }}" class="miscsetting-inputs">
 						<md-input-container ng-if="o.tag == 'input'">
 							<label>{{ o.label }}</label>
-							<input type="{{o.type}}" ng-model="setting[o.model]" autofocus="{{ $first }}" />
+							<input type="{{o.type}}" ng-model="setting[o.model]" autofocus="{{ $first }}" ng-disabled="!$parent.role"/>
 						</md-input-container>
 					</div>
 
 					<input type="submit" value="Submit" ng-hide="true"/>
 				</form>
-				<div class="button-like cursor-pointer" ng-click="updateSetting()">perbarui</div>
+				<div class="button-like cursor-pointer" ng-click="updateSetting()" ng-if="$parent.role">perbarui</div>
 			</div>
 
 			<div id="misc-category" class="misc-section">
 				<label>kategori</label>
 				<div class="misc-content need-margin" masonry preserve-order>
-					<div ng-repeat="o in categories track by $index" class="category-card misc-card masonry-brick cursor-pointer ellipsis" ng-class="{ notenabled: !o.category_enabled }" ng-click="edit(o, 'category')">
+					<div ng-repeat="o in categories track by $index" class="category-card misc-card masonry-brick ellipsis" ng-class="{ notenabled: !o.category_enabled, 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }" ng-click="edit(o, 'category')">
 						{{ o.category_name }}
-						<i class="fa fa-{{ o.category_enabled ? 'dot-circle-o' : 'circle' }} cursor-pointer" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.category_enabled ? 'non-aktifkan' : 'aktifkan' }} kategori {{ o.category_name }}</md-tooltip></i>
-						<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID_category, o.category_name, 'category', $event)"><md-tooltip md-autohide="true">hapus kategori {{ o.category_name }}</md-tooltip></i>
+						<i ng-if="$parent.role" class="fa fa-{{ o.category_enabled ? 'dot-circle-o' : 'circle' }} cursor-pointer" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.category_enabled ? 'non-aktifkan' : 'aktifkan' }} kategori {{ o.category_name }}</md-tooltip></i>
+						<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.ID_category, o.category_name, 'category', $event)"><md-tooltip md-autohide="true">hapus kategori {{ o.category_name }}</md-tooltip></i>
 					</div>
 				</div>
-				<div class="button-like cursor-pointer" ng-click="new('category')">kategori baru</div>
+				<div class="button-like cursor-pointer" ng-click="new('category')" ng-if="$parent.role">kategori baru</div>
 			</div>
 
 			<div id="misc-badge" class="misc-section">
 				<label>lencana</label>
 				<div class="misc-content">
 					<div class="misc-content need-margin" masonry preserve-order>
-						<div ng-repeat="o in badges track by $index" class="badge-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'badge')">
+						<div ng-repeat="o in badges track by $index" class="badge-card misc-card masonry-brick ellipsis" ng-class="{ 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }" ng-click="edit(o, 'badge')">
 							<div class="badge-ceil">
 								{{ o.badge_text }} ({{ o.badge_name }})
 							</div>
 							<div class="badge-floor">
 								<span>range:</span> {{ o.score_min }} - {{ o.score_max }}
 							</div>
-							<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID_Badge, o.badge_name, 'badge', $event)"><md-tooltip md-autohide="true">hapus lencana {{ o.badge_name }}</md-tooltip></i>
+							<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.ID_Badge, o.badge_name, 'badge', $event)"><md-tooltip md-autohide="true">hapus lencana {{ o.badge_name }}</md-tooltip></i>
 						</div>
 					</div>
 				</div>
-				<div class="button-like cursor-pointer" ng-click="new('badge')">lencana baru</div>
+				<div class="button-like cursor-pointer" ng-click="new('badge')" ng-if="$parent.role">lencana baru</div>
 			</div>
 
 			<div id="misc-institution" class="misc-section">
 				<label>lembaga</label>
 				<div class="misc-content need-margin" masonry preserve-order>
-					<div ng-repeat="o in institutions track by $index" class="institution-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'institution')">
+					<div ng-repeat="o in institutions track by $index" class="institution-card misc-card masonry-brick ellipsis" ng-class="{ 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }" ng-click="edit(o, 'institution')">
 						{{ o.name_institution }}
-						<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name_institution, 'institution', $event)"><md-tooltip md-autohide="true">hapus lembaga {{ o.name_institution }}</md-tooltip></i>
+						<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name_institution, 'institution', $event)"><md-tooltip md-autohide="true">hapus lembaga {{ o.name_institution }}</md-tooltip></i>
 					</div>
 				</div>
-				<div class="button-like cursor-pointer" ng-click="new('institution')">lembaga baru</div>
+				<div class="button-like cursor-pointer" ng-click="new('institution')" ng-if="$parent.role">lembaga baru</div>
 			</div>
 
 			<div id="misc-education" class="misc-section">
 				<label>pendidikan</label>
 				<div class="misc-content need-margin" masonry preserve-order>
-					<div ng-repeat="o in educations track by $index" class="education-card misc-card masonry-brick cursor-pointer ellipsis" ng-click="edit(o, 'education')">
+					<div ng-repeat="o in educations track by $index" class="education-card misc-card masonry-brick ellipsis" ng-class="{ 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }" ng-click="edit(o, 'education')">
 						{{ o.education }}
-						<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.education, 'education', $event)"><md-tooltip md-autohide="true">hapus pendidikan {{ o.education }}</md-tooltip></i>
+						<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.education, 'education', $event)"><md-tooltip md-autohide="true">hapus pendidikan {{ o.education }}</md-tooltip></i>
 					</div>
 				</div>
-				<div class="button-like cursor-pointer" ng-click="new('education')">pendidikan baru</div>
+				<div class="button-like cursor-pointer" ng-click="new('education')" ng-if="$parent.role">pendidikan baru</div>
 			</div>
 		</div>
 	</div>

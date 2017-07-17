@@ -102,37 +102,39 @@ app.controller('UserController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 		});
 	};
 	$scope.editUser	= (id) => {
-		async.waterfall([
-			(callback) => {
-				fetcher.getUser(id, (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						callback(null, response.result);
-					} else {
-						callback(response.message);
-					}
-				});
-			},
-			(userData, callback) => {
-				let before	= _.clone(userData);
-				dialog.userDialog(userData, (response) => {
-					if (_.isObject(response) && !_.isEqual(before, response)) {
-						callback(null, response);
-					} else {
-						callback(null);
-					}
-				});
-			}
-		], (err, result) => {
-			if (err) { console.log(err); }
+		if ($scope.$parent.role) {
+			async.waterfall([
+				(callback) => {
+					fetcher.getUser(id, (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							callback(null, response.result);
+						} else {
+							callback(response.message);
+						}
+					});
+				},
+				(userData, callback) => {
+					let before	= _.clone(userData);
+					dialog.userDialog(userData, (response) => {
+						if (_.isObject(response) && !_.isEqual(before, response)) {
+							callback(null, response);
+						} else {
+							callback(null);
+						}
+					});
+				}
+			], (err, result) => {
+				if (err) { console.log(err); }
 
-			if (result) {
-				fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						init(getSearch());
-					}
-				});
-			}
-		});
+				if (result) {
+					fetcher.putUser(result.ID, _.chain(result).mapValues(_.toString).omit(['last_logged_in', 'usr_score']).value(), (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							init(getSearch());
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete	= (id, name, e) => {

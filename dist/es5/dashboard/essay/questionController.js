@@ -97,36 +97,38 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 		});
 	};
 	$scope.edit = function (id) {
-		async.waterfall([function (callback) {
-			fetcher.getEssay(id, function (response) {
-				if (response.response == 'OK' && response.status_code == 200) {
-					callback(null, response.result);
-				} else {
-					callback(response.message);
-				}
-			});
-		}, function (questionData, callback) {
-			var before = _.clone(questionData);
-			dialog.essayDialog({ data: questionData, categories: $scope.categories }, function (response) {
-				if (_.isObject(response) && !_.isEqual(before, response)) {
-					callback(null, response);
-				} else {
-					callback(null);
-				}
-			});
-		}], function (err, result) {
-			if (err) {
-				console.log(err);
-			}
-
-			if (result) {
-				fetcher.putEssay(result.id, _.chain(result).mapValues(_.toString).omit([]).value(), function (response) {
+		if ($scope.$parent.role) {
+			async.waterfall([function (callback) {
+				fetcher.getEssay(id, function (response) {
 					if (response.response == 'OK' && response.status_code == 200) {
-						initData(getSearch());
+						callback(null, response.result);
+					} else {
+						callback(response.message);
 					}
 				});
-			}
-		});
+			}, function (questionData, callback) {
+				var before = _.clone(questionData);
+				dialog.essayDialog({ data: questionData, categories: $scope.categories }, function (response) {
+					if (_.isObject(response) && !_.isEqual(before, response)) {
+						callback(null, response);
+					} else {
+						callback(null);
+					}
+				});
+			}], function (err, result) {
+				if (err) {
+					console.log(err);
+				}
+
+				if (result) {
+					fetcher.putEssay(result.id, _.chain(result).mapValues(_.toString).omit([]).value(), function (response) {
+						if (response.response == 'OK' && response.status_code == 200) {
+							initData(getSearch());
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete = function (id, question, e) {

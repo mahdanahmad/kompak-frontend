@@ -11,7 +11,7 @@
 		</div>
 		<div class="header-divider"></div>
 		<div class="header-another">
-			<div class="header-button">
+			 <div class="header-button" ng-if="$parent.role">
 				<div class="button-like cursor-pointer" ng-click="newLocation()"><i class="fa fa-plus" aria-hidden="true"></i> {{ locMap[state] }} Baru</div>
 			</div>
 		</div>
@@ -20,8 +20,8 @@
 		<div id="location-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#location-content'">
 			<div class="location-card masonry-brick" ng-repeat="o in data track by $index" ng-class="state == 'village' ? 'cursor-default' : 'cursor-pointer'" ng-click="gotoLocation(o.id)">
 				{{ o.name }}
-				<i class="fa fa-pencil cursor-pointer" ng-click="edit(o, $event)"><md-tooltip md-autohide="true">edit this location</md-tooltip></i>
-				<i class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name, $event)"><md-tooltip md-autohide="true">delete this location</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-pencil cursor-pointer" ng-click="edit(o, $event)"><md-tooltip md-autohide="true">edit this location</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.id, o.name, $event)"><md-tooltip md-autohide="true">delete this location</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

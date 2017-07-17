@@ -23,7 +23,6 @@ app.controller('DashboardController', ['$scope', '$location', '$document', '$sta
 	$scope.active	= $location.url().split('/')[1];
 	$scope.setActive	= (selected) => { $scope.active = selected; $state.go('dashboard.' + selected); }
 
-
 	$scope.logout	= () => {
 		localStorageService.remove('id', 'role');
 		$state.go('auth');

@@ -27,14 +27,14 @@
 					<li ng-repeat="opt in ::categories" ng-click="selectCate(opt)" class="cursor-pointer">{{ opt.name }}</li>
 				</ul>
 			</div>
-			<div class="header-button">
+			 <div class="header-button" ng-if="$parent.role">
 				<div class="button-like cursor-pointer" ng-click="newQuestion()"><i class="fa fa-plus" aria-hidden="true"></i> Pertanyaan Baru</div>
 			</div>
 		</div>
 	</div>
 	<div id="choices-content" class="dash-content">
 		<div id="choices-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#choices-content'">
-			<div class="choices-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-class="{ 'need-approval': (o.status == 0), noenabled: (!o.question_enabled && o.status == 1), 'rejected': (o.status == 2) }" ng-click="edit(o.ID_question)">
+			<div class="choices-card masonry-brick" ng-repeat="o in data track by $index" ng-class="{ 'need-approval': (o.status == 0), noenabled: (!o.question_enabled && o.status == 1), 'rejected': (o.status == 2), 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }" ng-click="edit(o.ID_question)">
 				<div class="choices-question-container">
 					<div class="dash-label">pertanyaan dari <strong>{{ o.usr_display_name || '-' }}</strong></div>
 					<div class="dash-value choices-question">{{ o.question_text }}</div>
@@ -56,10 +56,10 @@
 				<div class="choices-status">
 					status: <span>{{ status[o.status] }} {{ o.status == 1 ? ( o.question_enabled ? '( aktif )' : '( tidak aktif )' ) : '' }}</span>
 				</div>
-				<i ng-show="o.status == 0" class="fa fa-thumbs-o-down" ng-click="changeStatus(o, 2, $event)"><md-tooltip md-autohide="true">tolak pertanyaan ini</md-tooltip></i>
-				<i ng-hide="o.status == 1" class="fa fa-thumbs-o-up" ng-click="changeStatus(o, 1, $event)"><md-tooltip md-autohide="true">setujui pertanyaan ini</md-tooltip></i>
-				<i ng-show="o.status == 1" class="fa fa-{{ o.question_enabled ? 'dot-circle-o' : 'circle' }}" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.question_enabled ? 'non-aktifkan' : 'aktifkan' }} pertanyaan ini</md-tooltip></i>
-				<i class="fa fa-times" ng-click="delete(o.ID_question, o.question_text, $event)"><md-tooltip md-autohide="true">hapus pertanyaan ini</md-tooltip></i>
+				<i ng-if="$parent.role" ng-show="o.status == 0" class="fa fa-thumbs-o-down" ng-click="changeStatus(o, 2, $event)"><md-tooltip md-autohide="true">tolak pertanyaan ini</md-tooltip></i>
+				<i ng-if="$parent.role" ng-hide="o.status == 1" class="fa fa-thumbs-o-up" ng-click="changeStatus(o, 1, $event)"><md-tooltip md-autohide="true">setujui pertanyaan ini</md-tooltip></i>
+				<i ng-if="$parent.role" ng-show="o.status == 1" class="fa fa-{{ o.question_enabled ? 'dot-circle-o' : 'circle' }}" ng-click="changeEna(o, $event)"><md-tooltip md-autohide="true">{{ o.question_enabled ? 'non-aktifkan' : 'aktifkan' }} pertanyaan ini</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-times" ng-click="delete(o.ID_question, o.question_text, $event)"><md-tooltip md-autohide="true">hapus pertanyaan ini</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

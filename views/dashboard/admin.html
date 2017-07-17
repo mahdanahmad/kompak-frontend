@@ -11,17 +11,17 @@
 		</div>
 		<div class="header-divider"></div>
 		<div class="header-another">
-			<div class="header-button">
+			 <div class="header-button" ng-if="$parent.role">
 				<div class="button-like cursor-pointer" ng-click="newAdmin()"><i class="fa fa-plus" aria-hidden="true"></i> Admin Baru</div>
 			</div>
 		</div>
 	</div>
 	<div id="admin-content" class="dash-content">
 		<div id="admin-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#admin-content'">
-			<div class="admin-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-click="editAdmin(o)">
+			<div class="admin-card masonry-brick" ng-repeat="o in data track by $index" ng-click="editAdmin(o)" ng-class="{ 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }">
 				<div class="admin-ceil ellipsis">{{ o.name }}</div>
 				<div class="admin-floor ellipsis">{{ o.username }} / {{ o.email }}</div>
-				<i class="fa fa-times" ng-click="delete(o.id, o.name, $event)"><md-tooltip md-autohide="true">hapus akun {{ o.name }}</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-times" ng-click="delete(o.id, o.name, $event)"><md-tooltip md-autohide="true">hapus akun {{ o.name }}</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

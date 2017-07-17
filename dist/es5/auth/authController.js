@@ -11,7 +11,6 @@ app.controller('AuthController', ['$scope', '$state', 'localStorageService', 'fe
 			$scope.errmessage = "";
 			if (response.response == 'OK' && response.status_code == 200) {
 				localStorageService.set('id', response.result.id);
-				localStorageService.set('role', response.result.role);
 				localStorageService.set('username', $scope.username);
 
 				$state.go('dashboard.statistic');

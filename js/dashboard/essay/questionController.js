@@ -83,37 +83,39 @@ app.controller('EssayController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 		});
 	};
 	$scope.edit	= (id) => {
-		async.waterfall([
-			(callback) => {
-				fetcher.getEssay(id, (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						callback(null, response.result);
-					} else {
-						callback(response.message);
-					}
-				});
-			},
-			(questionData, callback) => {
-				let before	= _.clone(questionData);
-				dialog.essayDialog({ data: questionData, categories: $scope.categories }, (response) => {
-					if (_.isObject(response) && !_.isEqual(before, response)) {
-						callback(null, response);
-					} else {
-						callback(null);
-					}
-				});
-			}
-		], (err, result) => {
-			if (err) { console.log(err); }
+		if ($scope.$parent.role) {
+			async.waterfall([
+				(callback) => {
+					fetcher.getEssay(id, (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							callback(null, response.result);
+						} else {
+							callback(response.message);
+						}
+					});
+				},
+				(questionData, callback) => {
+					let before	= _.clone(questionData);
+					dialog.essayDialog({ data: questionData, categories: $scope.categories }, (response) => {
+						if (_.isObject(response) && !_.isEqual(before, response)) {
+							callback(null, response);
+						} else {
+							callback(null);
+						}
+					});
+				}
+			], (err, result) => {
+				if (err) { console.log(err); }
 
-			if (result) {
-				fetcher.putEssay(result.id, _.chain(result).mapValues(_.toString).omit([]).value(), (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						initData(getSearch());
-					}
-				});
-			}
-		});
+				if (result) {
+					fetcher.putEssay(result.id, _.chain(result).mapValues(_.toString).omit([]).value(), (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							initData(getSearch());
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete	= (id, question, e) => {

@@ -44,7 +44,7 @@
 				<div class="choicesans-timestamp">
 					Dijawab pada: <span>{{ toDate(o.answered_date) }}</span>
 				</div>
-				<i class="fa fa-times cursor-pointer" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete this answer</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-times cursor-pointer" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">delete this answer</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

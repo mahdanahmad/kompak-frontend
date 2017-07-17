@@ -27,14 +27,14 @@
 					<li ng-repeat="opt in ::orderOptions" ng-click="selectSort(opt)" class="cursor-pointer">{{ opt.title }}</li>
 				</ul>
 			</div>
-			<div class="header-button">
+			 <div class="header-button" ng-if="$parent.role">
 				<div class="button-like cursor-pointer" ng-click="newUser()"><i class="fa fa-plus" aria-hidden="true"></i> Pemain Baru</div>
 			</div>
 		</div>
 	</div>
 	<div id="user-content" class="dash-content">
 		<div id="user-content-wrapper" masonry preserve-order infinite-scroll='loadMoar()' infinite-scroll-disabled='pauseAjx || doneAjx' infinite-scroll-distance='1' infinite-scroll-container="'#user-content'">
-			<div class="user-card cursor-pointer masonry-brick" ng-repeat="o in data track by $index" ng-click="editUser(o.ID)">
+			<div class="user-card masonry-brick" ng-repeat="o in data track by $index" ng-click="editUser(o.ID)" ng-class="{ 'cursor-pointer': $parent.role, 'cursor-default': !$parent.role }">
 				<div class="user-gender" ng-class="{ male: o.usr_gender == 'm', female: o.usr_gender == 'f' }"></div>
 				<div class="user-name">
 					<div class="dash-label">nama</div>
@@ -68,7 +68,7 @@
 					<div class="dash-label">kontribusi</div>
 					<div class="dash-value ellipsis">{{ o.usr_contribution }} kali</div>
 				</div>
-				<i class="fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">hapus {{ o.usr_display_name }} akun</md-tooltip></i>
+				<i ng-if="$parent.role" class="fa fa-times" aria-hidden="true" ng-click="delete(o.ID, o.usr_display_name, $event)"><md-tooltip md-autohide="true">hapus {{ o.usr_display_name }} akun</md-tooltip></i>
 			</div>
 		</div>
 		<div class="dash-load-more" class="cursor-default" ng-show="pauseAjx">{{ loading }}</div>

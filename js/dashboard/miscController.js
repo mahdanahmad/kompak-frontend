@@ -47,29 +47,31 @@ app.controller('MiscController', ['$scope', 'fetcher', '$timeout', 'dialog', 'gl
 	}
 
 	$scope.edit	= (o, state) => {
-		let funcName	= _.includes(['institution', 'education'], state) ? 'loneDialog' : (state + 'Dialog');
-		let id			= null;
-		let content		= null;
-		switch (state) {
-			case 'category': id = o.ID_category; content = _.clone(o); break;
-			case 'badge': id = o.ID_Badge; content = _.clone(o); break;
-			default: id	= o.id; content = { data: _.chain(o).clone().mapKeys((o, key) => (_.includes(['name_institution', 'education'], key) ? 'name' : key)).value(), state }
-		}
-
-		dialog[funcName](content, (dialResp) => {
-			if (_.isObject(dialResp)) {
-				if (!_.isNil(dialResp.category_enabled)) { dialResp.category_enabled = (dialResp.category_enabled) ? '1' : '0'; }
-				if (!_.isNil(dialResp.name) && state == 'institution') { dialResp.name_institution = dialResp.name; }
-				if (!_.isNil(dialResp.name) && state == 'education') { dialResp.education = dialResp.name; }
-				fetcher['put' + _.upperFirst(state)](id, _.mapValues(dialResp, _.toString), (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						fetch[state]();
-					} else {
-						dialog.error(response.message);
-					}
-				});
+		if ($scope.$parent.role) {
+			let funcName	= _.includes(['institution', 'education'], state) ? 'loneDialog' : (state + 'Dialog');
+			let id			= null;
+			let content		= null;
+			switch (state) {
+				case 'category': id = o.ID_category; content = _.clone(o); break;
+				case 'badge': id = o.ID_Badge; content = _.clone(o); break;
+				default: id	= o.id; content = { data: _.chain(o).clone().mapKeys((o, key) => (_.includes(['name_institution', 'education'], key) ? 'name' : key)).value(), state }
 			}
-		});
+
+			dialog[funcName](content, (dialResp) => {
+				if (_.isObject(dialResp)) {
+					if (!_.isNil(dialResp.category_enabled)) { dialResp.category_enabled = (dialResp.category_enabled) ? '1' : '0'; }
+					if (!_.isNil(dialResp.name) && state == 'institution') { dialResp.name_institution = dialResp.name; }
+					if (!_.isNil(dialResp.name) && state == 'education') { dialResp.education = dialResp.name; }
+					fetcher['put' + _.upperFirst(state)](id, _.mapValues(dialResp, _.toString), (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							fetch[state]();
+						} else {
+							dialog.error(response.message);
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete	= (id, name, state, e) => {

@@ -86,38 +86,40 @@ app.controller('ChoicesController', ['$scope', 'fetcher', '$timeout', 'dialog', 
 		});
 	};
 	$scope.edit	= (id) => {
-		async.waterfall([
-			(callback) => {
-				fetcher.getQuestion(id, (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						callback(null, response.result);
-					} else {
-						callback(response.message);
-					}
-				});
-			},
-			(questionData, callback) => {
-				let before	= _.clone(questionData);
-				dialog.choicesDialog({ data: questionData, categories: $scope.categories }, (response) => {
-					if (_.isObject(response) && !_.isEqual(before, response)) {
-						callback(null, response);
-					} else {
-						callback(null);
-					}
-				});
-			}
-		], (err, result) => {
-			if (err) { console.log(err); }
+		if ($scope.$parent.role) {
+			async.waterfall([
+				(callback) => {
+					fetcher.getQuestion(id, (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							callback(null, response.result);
+						} else {
+							callback(response.message);
+						}
+					});
+				},
+				(questionData, callback) => {
+					let before	= _.clone(questionData);
+					dialog.choicesDialog({ data: questionData, categories: $scope.categories }, (response) => {
+						if (_.isObject(response) && !_.isEqual(before, response)) {
+							callback(null, response);
+						} else {
+							callback(null);
+						}
+					});
+				}
+			], (err, result) => {
+				if (err) { console.log(err); }
 
-			if (result) {
-				result.question_enabled	= result.question_enabled ? '1' : '0';
-				fetcher.putQuestion(result.ID_question, _.chain(result).mapValues(_.toString).omit(['no_of_times_correctly_answered', 'no_of_times_incorrectly_answered', 'no_of_times_presented_as_challenge', 'no_of_times_response_1', 'no_of_times_response_2', 'no_of_times_response_3', 'no_of_times_response_4']).value(), (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						initData(getSearch());
-					}
-				});
-			}
-		});
+				if (result) {
+					result.question_enabled	= result.question_enabled ? '1' : '0';
+					fetcher.putQuestion(result.ID_question, _.chain(result).mapValues(_.toString).omit(['no_of_times_correctly_answered', 'no_of_times_incorrectly_answered', 'no_of_times_presented_as_challenge', 'no_of_times_response_1', 'no_of_times_response_2', 'no_of_times_response_3', 'no_of_times_response_4']).value(), (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							initData(getSearch());
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.changeEna	= (o, e) => {

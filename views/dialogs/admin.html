@@ -9,10 +9,12 @@
 				<input type="{{o.type}}" ng-model="data[o.model]" ng-required="(o.required && !(o.type == 'password' && data.id))" ng-disabled="o.type == 'password' && data.id" autofocus="{{ $first }}"/>
 			</md-input-container>
 
-			<div class="roles-selector" ng-if="o.tag == 'roles'">
-				<label>roles</label>
-				<div class="roles-option cursor-pointer" ng-repeat="d in roles track by $index" ng-class="{ active: checkActive(d) }" ng-click="toggleActive(d)">{{ d }}</div>
-			</div>
+			<md-input-container ng-if="o.tag == 'radio'" class="md-input-has-value">
+				<label translate>{{ o.label }}</label>
+				<md-radio-group ng-model="data[o.model]" ng-init=" data[o.model] = (data[o.model]) ? data[o.model] : o.value[0].value ">
+					<md-radio-button ng-repeat="val in ::o.value" ng-value="val.value" aria-label="{{ val.label }}">{{ val.label }}</md-radio-button>
+				</md-radio-group>
+			</md-input-container>
 		</div>
 	</div>
 	<div id="adminmodal-buttons">

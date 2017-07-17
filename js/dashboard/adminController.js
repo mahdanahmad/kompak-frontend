@@ -55,7 +55,6 @@ app.controller('AdminController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 	$scope.newAdmin	= () => {
 		dialog.adminDialog({}, (dialResp) => {
 			if (_.isObject(dialResp)) {
-				dialResp.role		= JSON.stringify(dialResp.role);
 				dialResp.password	= CryptoJS.SHA256(dialResp.password).toString();
 				fetcher.postAdmin(dialResp, (response) => {
 					if (response.response == 'OK' && response.status_code == 200) {
@@ -68,19 +67,20 @@ app.controller('AdminController', ['$scope', 'fetcher', '$timeout', 'dialog', 'g
 		});
 	};
 	$scope.editAdmin	= (o) => {
-		let before	= _.clone(o);
-		dialog.adminDialog(before, (dialResp) => {
-			if (_.isObject(dialResp) && !_.isEqual(o, dialResp)) {
-				dialResp.role	= JSON.stringify(dialResp.role);
-				fetcher.putAdmin(o.id, dialResp, (response) => {
-					if (response.response == 'OK' && response.status_code == 200) {
-						init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
-					} else if (response.message == "Duplicate primary key(s). Please check again your input.") {
-						dialog.error("Pengubahan data gagal, username sudah terpakai.");
-					}
-				});
-			}
-		});
+		if ($scope.$parent.role) {
+			let before	= _.clone(o);
+			dialog.adminDialog(before, (dialResp) => {
+				if (_.isObject(dialResp) && !_.isEqual(o, dialResp)) {
+					fetcher.putAdmin(o.id, dialResp, (response) => {
+						if (response.response == 'OK' && response.status_code == 200) {
+							init($scope.search ? (($scope.search.length >= 3) ? $scope.search : null) : null);
+						} else if (response.message == "Duplicate primary key(s). Please check again your input.") {
+							dialog.error("Pengubahan data gagal, username sudah terpakai.");
+						}
+					});
+				}
+			});
+		}
 	};
 
 	$scope.delete	= (id, name, e) => {
