@@ -1,7 +1,7 @@
 <div id="statistic-wrapper">
 	<div class="row">
 		<div class="col-6">
-			<div class="col-12" force-height="{{ 3 / 4 }}">
+			<div class="col-12" force-height='[{{ 3 / 4 }}, {{ 3 / 2 }}]'>
 				<div class="statistic-container">
 					<div id="widget-overview" class="statistic-card">
 						<div id="overview-container" class="cursor-default">
@@ -24,8 +24,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 cursor-default" force-height="{{ 1 / 4 }}">
-				<div class="col-6 full-height">
+			<div class="col-12 cursor-default" force-height="[{{ 1 / 4 }}, {{ 1 / 1 }}]">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 1 / 2 }}]">
 					<div class="statistic-container">
 						<div id="widget-male" class="statistic-card">
 							<div class="icon-container float-left">
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 full-height">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 1 / 2 }}]">
 					<div class="statistic-container">
 						<div id="widget-female" class="statistic-card">
 							<div class="icon-container float-right">
@@ -171,7 +171,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6" force-height="{{ 1 / 2 }}">
+		<div class="col-6" force-height="[{{ 1 / 2 }}, 1]">
 			<div class="statistic-container">
 				<div id="widget-age" class="statistic-card">
 					<div class="sideview-title cursor-default">
@@ -185,8 +185,8 @@
 			</div>
 		</div>
 		<div class="col-6">
-			<div class="col-12" force-height="{{ 1 / 4 }}">
-				<div class="col-6 full-height">
+			<div class="col-12" force-height="[{{ 1 / 4 }}, {{ 4 / 3 }}]">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 2 / 3 }}]">
 					<div class="statistic-container">
 						<div id="widget-hardestquestion" class="statistic-card">
 							<div class="sideview-title cursor-default">pertanyaan tersulit</div>
@@ -196,7 +196,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 full-height">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 2 / 3 }}]">
 					<div class="statistic-container">
 						<div id="widget-easiestquestion" class="statistic-card">
 							<div class="sideview-title cursor-default">pertanyaan termudah</div>
@@ -207,8 +207,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12" force-height="{{ 1 / 4 }}">
-				<div class="col-6 full-height">
+			<div class="col-12" force-height="[{{ 1 / 4 }}, {{ 4 / 3 }}]">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 2 / 3 }}]">
 					<div class="statistic-container">
 						<div id="widget-hardestcategory" class="statistic-card">
 							<div class="sideview-title cursor-default">kategori tersulit</div>
@@ -218,7 +218,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 full-height">
+				<div class="col-6" force-height="[{{ 1 / 2 }}, {{ 2 / 3 }}]">
 					<div class="statistic-container">
 						<div id="widget-easiestcategory" class="statistic-card">
 							<div class="sideview-title cursor-default">kategori termudah</div>
@@ -232,7 +232,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-4" force-height>
+		<div class="col-4" force-height='[1, "full"]'>
 			<div class="statistic-container">
 				<div id="widget-designation" class="statistic-card">
 					<div class="sideview-title cursor-default">
@@ -245,7 +245,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-4" force-height>
+		<div class="col-4" force-height='[1, "full"]'>
 			<div class="statistic-container">
 				<div id="widget-institution" class="statistic-card">
 					<div class="sideview-title cursor-default">
@@ -258,7 +258,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-4" force-height>
+		<div class="col-4" force-height='[1, "full"]'>
 			<div class="statistic-container">
 				<div id="widget-education" class="statistic-card">
 					<div class="sideview-title cursor-default">

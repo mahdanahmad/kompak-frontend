@@ -70,10 +70,12 @@ app.directive('openDropdown', ['$document', ($document) => ({
 app.directive('forceHeight', [() => ({
 	restrict: 'A',
 	link: (scope, elem, attrs) => {
-		let wantedRatio	= attrs.forceHeight || 1;
+		let widthTreshold = 800;
+		let params		= attrs.forceHeight ? JSON.parse(attrs.forceHeight) : [];
+		let wantedRatio	= ($(window).width() > widthTreshold ? params[0] : params[1]) || 1;
 
 		scope.$watch(() => (elem.width()), (newVal, oldVal) => {
-			elem.css('height', (newVal * wantedRatio) + 'px');
+			elem.css('height', (wantedRatio == 'full' ? ($(window).height() - 40) : (newVal * wantedRatio)) + 'px');
 		});
 
 		elem.bind('resize', () => { scope.$apply(); });

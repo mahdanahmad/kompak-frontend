@@ -46,6 +46,8 @@ $colors			: #1F76C6 #93032E #FFE824 #84894A #034C3C #493B2A #18A999;
 	.color-#{$i} { color: $color; }
 }
 
+$width-treshold	: 800px;
+
 @each $color in $colors {
 	$i: index($colors, $color);
 	.back-#{$i} { background-color: $color; }
@@ -53,6 +55,8 @@ $colors			: #1F76C6 #93032E #FFE824 #84894A #034C3C #493B2A #18A999;
 
 $i: 12;
 @while $i > 0 {
-  .col-#{$i} { width: calc((#{$i} * 100% / 12))!important; position: relative; float: left; }
+  .col-#{$i} {
+	  @media only screen and (min-width: $width-treshold)  { width: calc((#{$i} * 100% / 12))!important; position: relative; float: left; }
+  }
   $i: $i - 1;
 }

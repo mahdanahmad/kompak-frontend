@@ -33,7 +33,7 @@ $average-back	: #A2C5AC;
 					background: -o-radial-gradient(circle at left, transparent, $overview-back); /* Opera 11.6 to 12.0 */
 					background: -moz-radial-gradient(circle at left, transparent, $overview-back); /* Firefox 3.6 to 15 */
 					background: radial-gradient(circle at left, transparent, $overview-back); /* Standard syntax */
-					content: " "; left: 0; right: 0; top: 0; bottom: 0; position: absolute; z-index: 1;
+					content: " "; left: 0; right: 0; top: 0; bottom: 0; position: absolute; z-index: 1; background-position: center center;
 				}
 				&::after {
 					background-image: url('../../public/images/overview-background.jpg'); background-size: cover;
@@ -41,20 +41,35 @@ $average-back	: #A2C5AC;
 				}
 				#overview-container {
 					color: white; z-index: 1; position: absolute; bottom: 60px; width: 100%;
-					#overview-title { text-align: right; font-size: 65px; font-family: $signika; letter-spacing: -7px; margin-bottom: 25px; padding-right: 20px; }
+					@media only screen and (max-width: $width-treshold)  { right: 0px; }
+					#overview-title {
+						text-align: right; font-family: $signika; margin-bottom: 25px; padding-right: 20px;
+						@media only screen and (min-width: $width-treshold)  { font-size: 65px; letter-spacing: -7px; }
+						@media only screen and (max-width: $width-treshold)  { font-size: 28px; letter-spacing: -3px; }
+					}
 					.row.need-margin { margin-bottom: 20px; }
 					.overview-content {
 						// text-align: center;
 						// .overview-value { font-family: $signika; font-weight: bolder; font-size: 50px; line-height: 40px; }
 						// .overview-label { font-family: $signika-neg; font-size: 20px; letter-spacing: -1px;  }
-						font-family: $signika-neg; font-size: 20px; letter-spacing: -2px; text-align: center;
-						span { font-family: $signika; font-size: 45px; line-height: 40px; font-weight: 100; letter-spacing: -4px; margin-right: 2px; }
+						font-family: $signika-neg; text-align: center;
+						@media only screen and (min-width: $width-treshold)  { font-size: 20px; letter-spacing: -2px;  }
+						@media only screen and (max-width: $width-treshold)  { width: calc(100% / 2); float: left; font-size: 15px; letter-spacing: -1px;  }
+						span {
+							font-family: $signika; font-weight: 100; margin-right: 2px;
+							@media only screen and (min-width: $width-treshold)  { font-size: 45px; line-height: 40px; letter-spacing: -4px; }
+							@media only screen and (max-width: $width-treshold)  { font-size: 25px; line-height: 20px; letter-spacing: -3px; }
+						}
 					}
 				}
 				#time-container {
 					color: white; z-index: 1; position: absolute; top: 30px; right: 30px;
+					@media only screen and (max-width: $width-treshold)  { font-size: 12px; }
 					span { margin-left: 10px; }
 					md-datepicker { margin-left: 10px; input { color: white; width: 150px; }}
+					.md-datepicker-input {
+						@media only screen and (max-width: $width-treshold)  { font-size: 12px; }
+					}
 				}
 				#overview-disclaimer { color: white; z-index: 1; position: absolute; bottom: 0px; left: 5px; letter-spacing: -0.5px; font-family: $signika-neg; font-size: 13px; }
 			}

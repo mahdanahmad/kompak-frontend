@@ -78,12 +78,14 @@ app.directive('forceHeight', [function () {
 	return {
 		restrict: 'A',
 		link: function link(scope, elem, attrs) {
-			var wantedRatio = attrs.forceHeight || 1;
+			var widthTreshold = 800;
+			var params = attrs.forceHeight ? JSON.parse(attrs.forceHeight) : [];
+			var wantedRatio = ($(window).width() > widthTreshold ? params[0] : params[1]) || 1;
 
 			scope.$watch(function () {
 				return elem.width();
 			}, function (newVal, oldVal) {
-				elem.css('height', newVal * wantedRatio + 'px');
+				elem.css('height', (wantedRatio == 'full' ? $(window).height() - 40 : newVal * wantedRatio) + 'px');
 			});
 
 			elem.bind('resize', function () {
