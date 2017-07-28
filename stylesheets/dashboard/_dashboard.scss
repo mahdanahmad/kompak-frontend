@@ -12,16 +12,28 @@
 #dashboard-wrapper {
 	width: 100%; height: 100%; display: inline-block; float: left; @include clearfix();
 	#dashboard-sidebar {
-		width: $sidebar-width; height: 100%; background: $sidebar-clr; @include box-shadow(4px 0px $sidebar-shadow); display: inline-block;
-		#sidebar-logo, #sidebar-user { width: calc(#{$sidebar-width} - 15px); height: calc(#{$sidebar-width} - 15px); padding: 7.5px; position: relative; }
+		height: 100%; background: $sidebar-clr; @include box-shadow(4px 0px $sidebar-shadow); display: inline-block;
+		@media only screen and (min-width: $width-treshold)  { width: $sidebar-width; }
+		@media only screen and (max-width: $width-treshold)  { width: $sidebar-mob; }
+		#sidebar-logo, #sidebar-user {
+			position: relative;
+			@media only screen and (min-width: $width-treshold)  { width: calc(#{$sidebar-width} - 15px); height: calc(#{$sidebar-width} - 15px); padding: 7.5px;  }
+			@media only screen and (max-width: $width-treshold)  { width: calc(#{$sidebar-mob} - 10px); height: calc(#{$sidebar-mob} - 10px); padding: 5px;  }
+		}
 		#sidebar-menu {
-			width: 100%; height: calc(100% - (#{$sidebar-width} * (5 / 3))); background: $sidebar-clr2;
+			width: 100%; background: $sidebar-clr2;
+			@media only screen and (min-width: $width-treshold)  { height: calc(100% - (#{$sidebar-width} * (5 / 3))); }
+			@media only screen and (max-width: $width-treshold)  { height: calc(100% - (#{$sidebar-mob} * (5 / 3))); }
 			#sidebar-menu-wrapper {
 				width: 100%; padding: 15px 0px; color: $menu-clr; @include clearfix();
+				@media only screen and (min-width: $width-treshold) { padding: 15px 0px; }
+				@media only screen and (max-width: $width-treshold) { padding: 5px 0px; }
 				.sidebar-menu-container {
-					width: 100%; padding: 5px 0px; font-family: $menutitle-font; letter-spacing: 0.25px;
+					width: 100%; font-family: $menutitle-font; letter-spacing: 0.25px;
+					@media only screen and (min-width: $width-treshold) { padding: 5px 0px; }
+					@media only screen and (max-width: $width-treshold) { padding: 2.5px 0px; }
 					.sidebar-menu-content {
-						width: $menu-size; height: $menu-size; margin: auto; background: $sidebar-clr; line-height: $menu-size; border-radius: 5px; z-index: 82; position:relative;
+						width: $menu-size; height: $menu-size; line-height: $menu-size; margin: auto; background: $sidebar-clr; border-radius: 5px; z-index: 82; position:relative;
 						& > i {
 							font-size: 17px; margin-left: $icon-margin; position: relative;
 							&.fa-line-chart { left: 0px; }
@@ -41,7 +53,9 @@
 					&:hover {
 						width: $menu-inflated;
 						.sidebar-menu-content {
-							width: calc(#{$menu-inflated} - (#{$sidebar-width} - #{$menu-size})); color: white; @include box-shadow(5px 5px $sidebar-shadow); background-color: $menu-hvr-clr;
+							color: white; @include box-shadow(5px 5px $sidebar-shadow); background-color: $menu-hvr-clr;
+							@media only screen and (min-width: $width-treshold)  { width: calc(#{$menu-inflated} - (#{$sidebar-width} - #{$menu-size}));  }
+							@media only screen and (max-width: $width-treshold)  { width: calc(#{$menu-inflated} - (#{$sidebar-mob} - #{$menu-size}));  }
 							& > i { margin-right: 15px; margin-left: calc(#{$icon-margin} + 10px); }
 							& > span { display: inline-block; }
 						}
@@ -50,10 +64,13 @@
 			}
 		}
 		#sidebar-user {
-			height: calc(#{$sidebar-width} * (2 / 3) - 15px);
+			@media only screen and (min-width: $width-treshold)  { height: calc(#{$sidebar-width} * (2 / 3) - 15px); }
+			@media only screen and (max-width: $width-treshold)  { height: calc(#{$sidebar-mob} * (2 / 3) - 15px); }
 			#user-photo { display: inline-block; width: 80%; height: 80%; margin: 10%; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; }
 			#dropdown-menu {
-				width: 140px; height: calc(90% - 10px); position: absolute; top: 5%; left: calc(#{$sidebar-width} + 5px); background: $sidebar-clr2; border-radius: 5px; padding: 5px; color: white; z-index: 50;
+				width: 140px; height: calc(90% - 10px); position: absolute; top: 5%; background: $sidebar-clr2; border-radius: 5px; padding: 5px; color: white; z-index: 50;
+				@media only screen and (min-width: $width-treshold) { left: calc(#{$sidebar-width} + 5px); }
+				@media only screen and (max-width: $width-treshold) { left: calc(#{$sidebar-mob} + 5px); }
 				&::after, &::before { @include box-sizing(border-box); }
 				&::after { position: absolute; left: -4px; top: 47%; display: inline-block; border-top: 4px solid transparent; border-right: 4px solid $sidebar-clr2; border-bottom: 4px solid transparent; content: ''; }
 				&::before { position: absolute; left: -5px; top: 47%; display: inline-block; border-top: 5px solid transparent; border-right: 5px solid #ccc; border-bottom: 5px solid transparent; border-right-color: rgba(0,0,0,0.2); content: ''; }
@@ -65,11 +82,14 @@
 			}
 			#logout-button {
 				width: 100%; height: 80%; color: white; text-align: center; padding: 10% 0px;
-				i { font-size: 20px; margin: 5%; }
+				@media only screen and (min-width: $width-treshold)  { i { font-size: 20px; margin: 5%; } }
+				@media only screen and (max-width: $width-treshold)  { i { font-size: 17px; } }
 			}
 		}
 	}
 	#dashboard-content {
-		width: calc(100% - #{$sidebar-width}); height: calc(100%); display: inline-block; float: right; background: $background-clr;
+		height: calc(100%); display: inline-block; float: right; background: $background-clr;
+		@media only screen and (min-width: $width-treshold)  { width: calc(100% - #{$sidebar-width}); }
+		@media only screen and (max-width: $width-treshold)  { width: calc(100% - #{$sidebar-mob}); }
 	}
 }
